@@ -44,3 +44,9 @@ To run the Arsenal game standalone, you use the Arsenal executable, which links 
 
 In addition to the game crate, there may be any number of "mod" crates that are nearly identical to game crates, except that they are loaded after the game crate. Mod crates are created in different blends than the game crate and can be loaded dynamically, if the game allows, to let other players add their own functionality and extensions to the game.
 
+## Experimentation Done So Far
+
+All of the above architecture is theoretical. We have been working on proving out different elements of the architecture to make sure that it is feasible. So far we have successfully made a Rust Python extension that can be imported into a Blender plugin with a single operator that executes a Rust function.
+
+The largest problem we are having is getting Rust crates to dynamically link to other Rust crates. It should be possible, but it may require that you use the exact same version of Rust for all libraries involved. This could cause problems with things like the fact that Amethyst only supports Rust stable and the PyO3 library we are using for the Python extension requires Rust nightly. We need to do some research to see if there is a way to provide a stable ABI over which to link Rust crates to each-other conveniently. We have an [idea](https://zicklag.github.io/rust-tutorials/appendix-a.html#proposal-for-creating-a-stable-rust-dynamic-linking-strategy), but we'll have ask around to see if it makes any sense.
+
