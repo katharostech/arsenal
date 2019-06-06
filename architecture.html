@@ -89,7 +89,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li><a href="architecture.html" class="active"><strong aria-hidden="true">1.</strong> Architecture</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li><a href="architecture.html" class="active"><strong aria-hidden="true">1.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">1.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">1.2.</strong> Draft 1</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -153,32 +153,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#arsenal-architecture" id="arsenal-architecture"><h1>Arsenal Architecture</h1></a>
-<p>The WIP architecture for Arsenal is shown below:</p>
-<p><img src="./assets/arsenalArchitecture.svg" alt="Architecture Diagram" /></p>
-<p>The current design concept is a work-in-progress and may change drastically as we experiment and try out the different components.</p>
-<a class="header" href="#core-components" id="core-components"><h2>Core Components</h2></a>
-<a class="header" href="#kinc" id="kinc"><h3>Kinc</h3></a>
-<p>We are considering building on <a href="https://github.com/Kode/Kinc">Kinc</a>, which is the C/C++ library that Armory is built on. Kinc handles the platform and graphics abstraction that allows Armory to target different graphics API's like Vulcan, DirectX, and Metal, and allows Armory to target game consoles as well. The maintainer of Kinc is also working on creating Rust bindings which will make it easier to integrate with.</p>
-<p>We like Kinc because we know who the maintainer is and we could potentially port Armory's renderer by building on top of Kinc, but going with a full Rust solution is probably more pragmatic, and we are going to consider both options.</p>
-<a class="header" href="#amethyst" id="amethyst"><h3>Amethyst</h3></a>
-<p><a href="https://github.com/amethyst/amethyst">Amethyst</a> is along the lines of what we want the core of the engine to be. The ECS and highly parallel design will allow the engine to scale well from small games to very large games. One of the reasons we don't want to simply rewrite Armory in Rust is because we see building the engine itself on an ECS as a large advantage in engine design.</p>
-<a class="header" href="#renderer" id="renderer"><h3>Renderer</h3></a>
-<p>Something we may want to port from Armory is its renderer. Armory has a very good renderer and if we built on Kinc it would mean that we wouldn't have to change the API that it uses to communicate to the graphics hardware. It would be very nice if we could leverage the already awesome Armory renderer, but it may still may be better to go with Amethysts pure Rust <a href="https://github.com/amethyst/rendy">renderer</a> and instead take just the shaders from Armory or just make our own.</p>
-<a class="header" href="#arsenal-engine" id="arsenal-engine"><h3>Arsenal Engine</h3></a>
-<p>Additionally we would need our own components and systems that we add on top of Amethyst to add physics simulation and Blender elements like objects, lights, speakers, etc.</p>
-<p>All of these elements, Kinc, Amethyst, the renderer, and the Arsenal specific systems would be built together to make up the Arsenal shared library which will be utilized by the Blender plugin and the Arsenal executable.</p>
-<a class="header" href="#blender-integration" id="blender-integration"><h2>Blender Integration</h2></a>
-<p>The Arsenal Blender integration will be provided by two components: the Python Blender Plugin, and the Rust Python Extension. The Python Blender Plugin, is used to provide all of the extra Blender UI elements and integrations through the Blender Python API. The Rust Python Extension is a native Python module that is loaded by the Blender plugin and used to do parallel asset conversion, to build the Arsenal game, and to run the Arsenal game from inside blender ( in a separate window, but in the same process ).</p>
-<p>The Rust Python Extension will be dynamically linked to the Arsenal library, which will give it full access to the Arsenal engine API while simultaneously acting as a Python module that allows the Python Blender Plugin the ability to do advanced integrations with the engine such as live-sync, hot reload, etc. Tools such as the <a href="https://github.com/Kode/krafix">Krafix</a> GLSL cross-compiler could also be embedded into the Rust Python Extension to make it more self-contained and hopefully eliminate most of the need to install other tools on the user's system.</p>
-<a class="header" href="#arsenal-games" id="arsenal-games"><h3>Arsenal Games</h3></a>
-<p>The Arsenal game itself will be a Rust crate that is created alongside the .blend file by the Blender plugin, very similar to the way that Armory creates a Kha project adjacent to Armory blends. The game crate is built as a shared library that acts like an Arsenal &quot;plugin&quot; and is loaded by the Arsenal library as directed by the Blender plugin. The game crate also gets dynamically linked to the Arsenal library to give it full access to the game engine API.</p>
-<p>To run the Arsenal game standalone, you use the Arsenal executable, which links to the Arsenal library and directs it to load the game crate and run the game.</p>
-<a class="header" href="#arsenal-mods" id="arsenal-mods"><h3>Arsenal Mods</h3></a>
-<p>In addition to the game crate, there may be any number of &quot;mod&quot; crates that are nearly identical to game crates, except that they are loaded after the game crate. Mod crates are created in different blends than the game crate and can be loaded dynamically, if the game allows, to let other players add their own functionality and extensions to the game.</p>
-<a class="header" href="#experimentation-done-so-far" id="experimentation-done-so-far"><h2>Experimentation Done So Far</h2></a>
-<p>All of the above architecture is theoretical. We have been working on proving out different elements of the architecture to make sure that it is feasible. So far we have successfully made a Rust Python extension that can be imported into a Blender plugin with a single operator that executes a Rust function.</p>
-<p>The largest problem we are having is getting Rust crates to dynamically link to other Rust crates. It should be possible, but it may require that you use the exact same version of Rust for all libraries involved. This could cause problems with things like the fact that Amethyst only supports Rust stable and the PyO3 library we are using for the Python extension requires Rust nightly. We need to do some research to see if there is a way to provide a stable ABI over which to link Rust crates to each-other conveniently. We have an <a href="https://zicklag.github.io/rust-tutorials/appendix-a.html#proposal-for-creating-a-stable-rust-dynamic-linking-strategy">idea</a>, but we'll have ask around to see if it makes any sense.</p>
+                        <a class="header" href="#architecture" id="architecture"><h1>Architecture</h1></a>
+<p>We are currently in the process of prototyping the architecture for Arsenal. These are the drafts for the project architecture that we have made so far:</p>
+<ul>
+<li><a href="./architecture/draft-2.html">Draft 2</a> - The current plan for how Arsenal will be built. This may change and the draft will be update or else a new one created.</li>
+<li><a href="./architecture/draft-1.html">Draft 1</a> - The first design concept. See <a href="./architecture/draft-1.html#draft-status">draft status</a> to see why it was decided against.</li>
+</ul>
 
                     </main>
 
@@ -190,6 +170,10 @@
                             </a>
                         
 
+                        
+                            <a rel="next" href="architecture/draft-2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -204,6 +188,10 @@
                     </a>
                 
 
+                
+                    <a href="architecture/draft-2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
