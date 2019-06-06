@@ -13,4 +13,3 @@ We have decided that it would not be the best route to simply rewrite Armory in 
 ## Feedback
 
 If you have any thoughts or feedback you can open an [issue](https://github.com/katharostech/arsenal/issues/new) or contact us on our [website](https://katharostech.com/contact).
-
