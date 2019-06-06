@@ -8,7 +8,7 @@ The first Arsenal architecture draft is shown below:
 
 ### Kinc
 
-We are considering building on [Kinc](https://github.com/Kode/Kinc), which is the C/C++ library that Armory is built on. Kinc handles the platform and graphics abstraction that allows Armory to target different graphics API's like Vulcan, DirectX, and Metal, and allows Armory to target game consoles as well. The maintainer of Kinc is also working on creating Rust bindings which will make it easier to integrate with. 
+We are considering building on [Kinc](https://github.com/Kode/Kinc), which is the C/C++ library that Armory is built on. Kinc handles the platform and graphics abstraction that allows Armory to target different graphics API's like Vulcan, DirectX, and Metal, and allows Armory to target game consoles as well. The maintainer of Kinc is also working on creating Rust bindings which will make it easier to integrate with.
 
 We like Kinc because we know who the maintainer is and we could potentially port Armory's renderer by building on top of Kinc, but going with a full Rust solution is probably more pragmatic, and we are going to consider both options.
 
