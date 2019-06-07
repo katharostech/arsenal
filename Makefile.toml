@@ -1,0 +1,30 @@
+# To run build tasks first install Cargo Make:
+# 
+# > cargo install --force cargo-make
+#
+# After that you can run tasks as follows
+#
+# > cargo make book
+
+[tasks.book]
+install_crate = "mdbook"
+command = "mdbook"
+args = ["build"]
+
+[tasks.deploy-book]
+dependencies = ["book"]
+script_runner = "@shell"
+script = [
+'''
+rm -rf /tmp/arsenal_book
+git worktree prune
+git worktree add /tmp/arsenal_book gh-pages
+rm -rf /tmp/arsenal_book/*
+cp -rp build/book/* /tmp/arsenal_book/
+cd /tmp/arsenal_book && \
+	git add -A && \
+	git commit -m "Update gh-pages site" && \
+	git push origin gh-pages
+'''
+]
+
