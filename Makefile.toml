@@ -6,11 +6,50 @@
 #
 # > cargo make book
 
+[config]
+# Skip tasks that come with Cargo Make. We will define our own.
+skip_core_tasks = true
+
+#
+# Development
+#
+
+# Run code checks and watch code for changes
+[tasks.watch-check]
+command = "cargo"
+args = [
+	"watch",
+	"-s",
+	# This nicely clears the terminal before printing new results so that it
+	# is not cluttered with the old check results.
+	"clear; cargo check --tests --color=always 2>&1 | head -40"
+]
+
+[tasks.check]
+dependencies = [
+	"cargo-check",
+	"clippy",
+]
+
+[tasks.cargo-check]
+command = "cargo"
+args = ["check"]
+
+[tasks.clippy]
+command = "cargo"
+args = ["clippy"]
+
+#
+# Documentation
+#
+
+# Build the MDBook
 [tasks.book]
 install_crate = "mdbook"
 command = "mdbook"
 args = ["build"]
 
+# Deploy the MDBook To GitHub Pages
 [tasks.deploy-book]
 dependencies = ["book"]
 script_runner = "@shell"
