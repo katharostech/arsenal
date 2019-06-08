@@ -1,10 +1,7 @@
+# MDBook
 build/
 
-
-#Added by cargo
-#
-#already existing elements are commented out
-
+# Cargo
 /target
 **/*.rs.bk
 Cargo.lock
