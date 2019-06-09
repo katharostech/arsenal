@@ -39,6 +39,20 @@ args = ["check"]
 command = "cargo"
 args = ["clippy"]
 
+# TODO: Parameterize build type with development/release profile checking
+[tasks.build]
+dependencies = ["build-rust"]
+script_runner = "@shell"
+script = ['''
+mkdir -p build
+cp -r arsenal-blender build/
+cp target/debug/libarsenal.so build/arsenal-blender/arsenal.so
+''']
+
+[tasks.build-rust]
+command = "cargo"
+args = ["build"]
+
 #
 # Documentation
 #
