@@ -1,5 +1,6 @@
 .vscode/
 build/
+*.pyc
 
 # This makes it easy to add a symlink for the rust extension during development
 # without accidentally adding the symlink to git.
