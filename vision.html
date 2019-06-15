@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Overview - Arsenal Game Engine</title>
+        <title>The Vision - Arsenal Game Engine</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -89,7 +89,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li><a href="vision.html"><strong aria-hidden="true">1.</strong> The Vision</a></li><li><a href="architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">2.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">2.2.</strong> Draft 1</a></li></ol></li><li><a href="FAQ.html">FAQ</a></li></ol>
+            <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li><a href="vision.html" class="active"><strong aria-hidden="true">1.</strong> The Vision</a></li><li><a href="architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">2.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">2.2.</strong> Draft 1</a></li></ol></li><li><a href="FAQ.html">FAQ</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -153,21 +153,84 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
-<p>Arsenal is the idea for a Blender integrated game engine written in Rust. Currently there is no game engine, it is just an idea, but we are currently doing the planning, investigation, experimentation, and documentation that is necessary to get the project started.</p>
-<p>To start, we are developing an <a href="./architecture.html">architecture outline</a> that lays out how we want to structure the components of the project.</p>
-<a class="header" href="#motivation" id="motivation"><h2>Motivation</h2></a>
-<p>We at <a href="https://katharostech.com">Katharos Technology</a> have been planning to use <a href="https://armory3d.org/">Armory3D</a> for our games until recent <a href="http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag">concerns</a> about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.</p>
-<p>We have decided that it would not be the best route to simply rewrite Armory in Rust. Instead we think it would be better to design a new engine, potentially built on existing Rust tools like Amethyst, and provide a rich Blender integration and Logic Node system similar to what Armory has today.</p>
-<a class="header" href="#feedback" id="feedback"><h2>Feedback</h2></a>
-<p>If you have any thoughts or feedback you can open an <a href="https://github.com/katharostech/arsenal/issues/new">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
+                        <a class="header" href="#the-vision" id="the-vision"><h1>The Vision</h1></a>
+<p>These need to be refined into a more succinct vision statement, but here are the major design points that drive the Arsenal vision:</p>
+<ul>
+<li>We need the engine to scale to a game of any size, even up to AAA games, with no technological bottleneck.
+<ul>
+<li>The engine core should be written in Rust
+<ul>
+<li>In order to make sure that engine performance is not a bottleneck, it needs to be written in a language that has multi-threading and that can integrate with native libraries.</li>
+<li>Rust allows full control while eliminating entire classes of bugs and preventing vulnerabilities and hard to debug issues.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We want the engine to be as easy to use and get started with as absolutely possible.
+<ul>
+<li>Armory successfully hit a lot of good points on ease of use and Arsenal will take a lot of pointers from Armory in that respect. We want to take all of the best things about Armory's user experience and make sure that Arsenal is not at a disadvantage to Armory in that respect.</li>
+<li>We want to support visual scripting to allow non-programmers to make their own games.</li>
+<li>The engine should provide a full Blender integration where you build your game scenes in Blender and export them instantly to a game. ( Textual scripting initially will only be supported in an any external editor such as VSCode, however visual scripting we hope will be done directly within Blender )</li>
+</ul>
+</li>
+<li>We want the engine to be efficient.
+<ul>
+<li>The engine should, as much as possible, not use an absurd amount of system resources to run or develop games with.
+<ul>
+<li>We want the engine to be usable by as many people as possible and on as many different computers as possible without compromising on the quality of the engine and its capabilities.</li>
+</ul>
+</li>
+<li>The games in the engine should run on lower-end hardware as well as high-end hardware
+<ul>
+<li>Even though Arsenal should be able to support super large games that require a lot of system resources, it should not be limited in its ability to create small lightweight games that run on less modern and/or lower resource hardware.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We want the engine to be mod-able.
+<ul>
+<li>Modding is a very big deal to us, partially because modding was one of the major things that inspired us to want to make games in the first place. Allowing people to make games that can dynamically load user content is high on our priorities.</li>
+</ul>
+</li>
+<li>We want the engine to be cross-platform
+<ul>
+<li>The engine should be able to run on all of the major platforms including game consoles and the web:
+<ul>
+<li>Windows</li>
+<li>Linux</li>
+<li>Mac</li>
+<li>Web</li>
+<li>Android</li>
+<li>iPhone</li>
+<li>PlayStation 4</li>
+<li>XBox One</li>
+<li>Nintendo Switch</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>We want the engine to be Open Source and built on Open Source tools so that anybody can contribute and/or modify the engine to their own use-case.</li>
+</ul>
+<p>The engine should be able to compete with Unity, Unreal, Cryengine, etc. in the kinds of games you can create with it. It may or may not have all of the features of those game engines, though. The features that the engine comes with will be, at least initially, dependent on what we need to develop our own games at Katharos Technology. That doesn't mean that we won't support or integrate other features if somebody else wants to contribute them, and it doesn't mean that other features may not come later.</p>
+<p>Even though the engine needs to be able to support large games, it should be easy to use and still be perfectly suitable for small indie games as well.</p>
+<blockquote>
+<p><strong>See Also:</strong> <a href="./FAQ.html">FAQ</a></p>
+</blockquote>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
+                        
+                            <a rel="next" href="architecture.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -177,7 +240,15 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
+                
+                    <a href="architecture.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
