@@ -10,6 +10,10 @@ We at [Katharos Technology](https://katharostech.com) have been planning to use 
 
 We have decided that it would not be the best route to simply rewrite Armory in Rust. Instead we think it would be better to design a new engine, potentially built on existing Rust tools like Amethyst, and provide a rich Blender integration and Logic Node system similar to what Armory has today.
 
+## Roadmap
+
+You can view our [roadmap](https://github.com/katharostech/arsenal/milestones) by looking at the milestones on GitHub. The roadmap will likely change as we find out what work needs to be done more specifically.
+
 ## Feedback
 
 If you have any thoughts or feedback you can open an [issue](https://github.com/katharostech/arsenal/issues/new) or contact us on our [website](https://katharostech.com/contact).

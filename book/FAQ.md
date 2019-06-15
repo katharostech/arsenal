@@ -42,7 +42,7 @@ See our [about us](https://katharostech.com/about-us) page to understand more ab
 
 ## What will be your game engine license?
 
-The current plan is for the engine to be dual licensed under MIT and Apache 2.0, but the ownership of the copyright will be reserved by Katharos Technology. That means that contributors have to sign a [CLA](https://cla-assistant.io/katharostech/arsenal) and that we may re-license the engine under any other license that we choose if we need to for any reason. This is to protect us, as an organization, from putting a legal restriction on our use of our own software that we may regret later. We have the full intention of always providing the software under a free and Open Source license; part of what we want to accomplish with Katharos Technology is to give people the tools they need to make their own games.
+The current plan is for the engine to be licensed under MIT, but the ownership of the copyright will be reserved by Katharos Technology. That means that contributors have to sign a [CLA](https://cla-assistant.io/katharostech/arsenal) and that we may re-license the engine under any other license that we choose if we need to for any reason. This is to protect us, as an organization, from putting a legal restriction on our use of our own software that we may regret later. We have the full intention of always providing the software under a free and Open Source license; part of what we want to accomplish with Katharos Technology is to give people the tools they need to make their own games.
 
 ## How Do You Decide What Features to Work On?
 
