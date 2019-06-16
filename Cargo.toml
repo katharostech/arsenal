@@ -5,10 +5,25 @@ authors = ["Zicklag <zicklag@katharostech.com>"]
 edition = "2018"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+enable_profiling = ["flame", "flamer"]
 
 [dependencies]
 
-    [dependencies.pyo3]
-    version = "0.7.0"
-    features = ["extension-module"]
+    # Parallelism
+    rayon = "1.1"
+
+    # Scene Export
+    gltf-json = { version = "0.12", features = ["names", "extras"] }
+
+    # Python Interface
+    pyo3 = { version = "0.7", features = ["extension-module"] }
+
+    # Profiling
+    # Temporarily use my fork of flame because it will show milliseconds instead of samples in the HTML dump
+    flame = { git = "https://github.com/zicklag/flame.git", branch = "ms-in-html", optional = true }
+    flamer = { version = "0.3", optional = true }
+

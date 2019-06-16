@@ -1,5 +1,7 @@
 import bpy
 
+from . import arsenal
+
 blender_classes = []
 
 class ArsenalRun(bpy.types.Operator):
@@ -7,8 +9,9 @@ class ArsenalRun(bpy.types.Operator):
     bl_idname = "arsenal.run"
     bl_label = "Run Game"
 
-    def execute(self,   context):
+    def execute(self, context):
         print("Running Arsenal Game")
+        arsenal.operators.arsenal_run(context)
         return {'FINISHED'}
 
 blender_classes.append(ArsenalRun)
