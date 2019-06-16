@@ -46,12 +46,19 @@ script_runner = "@shell"
 script = ['''
 mkdir -p build
 cp -r arsenal-blender build/
-cp target/debug/libarsenal.so build/arsenal-blender/arsenal.so
+cp -u target/debug/libarsenal.so build/arsenal-blender/arsenal.so
 ''']
 
 [tasks.build-rust]
 command = "cargo"
 args = ["build"]
+
+[tasks.clean]
+script_runner = "@shell"
+script = [
+	"rm -rf target/",
+	"rm -rf build/"
+]
 
 #
 # Documentation
