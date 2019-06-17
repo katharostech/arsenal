@@ -2,6 +2,8 @@
 
 Arsenal will provide what is necessary to achieve a full Blender integration with the [Amethyst](https://github.com/amethyst/amethyst) game engine. Extra, more opinionated components may be added on top of Amethyst if deemed necessary to provide the particular user experience that we are targeting with Arsenal, but the goal of Arsenal will be to build as much on top of Amethyst as possible, with contributions being made to Amethyst to help facilitate Arsenal's goals.
 
+![Architecture Diagram](./assets/arsenalArchitecture-2.svg)
+
 ## Components
 
 ### Blender Plugin

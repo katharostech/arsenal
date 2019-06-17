@@ -2,7 +2,7 @@
 
 The first Arsenal architecture draft is shown below:
 
-![Architecture Diagram](./assets/arsenalArchitecture.svg)
+![Architecture Diagram](./assets/arsenalArchitecture-1.svg)
 
 ## Core Components
 
