@@ -8,3 +8,4 @@
   - [Draft 1](./architecture/draft-1.md)
 
 [FAQ](./FAQ.md)
+[News](./news.md)
