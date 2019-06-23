@@ -53,3 +53,11 @@ If other people want to contribute features that we may not have time to work on
 ## Is Arsenal A Blender Plugin or a Game Engine?
 
 In reality, even though we call Arsenal an engine, the plan is to build Arsenal almost entirely on top of the [Amethyst](https://amethyst.rs) game engine while creating our own Blender based user experience. We have the documentation for the engine design [here](https://katharostech.github.io/arsenal/architecture.html).
+
+## Why Does Arsenal Export glTF Instead of Just Using Blender Files?
+
+There are three reasons:
+
+1. **Maintenance:** Keeping up with the Blender file format could be time-consuming as it is a moving target. Comparatively, the glTF format is very simple and standardized.
+2. **Storage:** The blender format contains a lot of metadata that we don't need for a game, such as the Blender UI layout.
+3. **Efficiency:** If you use the Blender file format, the game would have to decode the .blend file while the game is running. This would involve going through more information than is actually needed in the game and would require more CPU to get the required data. glTF is a very dense format that compactly stores the information we need while also facilitating efficient extraction into a running game.
