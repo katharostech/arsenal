@@ -4,5 +4,6 @@ Here is a record of significant events or updates made to the engine. We will ma
 
 ## June 2019
 
+- **23rd**: The [Basic glTF Exporter](https://github.com/katharostech/arsenal/issues/5) was merged. The exporter proved out the ability to write a Blender plugin in Rust. The advantages of using Rust were demonstrated in Rust's strong type system and its amazing performance. Our exporter was able to [perform  22 times faster](https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911/9?u=zicklag) than the [official Blender glTF Exporter](https://github.com/KhronosGroup/glTF-Blender-IO) by the Khronos Group.
 - **10th**: Announcement of project on [Amethyst form](https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911)
 - **3rd**: Initial commit on the Arsenal repository
