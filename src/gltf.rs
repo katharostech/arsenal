@@ -61,6 +61,9 @@ pub fn export(py: Python) -> PyResult<()> {
     // Blender data name index
     let mut data_names = DataNames::default();
 
+    // Add a default material
+    gltf_doc.materials.push(gltf::Material::default());
+
     // For every Blender scene
     let scenes = data.getattr(py, "scenes")?.call_method0(py, "values")?;
     for scene in scenes.cast_as::<PyList>(py)? {
@@ -521,7 +524,7 @@ fn load_mesh(
             map
         },
         indices: Some(gltf::Index::new(indices_accessor_id as u32)),
-        material: None,
+        material: Some(gltf::Index::new(0)), // Use a default material for now
         mode: Valid(gltf::mesh::Mode::Triangles),
         targets: None,
         extras: None,
