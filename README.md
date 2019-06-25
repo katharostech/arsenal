@@ -4,4 +4,6 @@ Arsenal is the idea for a Blender integrated game engine written in Rust. There 
 
 The documentation can be found at [katharostech.github.io/arsenal](https://katharostech.github.io/arsenal).
 
+## GitHub Stars Over Time
+
 ![starcharts stargazers over time](https://starchart.cc/katharostech/arsenal.svg)
