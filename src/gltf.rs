@@ -297,9 +297,6 @@ fn load_mesh(
         #[cfg(feature = "enable_profiling")]
         let _guard = flame::start_guard("get_mesh_indices");
 
-        // Mesh index data
-        let mut mesh_indices: Vec<i16> = vec![];
-
         // Calculate mesh tesselation
         mesh.call_method0(py, "calc_loop_triangles")?;
 
@@ -307,9 +304,13 @@ fn load_mesh(
         let loop_tris = mesh
             .getattr(py, "loop_triangles")?
             .call_method0(py, "values")?;
+        let loop_tris = loop_tris.cast_as::<PyList>(py)?;
+
+        // Mesh index data
+        let mut mesh_indices: Vec<i16> = Vec::with_capacity(loop_tris.len());
 
         // For every triangle
-        for tri in loop_tris.cast_as::<PyList>(py)? {
+        for tri in loop_tris {
             // Get the vertice indices
             let verts = tri.to_object(py).getattr(py, "vertices")?;
 
@@ -334,13 +335,15 @@ fn load_mesh(
         #[cfg(feature = "enable_profiling")]
         let _guard = flame::start_guard("get_mesh_vertices");
 
-        // Mesh vertice data
-        let mut mesh_vertices: Vec<VertexData> = vec![];
-
         // Collect mesh vertices
         let verts = mesh.getattr(py, "vertices")?.call_method0(py, "values")?;
+        let verts = verts.cast_as::<PyList>(py)?;
+
+        // Mesh vertice data
+        let mut mesh_vertices: Vec<VertexData> = Vec::with_capacity(verts.len());
+
         // For every vertice
-        for vert in verts.cast_as::<PyList>(py)? {
+        for vert in verts {
             // Vertice cooridinates
             let co = vert.to_object(py).getattr(py, "co")?;
             // Vertice normal
