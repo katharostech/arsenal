@@ -1,6 +1,6 @@
 pub mod py {
     use crate::utils::blender::get_build_dir;
-    use crate::gltf;
+    use crate::exporter;
     use pyo3::prelude::*;
 
     /// Blender operators
@@ -13,7 +13,7 @@ pub mod py {
             println!("Operator: arsenal_run");
 
             // Export the blend
-            gltf::export(py, &get_build_dir(py)?)?;
+            exporter::export(py, &get_build_dir(py)?)?;
 
             // Run the exported scene in Amethyst
             // TODO
