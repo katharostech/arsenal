@@ -10,7 +10,7 @@ extern crate flamer;
 use pyo3::prelude::*;
 use pyo3::wrap_pymodule;
 
-pub mod gltf;
+pub mod exporter;
 pub mod operators;
 pub mod utils;
 
