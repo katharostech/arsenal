@@ -1,6 +1,6 @@
 pub mod py {
+    use crate::utils::blender::get_build_dir;
     use crate::gltf;
-
     use pyo3::prelude::*;
 
     /// Blender operators
@@ -13,9 +13,12 @@ pub mod py {
             println!("Operator: arsenal_run");
 
             // Export the blend
-            gltf::export(py)?;
+            gltf::export(py, &get_build_dir(py)?)?;
 
-            // TODO: Find out how/where we want to dump the flamegraph
+            // Run the exported scene in Amethyst
+            // TODO
+
+            // Dump flamegraph
             #[cfg(feature = "enable_profiling")]
             {
                 flame::dump_stdout();

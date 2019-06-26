@@ -1,9 +1,21 @@
 use std::collections::HashMap;
+use std::path::PathBuf;
 
 use pyo3::prelude::*;
 use pyo3::types::{PyList, PyTuple};
 
 use gltf_json as gltf;
+
+/// Export entire Blender file to glTF
+pub fn export(py: Python, export_path: &str) -> PyResult<()> {
+    // Create an exporter
+    let mut exporter = BlendExporter::new(export_path);
+
+    // Export the blend
+    exporter.export(py)?;
+
+    Ok(())
+}
 
 /// A set of HashMaps that maps Blender object names to their corresponding
 /// index in the glTF data.
@@ -43,503 +55,497 @@ fn to_padded_byte_vector<T>(vec: Vec<T>) -> Vec<u8> {
     new_vec
 }
 
-/// Helper function to write resource data to disk
-#[cfg_attr(feature = "enable_profiling", flame)]
-fn write_resource(file_name: &str, bytes: &[u8]) -> PyResult<()> {
-    std::fs::write(std::path::Path::new(file_name), bytes)?;
-
-    Ok(())
+/// The SceneExporter
+struct BlendExporter {
+    gltf_doc: gltf::Root,
+    data_names: DataNames,
+    export_dir: PathBuf,
 }
 
-/// Export entire Blender file to glTF
-#[cfg_attr(feature = "enable_profiling", flame)]
-pub fn export(py: Python) -> PyResult<()> {
-    // Blender data import
-    let data = py.import("bpy")?.get("data")?.to_object(py);
-    // glTF JSON document
-    let mut gltf_doc = gltf::Root::default();
-    // Blender data name index
-    let mut data_names = DataNames::default();
-
-    // Add a default material
-    gltf_doc.materials.push(gltf::Material::default());
-
-    // For every Blender scene
-    let scenes = data.getattr(py, "scenes")?.call_method0(py, "values")?;
-    for scene in scenes.cast_as::<PyList>(py)? {
-        let scene = scene.to_object(py);
-
-        // Load scene
-        load_scene(py, scene, &mut gltf_doc, &mut data_names)?;
+impl BlendExporter {
+    /// Instantiate a scene exporter by providing the export dir
+    pub fn new(export_dir: &str) -> Self {
+        BlendExporter {
+            gltf_doc: Default::default(),
+            data_names: Default::default(),
+            export_dir: PathBuf::from(export_dir),
+        }
     }
 
-    // Write glTF file to disk
-    std::fs::write(
-        std::path::Path::new("test.gltf"),
-        gltf::serialize::to_string_pretty(&gltf_doc).unwrap(),
-    )?;
+    /// Helper function to write resource data to disk
+    #[cfg_attr(feature = "enable_profiling", flame)]
+    fn write_resource(&self, file_name: &str, bytes: &[u8]) -> PyResult<()> {
+        std::fs::write(&self.export_dir.join(file_name), bytes)?;
 
-    Ok(())
-}
-
-/// Load scene data into `gltf_doc` and `data_names` and return scene ID
-#[cfg_attr(feature = "enable_profiling", flame)]
-fn load_scene(
-    py: Python,
-    scene: PyObject,
-    gltf_doc: &mut gltf::Root,
-    data_names: &mut DataNames,
-) -> PyResult<u32> {
-    // Get scene name
-    let scene_name: String = scene.getattr(py, "name")?.extract(py)?;
-
-    // If the scene has already been loaded
-    if let Some(scene_id) = data_names.scene_names.get(&scene_name) {
-        // Skip loading and return scene id
-        return Ok(*scene_id);
+        Ok(())
     }
 
-    // Objects in the scene
-    let objects = scene.getattr(py, "objects")?.call_method0(py, "values")?;
-    // Scene nodes
-    let mut nodes = vec![];
+    /// Export entire Blender file to glTF
+    #[cfg_attr(feature = "enable_profiling", flame)]
+    pub fn export(&mut self, py: Python) -> PyResult<()> {
+        // Blender data import
+        let data = py.import("bpy")?.get("data")?.to_object(py);
 
-    // For each object
-    for object in objects.cast_as::<PyList>(py)? {
-        let object = object.to_object(py);
+        // Add a default material
+        self.gltf_doc.materials.push(gltf::Material::default());
 
-        // Skip objects with parents. We only load root objects in the scene.
-        if object.getattr(py, "parent")? != py.None() {
-            continue;
+        // For every Blender scene
+        let scenes = data.getattr(py, "scenes")?.call_method0(py, "values")?;
+        for scene in scenes.cast_as::<PyList>(py)? {
+            let scene = scene.to_object(py);
+
+            // Load scene
+            self.load_scene(py, scene)?;
         }
 
-        // Add node to scene
-        nodes.push(gltf::Index::new(load_object(
-            py, object, gltf_doc, data_names,
-        )?));
+        // Write glTF file to disk
+        self.write_resource(
+            "export.gltf",
+            gltf::serialize::to_string_pretty(&self.gltf_doc)
+                .unwrap()
+                .as_bytes(),
+        )?;
+
+        Ok(())
     }
 
-    // Get the scene index
-    let scene_index = gltf_doc.scenes.len() as u32;
+    /// Load scene data into `gltf_doc` and `data_names` and return scene ID
+    #[cfg_attr(feature = "enable_profiling", flame)]
+    fn load_scene(&mut self, py: Python, scene: PyObject) -> PyResult<u32> {
+        // Get scene name
+        let scene_name: String = scene.getattr(py, "name")?.extract(py)?;
 
-    // Add scene to name list
-    data_names
-        .scene_names
-        .insert(scene_name.clone(), scene_index);
+        // If the scene has already been loaded
+        if let Some(scene_id) = self.data_names.scene_names.get(&scene_name) {
+            // Skip loading and return scene id
+            return Ok(*scene_id);
+        }
 
-    // Add scene to glTF
-    gltf_doc.scenes.push(gltf::Scene {
-        name: Some(scene_name),
-        nodes,
-        extras: None,
-        extensions: None,
-    });
+        // Objects in the scene
+        let objects = scene.getattr(py, "objects")?.call_method0(py, "values")?;
+        // Scene nodes
+        let mut nodes = vec![];
 
-    // Return scene index
-    Ok(scene_index)
-}
+        // For each object
+        for object in objects.cast_as::<PyList>(py)? {
+            let object = object.to_object(py);
 
-/// Load an object and return its integer id
-#[cfg_attr(feature = "enable_profiling", flame)]
-fn load_object(
-    py: Python,
-    object: PyObject,
-    gltf_doc: &mut gltf::Root,
-    data_names: &mut DataNames,
-) -> PyResult<u32> {
-    // Object name
-    let object_name: String = object.getattr(py, "name")?.extract(py)?;
-
-    // If the object has already been loaded
-    if let Some(object_id) = data_names.object_names.get(&object_name) {
-        // Return object ID
-        return Ok(*object_id);
-    }
-
-    // Blender child objects
-    let blend_children = object.getattr(py, "children")?;
-
-    // glTF children nodes
-    let mut gltf_children = vec![];
-
-    // For each child object
-    for child in blend_children.cast_as::<PyTuple>(py)? {
-        let child = child.to_object(py);
-
-        gltf_children.push(gltf::Index::new(load_object(
-            py, child, gltf_doc, data_names,
-        )?));
-    }
-
-    // Initialize object types as None
-    let mut mesh = None;
-    let camera = None;
-
-    // The type of Blender object
-    let object_type: String = object.getattr(py, "type")?.extract(py)?;
-
-    // If the object is a mesh
-    if object_type == "MESH" {
-        // Get Blender mesh
-        let blender_mesh = object.call_method0(py, "to_mesh")?;
-
-        // Load mesh data
-        mesh = Some(gltf::Index::new(load_mesh(
-            py,
-            blender_mesh,
-            gltf_doc,
-            data_names,
-        )?));
-
-    // If the object is a camera
-    } else if object_type == "CAMERA" {
-        // TODO: Handle camera objects
-    }
-
-    // Object translation
-    let mut translation = [0f32; 3];
-    for (i, coordinate) in translation.iter_mut().enumerate() {
-        *coordinate = object
-            .getattr(py, "location")?
-            .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
-            .extract(py)?;
-    }
-    // Change coordinates so that Y is up
-    translation = [translation[0], translation[2], -translation[1]];
-
-    // Object rotation
-    let mut rotation = [0f32; 4];
-    for (i, coordinate) in rotation.iter_mut().enumerate() {
-        *coordinate = object
-            .getattr(py, "rotation_quaternion")?
-            .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
-            .extract(py)?;
-    }
-    // Change coordinates so that Y is up
-    rotation = [rotation[1], rotation[3], -rotation[2], rotation[0]];
-
-    // Object Scale
-    let mut scale = [0f32; 3];
-    for (i, coordinate) in scale.iter_mut().enumerate() {
-        *coordinate = object
-            .getattr(py, "scale")?
-            .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
-            .extract(py)?;
-    }
-    // Change coordinates so that Y is up
-    scale = [scale[0], scale[2], scale[1]];
-
-    // The index of the object in the glTF document
-    let node_index = gltf_doc.nodes.len() as u32;
-
-    // Add object name to the names index
-    data_names
-        .object_names
-        .insert(object_name.clone(), node_index);
-
-    // Add object to the glTF node list
-    gltf_doc.nodes.push(gltf::Node {
-        name: Some(object_name),
-        children: {
-            if gltf_children.is_empty() {
-                None
-            } else {
-                Some(gltf_children)
+            // Skip objects with parents. We only load root objects in the scene.
+            if object.getattr(py, "parent")? != py.None() {
+                continue;
             }
-        },
-        translation: Some(translation),
-        rotation: Some(gltf::scene::UnitQuaternion(rotation)),
-        scale: Some(scale),
-        mesh,
-        camera,
-        matrix: None,
-        skin: None,
-        weights: None,
-        extras: None,
-        extensions: None,
-    });
 
-    // Return the node index
-    Ok(node_index)
-}
+            // Add node to scene
+            nodes.push(gltf::Index::new(self.load_object(py, object)?));
+        }
 
-/// Load a mesh and return the integer id
-#[cfg_attr(feature = "enable_profiling", flame)]
-fn load_mesh(
-    py: Python,
-    mesh: PyObject,
-    gltf_doc: &mut gltf::Root,
-    data_names: &mut DataNames,
-) -> PyResult<u32> {
-    // Get the mesh name
-    let mesh_name: String = mesh.getattr(py, "name")?.extract(py)?;
+        // Get the scene index
+        let scene_index = self.gltf_doc.scenes.len() as u32;
 
-    // If this mesh has already been loaded
-    if let Some(mesh_id) = data_names.mesh_names.get(&mesh_name) {
-        // Return mesh ID
-        return Ok(*mesh_id);
+        // Add scene to name list
+        self.data_names
+            .scene_names
+            .insert(scene_name.clone(), scene_index);
+
+        // Add scene to glTF
+        self.gltf_doc.scenes.push(gltf::Scene {
+            name: Some(scene_name),
+            nodes,
+            extras: None,
+            extensions: None,
+        });
+
+        // Return scene index
+        Ok(scene_index)
     }
 
-    // The binary buffer that will store the mesh data
-    let mut mesh_buffer: Vec<u8>;
-    // The number of indices
-    let indices_count;
-    // The byte length of indices data
-    let indices_length;
-    // The number of vertices
-    let vertices_count;
-    // The byte length of vertices data
-    let vertices_length;
-    // The minium vertex position
-    let mut vertex_min = [0f32; 3];
-    // The maximum vertex position
-    let mut vertex_max = [0f32; 3];
+    /// Load an object and return its integer id
+    #[cfg_attr(feature = "enable_profiling", flame)]
+    fn load_object(&mut self, py: Python, object: PyObject) -> PyResult<u32> {
+        // Object name
+        let object_name: String = object.getattr(py, "name")?.extract(py)?;
 
-    // Add indices to mesh buffer
-    {
-        #[cfg(feature = "enable_profiling")]
-        let _guard = flame::start_guard("get_mesh_indices");
+        // If the object has already been loaded
+        if let Some(object_id) = self.data_names.object_names.get(&object_name) {
+            // Return object ID
+            return Ok(*object_id);
+        }
 
-        // Calculate mesh tesselation
-        mesh.call_method0(py, "calc_loop_triangles")?;
+        // Blender child objects
+        let blend_children = object.getattr(py, "children")?;
 
-        // Collect the triangle data
-        let loop_tris = mesh
-            .getattr(py, "loop_triangles")?
-            .call_method0(py, "values")?;
-        let loop_tris = loop_tris.cast_as::<PyList>(py)?;
+        // glTF children nodes
+        let mut gltf_children = vec![];
 
-        // Mesh index data
-        let mut mesh_indices: Vec<i16> = Vec::with_capacity(loop_tris.len());
+        // For each child object
+        for child in blend_children.cast_as::<PyTuple>(py)? {
+            let child = child.to_object(py);
 
-        // For every triangle
-        for tri in loop_tris {
-            // Get the vertice indices
-            let verts = tri.to_object(py).getattr(py, "vertices")?;
+            gltf_children.push(gltf::Index::new(self.load_object(py, child)?));
+        }
 
-            // Add the indices to the mesh data
-            for i in 0..3 {
-                mesh_indices.push(
-                    verts
-                        .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
-                        .extract(py)?,
+        // Initialize object types as None
+        let mut mesh = None;
+        let camera = None;
+
+        // The type of Blender object
+        let object_type: String = object.getattr(py, "type")?.extract(py)?;
+
+        // If the object is a mesh
+        if object_type == "MESH" {
+            // Get Blender mesh
+            let blender_mesh = object.call_method0(py, "to_mesh")?;
+
+            // Load mesh data
+            mesh = Some(gltf::Index::new(self.load_mesh(py, blender_mesh)?));
+
+        // If the object is a camera
+        } else if object_type == "CAMERA" {
+            // TODO: Handle camera objects
+        }
+
+        // Object translation
+        let mut translation = [0f32; 3];
+        for (i, coordinate) in translation.iter_mut().enumerate() {
+            *coordinate = object
+                .getattr(py, "location")?
+                .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
+                .extract(py)?;
+        }
+        // Change coordinates so that Y is up
+        translation = [translation[0], translation[2], -translation[1]];
+
+        // Object rotation
+        let mut rotation = [0f32; 4];
+        for (i, coordinate) in rotation.iter_mut().enumerate() {
+            *coordinate = object
+                .getattr(py, "rotation_quaternion")?
+                .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
+                .extract(py)?;
+        }
+        // Change coordinates so that Y is up
+        rotation = [rotation[1], rotation[3], -rotation[2], rotation[0]];
+
+        // Object Scale
+        let mut scale = [0f32; 3];
+        for (i, coordinate) in scale.iter_mut().enumerate() {
+            *coordinate = object
+                .getattr(py, "scale")?
+                .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
+                .extract(py)?;
+        }
+        // Change coordinates so that Y is up
+        scale = [scale[0], scale[2], scale[1]];
+
+        // The index of the object in the glTF document
+        let node_index = self.gltf_doc.nodes.len() as u32;
+
+        // Add object name to the names index
+        self.data_names
+            .object_names
+            .insert(object_name.clone(), node_index);
+
+        // Add object to the glTF node list
+        self.gltf_doc.nodes.push(gltf::Node {
+            name: Some(object_name),
+            children: {
+                if gltf_children.is_empty() {
+                    None
+                } else {
+                    Some(gltf_children)
+                }
+            },
+            translation: Some(translation),
+            rotation: Some(gltf::scene::UnitQuaternion(rotation)),
+            scale: Some(scale),
+            mesh,
+            camera,
+            matrix: None,
+            skin: None,
+            weights: None,
+            extras: None,
+            extensions: None,
+        });
+
+        // Return the node index
+        Ok(node_index)
+    }
+
+    /// Load a mesh and return the integer id
+    #[cfg_attr(feature = "enable_profiling", flame)]
+    fn load_mesh(&mut self, py: Python, mesh: PyObject) -> PyResult<u32> {
+        // Get the mesh name
+        let mesh_name: String = mesh.getattr(py, "name")?.extract(py)?;
+
+        // If this mesh has already been loaded
+        if let Some(mesh_id) = self.data_names.mesh_names.get(&mesh_name) {
+            // Return mesh ID
+            return Ok(*mesh_id);
+        }
+
+        // The binary buffer that will store the mesh data
+        let mut mesh_buffer: Vec<u8>;
+        // The number of indices
+        let indices_count;
+        // The byte length of indices data
+        let indices_length;
+        // The number of vertices
+        let vertices_count;
+        // The byte length of vertices data
+        let vertices_length;
+        // The minium vertex position
+        let mut vertex_min = [0f32; 3];
+        // The maximum vertex position
+        let mut vertex_max = [0f32; 3];
+
+        // Add indices to mesh buffer
+        {
+            #[cfg(feature = "enable_profiling")]
+            let _guard = flame::start_guard("get_mesh_indices");
+
+            // Calculate mesh tesselation
+            mesh.call_method0(py, "calc_loop_triangles")?;
+
+            // Collect the triangle data
+            let loop_tris = mesh
+                .getattr(py, "loop_triangles")?
+                .call_method0(py, "values")?;
+            let loop_tris = loop_tris.cast_as::<PyList>(py)?;
+
+            // Mesh index data
+            let mut mesh_indices: Vec<i16> = Vec::with_capacity(loop_tris.len());
+
+            // For every triangle
+            for tri in loop_tris {
+                // Get the vertice indices
+                let verts = tri.to_object(py).getattr(py, "vertices")?;
+
+                // Add the indices to the mesh data
+                for i in 0..3 {
+                    mesh_indices.push(
+                        verts
+                            .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
+                            .extract(py)?,
+                    );
+                }
+            }
+
+            // Add indices to the buffer
+            indices_count = mesh_indices.len();
+            mesh_buffer = to_padded_byte_vector(mesh_indices);
+            indices_length = mesh_buffer.len();
+        }
+
+        // Add vertices to mesh buffer
+        {
+            #[cfg(feature = "enable_profiling")]
+            let _guard = flame::start_guard("get_mesh_vertices");
+
+            // Collect mesh vertices
+            let verts = mesh.getattr(py, "vertices")?.call_method0(py, "values")?;
+            let verts = verts.cast_as::<PyList>(py)?;
+
+            // Mesh vertice data
+            let mut mesh_vertices: Vec<VertexData> = Vec::with_capacity(verts.len());
+
+            // For every vertice
+            for vert in verts {
+                // Vertice cooridinates
+                let co = vert.to_object(py).getattr(py, "co")?;
+                // Vertice normal
+                let normal = vert.to_object(py).getattr(py, "normal")?;
+
+                // Extract vertex position and normal. Y and Z axes are swaped and
+                // inverted to switch Y to the up axis.
+                let vertex = VertexData {
+                    position: [
+                        co.getattr(py, "x")?.extract(py)?,
+                        co.getattr(py, "z")?.extract(py)?,
+                        -co.getattr(py, "y")?.extract(py)?,
+                    ],
+                    normal: [
+                        normal.getattr(py, "x")?.extract(py)?,
+                        normal.getattr(py, "z")?.extract(py)?,
+                        -normal.getattr(py, "y")?.extract(py)?,
+                    ],
+                };
+
+                // Update min and max vertex positions
+                if vertex.position[0] < vertex_min[0] {
+                    vertex_min[0] = vertex.position[0]
+                };
+                if vertex.position[0] > vertex_max[0] {
+                    vertex_max[0] = vertex.position[0]
+                };
+                if vertex.position[1] < vertex_min[1] {
+                    vertex_min[1] = vertex.position[1]
+                };
+                if vertex.position[1] > vertex_max[1] {
+                    vertex_max[1] = vertex.position[1]
+                };
+                if vertex.position[2] < vertex_min[2] {
+                    vertex_min[2] = vertex.position[2]
+                };
+                if vertex.position[2] > vertex_max[2] {
+                    vertex_max[2] = vertex.position[2]
+                };
+
+                mesh_vertices.push(vertex);
+            }
+
+            // Add vertices to buffer
+            vertices_count = mesh_vertices.len();
+            mesh_buffer.extend(to_padded_byte_vector(mesh_vertices));
+            vertices_length = mesh_buffer.len() - indices_length;
+        }
+
+        // Get buffer filename
+        let buffer_uri = format!("MESH_{}", mesh_name);
+
+        // Write buffer to disk
+        self.write_resource(&buffer_uri, mesh_buffer.as_slice())?;
+
+        // Get the mesh's integer index
+        let mesh_index = self.gltf_doc.meshes.len() as u32;
+
+        // Add mesh name to the names index
+        self.data_names
+            .mesh_names
+            .insert(mesh_name.clone(), mesh_index);
+
+        use gltf::validation::Checked::Valid;
+
+        // Create glTF mesh buffer
+        let buffer_id = self.gltf_doc.buffers.len();
+        self.gltf_doc.buffers.push(gltf::Buffer {
+            byte_length: mesh_buffer.len() as u32,
+            uri: Some(buffer_uri.clone()),
+            extensions: None,
+            name: None,
+            extras: Default::default(),
+        });
+
+        // Create mesh indices buffer view
+        let indices_buffer_view_id = self.gltf_doc.buffer_views.len();
+        self.gltf_doc.buffer_views.push(gltf::buffer::View {
+            buffer: gltf::Index::new(buffer_id as u32),
+            byte_length: indices_length as u32,
+            byte_offset: None,
+            byte_stride: None,
+            target: Some(Valid(gltf::buffer::Target::ElementArrayBuffer)),
+            extras: None,
+            extensions: None,
+            name: None,
+        });
+
+        // Create mesh vertices buffer view
+        let vertices_buffer_view_id = self.gltf_doc.buffer_views.len();
+        self.gltf_doc.buffer_views.push(gltf::buffer::View {
+            buffer: gltf::Index::new(buffer_id as u32),
+            byte_length: vertices_length as u32,
+            byte_offset: Some(indices_length as u32),
+            byte_stride: Some(gltf::buffer::ByteStride(
+                std::mem::size_of::<VertexData>() as u32
+            )),
+            target: Some(gltf::validation::Checked::Valid(
+                gltf::buffer::Target::ArrayBuffer,
+            )),
+            extras: None,
+            extensions: None,
+            name: None,
+        });
+
+        // Create indices accessor
+        let indices_accessor_id = self.gltf_doc.accessors.len();
+        self.gltf_doc.accessors.push(gltf::Accessor {
+            buffer_view: gltf::Index::new(indices_buffer_view_id as u32),
+            byte_offset: 0,
+            component_type: Valid(gltf::accessor::GenericComponentType(
+                gltf::accessor::ComponentType::U16,
+            )),
+            count: indices_count as u32,
+            type_: Valid(gltf::accessor::Type::Scalar),
+            min: None,
+            max: None,
+            name: None,
+            normalized: false,
+            sparse: None,
+            extras: None,
+            extensions: None,
+        });
+
+        // Create vertex position accessor
+        let vertex_position_accessor_id = self.gltf_doc.accessors.len();
+        self.gltf_doc.accessors.push(gltf::Accessor {
+            buffer_view: gltf::Index::new(vertices_buffer_view_id as u32),
+            byte_offset: 0,
+            component_type: Valid(gltf::accessor::GenericComponentType(
+                gltf::accessor::ComponentType::F32,
+            )),
+            count: vertices_count as u32,
+            type_: Valid(gltf::accessor::Type::Vec3),
+            min: Some(gltf::Value::from(&vertex_min[..])),
+            max: Some(gltf::Value::from(&vertex_max[..])),
+            name: None,
+            normalized: false,
+            sparse: None,
+            extras: None,
+            extensions: None,
+        });
+
+        // Create vertex normal accessor
+        let vertex_normal_accessor_id = self.gltf_doc.accessors.len();
+        self.gltf_doc.accessors.push(gltf::Accessor {
+            buffer_view: gltf::Index::new(vertices_buffer_view_id as u32),
+            byte_offset: (std::mem::size_of::<f32>() * 3) as u32,
+            component_type: Valid(gltf::accessor::GenericComponentType(
+                gltf::accessor::ComponentType::F32,
+            )),
+            count: vertices_count as u32,
+            type_: Valid(gltf::accessor::Type::Vec3),
+            min: None,
+            max: None,
+            name: None,
+            normalized: false,
+            sparse: None,
+            extras: None,
+            extensions: None,
+        });
+
+        // Create mesh primitive
+        // TODO: prevent overflows of the mesh indices by splitting up the mesh into
+        // multiple primitives.
+        let primitive = gltf::mesh::Primitive {
+            attributes: {
+                let mut map = std::collections::HashMap::new();
+                map.insert(
+                    Valid(gltf::mesh::Semantic::Positions),
+                    gltf::Index::new(vertex_position_accessor_id as u32),
                 );
-            }
-        }
+                map.insert(
+                    Valid(gltf::mesh::Semantic::Normals),
+                    gltf::Index::new(vertex_normal_accessor_id as u32),
+                );
+                map
+            },
+            indices: Some(gltf::Index::new(indices_accessor_id as u32)),
+            material: Some(gltf::Index::new(0)), // Use a default material for now
+            mode: Valid(gltf::mesh::Mode::Triangles),
+            targets: None,
+            extras: None,
+            extensions: None,
+        };
 
-        // Add indices to the buffer
-        indices_count = mesh_indices.len();
-        mesh_buffer = to_padded_byte_vector(mesh_indices);
-        indices_length = mesh_buffer.len();
+        // Add mesh data to the glTF doc
+        self.gltf_doc.meshes.push(gltf::Mesh {
+            name: Some(mesh_name),
+            primitives: vec![primitive],
+            weights: None,
+            extras: None,
+            extensions: None,
+        });
+
+        // Return the mesh index
+        Ok(mesh_index)
     }
-
-    // Add vertices to mesh buffer
-    {
-        #[cfg(feature = "enable_profiling")]
-        let _guard = flame::start_guard("get_mesh_vertices");
-
-        // Collect mesh vertices
-        let verts = mesh.getattr(py, "vertices")?.call_method0(py, "values")?;
-        let verts = verts.cast_as::<PyList>(py)?;
-
-        // Mesh vertice data
-        let mut mesh_vertices: Vec<VertexData> = Vec::with_capacity(verts.len());
-
-        // For every vertice
-        for vert in verts {
-            // Vertice cooridinates
-            let co = vert.to_object(py).getattr(py, "co")?;
-            // Vertice normal
-            let normal = vert.to_object(py).getattr(py, "normal")?;
-
-            // Extract vertex position and normal. Y and Z axes are swaped and
-            // inverted to switch Y to the up axis.
-            let vertex = VertexData {
-                position: [
-                    co.getattr(py, "x")?.extract(py)?,
-                    co.getattr(py, "z")?.extract(py)?,
-                    -co.getattr(py, "y")?.extract(py)?,
-                ],
-                normal: [
-                    normal.getattr(py, "x")?.extract(py)?,
-                    normal.getattr(py, "z")?.extract(py)?,
-                    -normal.getattr(py, "y")?.extract(py)?,
-                ],
-            };
-
-            // Update min and max vertex positions
-            if vertex.position[0] < vertex_min[0] {
-                vertex_min[0] = vertex.position[0]
-            };
-            if vertex.position[0] > vertex_max[0] {
-                vertex_max[0] = vertex.position[0]
-            };
-            if vertex.position[1] < vertex_min[1] {
-                vertex_min[1] = vertex.position[1]
-            };
-            if vertex.position[1] > vertex_max[1] {
-                vertex_max[1] = vertex.position[1]
-            };
-            if vertex.position[2] < vertex_min[2] {
-                vertex_min[2] = vertex.position[2]
-            };
-            if vertex.position[2] > vertex_max[2] {
-                vertex_max[2] = vertex.position[2]
-            };
-
-            mesh_vertices.push(vertex);
-        }
-
-        // Add vertices to buffer
-        vertices_count = mesh_vertices.len();
-        mesh_buffer.extend(to_padded_byte_vector(mesh_vertices));
-        vertices_length = mesh_buffer.len() - indices_length;
-    }
-
-    // Get buffer filename
-    let buffer_uri = format!("MESH_{}", mesh_name);
-
-    // Write buffer to disk
-    write_resource(&buffer_uri, mesh_buffer.as_slice())?;
-
-    // Get the mesh's integer index
-    let mesh_index = gltf_doc.meshes.len() as u32;
-
-    // Add mesh name to the names index
-    data_names.mesh_names.insert(mesh_name.clone(), mesh_index);
-
-    use gltf::validation::Checked::Valid;
-
-    // Create glTF mesh buffer
-    let buffer_id = gltf_doc.buffers.len();
-    gltf_doc.buffers.push(gltf::Buffer {
-        byte_length: mesh_buffer.len() as u32,
-        uri: Some(buffer_uri.clone()),
-        extensions: None,
-        name: None,
-        extras: Default::default(),
-    });
-
-    // Create mesh indices buffer view
-    let indices_buffer_view_id = gltf_doc.buffer_views.len();
-    gltf_doc.buffer_views.push(gltf::buffer::View {
-        buffer: gltf::Index::new(buffer_id as u32),
-        byte_length: indices_length as u32,
-        byte_offset: None,
-        byte_stride: None,
-        target: Some(Valid(gltf::buffer::Target::ElementArrayBuffer)),
-        extras: None,
-        extensions: None,
-        name: None,
-    });
-
-    // Create mesh vertices buffer view
-    let vertices_buffer_view_id = gltf_doc.buffer_views.len();
-    gltf_doc.buffer_views.push(gltf::buffer::View {
-        buffer: gltf::Index::new(buffer_id as u32),
-        byte_length: vertices_length as u32,
-        byte_offset: Some(indices_length as u32),
-        byte_stride: Some(gltf::buffer::ByteStride(
-            std::mem::size_of::<VertexData>() as u32
-        )),
-        target: Some(gltf::validation::Checked::Valid(
-            gltf::buffer::Target::ArrayBuffer,
-        )),
-        extras: None,
-        extensions: None,
-        name: None,
-    });
-
-    // Create indices accessor
-    let indices_accessor_id = gltf_doc.accessors.len();
-    gltf_doc.accessors.push(gltf::Accessor {
-        buffer_view: gltf::Index::new(indices_buffer_view_id as u32),
-        byte_offset: 0,
-        component_type: Valid(gltf::accessor::GenericComponentType(
-            gltf::accessor::ComponentType::U16,
-        )),
-        count: indices_count as u32,
-        type_: Valid(gltf::accessor::Type::Scalar),
-        min: None,
-        max: None,
-        name: None,
-        normalized: false,
-        sparse: None,
-        extras: None,
-        extensions: None,
-    });
-
-    // Create vertex position accessor
-    let vertex_position_accessor_id = gltf_doc.accessors.len();
-    gltf_doc.accessors.push(gltf::Accessor {
-        buffer_view: gltf::Index::new(vertices_buffer_view_id as u32),
-        byte_offset: 0,
-        component_type: Valid(gltf::accessor::GenericComponentType(
-            gltf::accessor::ComponentType::F32,
-        )),
-        count: vertices_count as u32,
-        type_: Valid(gltf::accessor::Type::Vec3),
-        min: Some(gltf::Value::from(&vertex_min[..])),
-        max: Some(gltf::Value::from(&vertex_max[..])),
-        name: None,
-        normalized: false,
-        sparse: None,
-        extras: None,
-        extensions: None,
-    });
-
-    // Create vertex normal accessor
-    let vertex_normal_accessor_id = gltf_doc.accessors.len();
-    gltf_doc.accessors.push(gltf::Accessor {
-        buffer_view: gltf::Index::new(vertices_buffer_view_id as u32),
-        byte_offset: (std::mem::size_of::<f32>() * 3) as u32,
-        component_type: Valid(gltf::accessor::GenericComponentType(
-            gltf::accessor::ComponentType::F32,
-        )),
-        count: vertices_count as u32,
-        type_: Valid(gltf::accessor::Type::Vec3),
-        min: None,
-        max: None,
-        name: None,
-        normalized: false,
-        sparse: None,
-        extras: None,
-        extensions: None,
-    });
-
-    // Create mesh primitive
-    // TODO: prevent overflows of the mesh indices by splitting up the mesh into
-    // multiple primitives.
-    let primitive = gltf::mesh::Primitive {
-        attributes: {
-            let mut map = std::collections::HashMap::new();
-            map.insert(
-                Valid(gltf::mesh::Semantic::Positions),
-                gltf::Index::new(vertex_position_accessor_id as u32),
-            );
-            map.insert(
-                Valid(gltf::mesh::Semantic::Normals),
-                gltf::Index::new(vertex_normal_accessor_id as u32),
-            );
-            map
-        },
-        indices: Some(gltf::Index::new(indices_accessor_id as u32)),
-        material: Some(gltf::Index::new(0)), // Use a default material for now
-        mode: Valid(gltf::mesh::Mode::Triangles),
-        targets: None,
-        extras: None,
-        extensions: None,
-    };
-
-    // Add mesh data to the glTF doc
-    gltf_doc.meshes.push(gltf::Mesh {
-        name: Some(mesh_name),
-        primitives: vec![primitive],
-        weights: None,
-        extras: None,
-        extensions: None,
-    });
-
-    // Return the mesh index
-    Ok(mesh_index)
 }
