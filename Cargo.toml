@@ -13,9 +13,6 @@ enable_profiling = ["flame", "flamer"]
 
 [dependencies]
 
-    # Parallelism
-    rayon = "1.1"
-
     # Scene Export
     gltf-json = { version = "0.12", features = ["names", "extras"] }
 
