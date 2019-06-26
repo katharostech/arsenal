@@ -1,0 +1,10 @@
+[package]
+name = "arsenal-runtime"
+version = "0.1.0"
+authors = []
+edition = "2018"
+
+[dependencies]
+serde = "1.0"
+amethyst = "0.10"
+amethyst_gltf = "0.5"
