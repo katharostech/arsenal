@@ -5,9 +5,10 @@ build/
 # Makes it easy to ignore any files you want in your tree but not in git
 *gitignore*
 
-# This makes it easy to add a symlink for the rust extension during development
-# without accidentally adding the symlink to git.
+# This makes it easy to add a symlink for the rust extension and binaries during
+# development without accidentally adding the symlink to git.
 arsenal-blender/arsenal.so
+arsenal-blender/bin/
 
 # Cargo
 /target
