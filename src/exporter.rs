@@ -222,9 +222,18 @@ impl BlendExporter {
 
         // Object rotation
         let mut rotation = [0f32; 4];
+        // Get quaternion representation of Blender rotation
+        let blender_quat;
+        if object.getattr(py, "rotation_mode")?.extract::<String>(py)? == "QUATERNION" {
+            blender_quat = object.getattr(py, "rotation_quaternion")?;
+        } else {
+            blender_quat = object.
+                getattr(py, "rotation_euler")?
+                .call_method0(py, "to_quaternion")?;
+        }
+        // Collect coordinates from blender quat
         for (i, coordinate) in rotation.iter_mut().enumerate() {
-            *coordinate = object
-                .getattr(py, "rotation_quaternion")?
+            *coordinate = blender_quat
                 .call_method1(py, "__getitem__", PyTuple::new(py, &[i]))?
                 .extract(py)?;
         }
