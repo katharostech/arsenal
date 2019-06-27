@@ -1,7 +1,9 @@
 /// Python utilities
 pub mod python {
+    use std::path::PathBuf;
     use pyo3::prelude::*;
-    use pyo3::types::IntoPyDict;
+    use pyo3::exceptions::{FileNotFoundError, IOError, Exception};
+    use pyo3::types::{PyDict, IntoPyDict};
 
     /// Print a Python object as it would be printed by the Python interpreter.
     pub fn print_py_value(py: Python, value: PyObject) -> PyResult<()> {
@@ -12,6 +14,33 @@ pub mod python {
         py.run("print(value)", None, Some(locals))?;
 
         Ok(())
+    }
+
+    /// Get the path to the arsenal blender addon directory
+    pub fn get_arsenal_plugin_path(py: Python) -> PyResult<String> {
+        // Import the sys package
+        let sys = py.import("sys")?.to_object(py);
+
+        // Path to the arsenal-blender Python module's __init__.py file
+        let module_path: String = sys
+            .getattr(py, "modules")?
+            .cast_as::<PyDict>(py)?
+            .get_item("arsenal-blender")
+            .ok_or_else(|| Exception::py_err("Could not load arsenal-blender module"))?
+            .to_object(py)
+            .getattr(py, "__spec__")?
+            .getattr(py, "origin")?
+            .extract(py)?;
+        let module_path = PathBuf::from(module_path);
+        
+        // Path to the arsenal-blend addon directory
+        let arsenal_plugin_path = module_path
+            .parent()
+            .ok_or_else(|| FileNotFoundError::py_err("Cannot find arsenal-blender addon dir"))?
+            .to_str()
+            .ok_or_else(|| IOError::py_err("arsenal-blender addon path not valid UTF-8"))?;
+
+        Ok(arsenal_plugin_path.into())
     }
 }
 

@@ -106,6 +106,11 @@ impl BlendExporter {
                 .as_bytes(),
         )?;
 
+        // Dump the static assets. These will eventually be dynamically
+        // generated based on the Blend configuration.
+        self.write_resource("scene.ron", include_bytes!("exporter/scene.ron"))?;
+        self.write_resource("display_config.ron", include_bytes!("exporter/display_config.ron"))?;
+
         Ok(())
     }
 
