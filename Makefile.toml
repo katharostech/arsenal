@@ -39,26 +39,47 @@ args = ["check"]
 command = "cargo"
 args = ["clippy"]
 
-# TODO: Parameterize build type with development/release profile checking
-[tasks.build]
-dependencies = ["build-rust"]
-script_runner = "@shell"
-script = ['''
-mkdir -p build
-cp -r arsenal-blender build/
-cp -u target/debug/libarsenal.so build/arsenal-blender/arsenal.so
-''']
-
-[tasks.build-rust]
-command = "cargo"
-args = ["build"]
-
 [tasks.clean]
 script_runner = "@shell"
 script = [
 	"rm -rf target/",
 	"rm -rf build/"
 ]
+
+#
+# Release
+#
+
+# TODO: Parameterize build type with development/release profile checking
+[tasks.build-release]
+dependencies = ["clean-arsenal-build", "build-arsenal-release", "build-arsenal-runtime-release"]
+script_runner = "@shell"
+script = ['''
+mkdir -p build
+cp -r arsenal-blender build/
+cp -u target/release/libarsenal.so build/arsenal-blender/arsenal.so
+mkdir -p build/arsenal-blender/bin
+cp -u arsenal-runtime/target/release/arsenal-runtime build/arsenal-blender/bin/
+''']
+
+[tasks.clean-arsenal-build]
+script_runner = "@shell"
+script = ['''
+rm -rf build/arsenal-blender
+''']
+
+[tasks.build-arsenal-release]
+script_runner = "@shell"
+script = ['''
+cargo +nightly build --release
+''']
+
+[tasks.build-arsenal-runtime-release]
+script_runner = "@shell"
+script = ['''
+cd arsenal-runtime
+cargo +stable build --release
+''']
 
 #
 # Documentation
