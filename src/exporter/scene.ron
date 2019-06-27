@@ -1,0 +1,78 @@
+// File modified from: https://github.com/amethyst/amethyst/blob/v0.10/examples/assets/prefab/puffy_scene.ron
+//
+// Copyright 2016 The Amethyst Project Developers
+//
+// Licensed under the Apache License, Version 2.0, <docs/LICENSE-APACHE or
+// http://apache.org/licenses/LICENSE-2.0> or the MIT license <docs/LICENSE-MIT or
+// http://opensource.org/licenses/MIT>, at your option. This file may not be
+// copied, modified, or distributed except according to those terms.
+
+#![enable(implicit_some)]
+
+Prefab (
+    entities: [
+        (
+            data: (
+                light: (ambient_color: ((0.1, 0.1, 0.1, 0.1))),
+            ),
+        ),
+        (
+            data: (
+                gltf: File("./export.gltf", GltfSceneFormat, (
+                    load_animations: true,
+                    flip_v_coord: true,
+                )),
+                tag: (),
+            ),
+        ),
+        (
+            parent: 1,
+            data: (
+                transform: (),
+                fly_tag: (),
+            ),
+        ),
+        (
+            parent: 2,
+            data: (
+                transform: (
+                    translation: (0., 0., 20.0),
+                ),
+                camera: Perspective((
+                    aspect: 1.33333333333333333333,
+                    fovy: 1.0471975512,
+                    znear: 0.1,
+                    zfar: 2000.0,
+                )),
+            ),
+        ),
+        (
+            data: (
+                transform: (
+                    translation: (6.0, 6.0, -6.0),
+                    rotation: (0.0, 0.0, 1.0, 0.0),
+                ),
+                light: (
+                    light: Point((
+                        intensity: 16.0,
+                        color: (0.8, 0.0, 0.0, 1.0),
+                    )),
+                ),
+            ),
+        ),
+        (
+            data: (
+                transform: (
+                    translation: (0.0, 4.0, 8.0),
+                    rotation: (0.0, 0.0, 1.0, 0.0),
+                ),
+                light: (
+                    light: Point((
+                        intensity: 16.0,
+                        color: (0.0, 0.3, 0.7, 1.0),
+                    )),
+                ),
+            ),
+        ),
+    ],
+)
