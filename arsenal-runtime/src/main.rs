@@ -21,6 +21,9 @@ use amethyst_gltf::{GltfSceneAsset, GltfSceneFormat, GltfSceneLoaderSystem};
 #[macro_use]
 extern crate serde;
 
+mod types;
+use types::RelativeAssetPrefab;
+
 #[derive(Default)]
 struct Scene {
     handle: Option<Handle<Prefab<ScenePrefabData>>>,
@@ -29,7 +32,7 @@ struct Scene {
 #[derive(PrefabData, Default, Serialize, Deserialize)]
 struct ScenePrefabData {
     transform: Option<Transform>,
-    gltf: Option<AssetPrefab<GltfSceneAsset, GltfSceneFormat>>,
+    gltf: Option<RelativeAssetPrefab<GltfSceneAsset, GltfSceneFormat>>,
     camera: Option<CameraPrefab>,
     light: Option<LightPrefab>,
     fly_tag: Option<ControlTagPrefab>,
@@ -108,7 +111,7 @@ fn main() -> amethyst::Result<()> {
 
     let app_root = PathBuf::from(application_root_dir());
 
-    let display_config_path = app_root.join("display_config.ron");
+    let display_config_path = "display_config.ron";
 
     let game_data = GameDataBuilder::default()
         .with(
