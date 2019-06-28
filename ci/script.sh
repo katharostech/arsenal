@@ -4,10 +4,12 @@ set -ex
 
 # TODO This is the "test phase", tweak it as you see fit
 main() {
-    cross +nightly build --target $TARGET --release
+    rustup default nightly
+    cross build --target $TARGET --release
 
     cd arsenal-runtime
-    cross +stable build --target $TARGET --release
+    rustup default stable
+    cross build --target $TARGET --release
 
     # if [ ! -z $DISABLE_TESTS ]; then
     #     return
