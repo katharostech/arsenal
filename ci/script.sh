@@ -4,10 +4,10 @@ set -ex
 
 # TODO This is the "test phase", tweak it as you see fit
 main() {
-    cross build --target $TARGET --release
+    cross +nightly build --target $TARGET --release
 
     cd arsenal-runtime
-    cross build --target $TARGET --release
+    cross +stable build --target $TARGET --release
 
     # if [ ! -z $DISABLE_TESTS ]; then
     #     return
