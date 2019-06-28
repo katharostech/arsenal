@@ -4,6 +4,7 @@ set -ex
 
 # TODO This is the "test phase", tweak it as you see fit
 main() {
+    echo "Skiping test phase for now"
     # cross build --target $TARGET
     # cross build --target $TARGET --release
 
