@@ -84,7 +84,7 @@ before_install:
   - set -e
   - rustup self update
   - rustup toolchain install nightly
-  - rustup target add --toolchain nighly $TARGET
+  - rustup target add --toolchain nightly $TARGET
 
 install:
   - sh ci/install.sh
