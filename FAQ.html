@@ -181,6 +181,13 @@
 <p>If other people want to contribute features that we may not have time to work on ourselves, there should be no reason that we cannot merge those features if they fit our vision.</p>
 <h2><a class="header" href="#is-arsenal-a-blender-plugin-or-a-game-engine" id="is-arsenal-a-blender-plugin-or-a-game-engine">Is Arsenal A Blender Plugin or a Game Engine?</a></h2>
 <p>In reality, even though we call Arsenal an engine, the plan is to build Arsenal almost entirely on top of the <a href="https://amethyst.rs">Amethyst</a> game engine while creating our own Blender based user experience. We have the documentation for the engine design <a href="https://katharostech.github.io/arsenal/architecture.html">here</a>.</p>
+<h2><a class="header" href="#why-does-arsenal-export-gltf-instead-of-just-using-blender-files" id="why-does-arsenal-export-gltf-instead-of-just-using-blender-files">Why Does Arsenal Export glTF Instead of Just Using Blender Files?</a></h2>
+<p>There are three reasons:</p>
+<ol>
+<li><strong>Maintenance:</strong> Keeping up with the Blender file format could be time-consuming as it is a moving target. Comparatively, the glTF format is very simple and standardized.</li>
+<li><strong>Storage:</strong> The blender format contains a lot of metadata that we don't need for a game, such as the Blender UI layout.</li>
+<li><strong>Efficiency:</strong> If you use the Blender file format, the game would have to decode the .blend file while the game is running. This would involve going through more information than is actually needed in the game and would require more CPU to get the required data. glTF is a very dense format that compactly stores the information we need while also facilitating efficient extraction into a running game.</li>
+</ol>
 
                     </main>
 
