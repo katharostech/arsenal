@@ -61,24 +61,14 @@ steps:
       - test-arsenal
     commands:
       - apt-get update
-      # Install Crosstool NG depencencies
-      - >
-        apt-get install -y gcc g++ gperf bison flex texinfo help2man make
-        libncurses5-dev python3-dev autoconf automake libtool libtool-bin
-        gawk wget bzip2 xz-utils unzip patch libstdc++6
-      # Create a user to build under
-      - useradd -ms /bin/bash builder
-      - su builder
-      - cd ~
-      # Install Crosstool
-      - curl http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.24.0.tar.xz > crosstool.txz
-      - tar -xf crosstool.txz
-      - cd crosstool-ng-1.24.0
-      - ./configure --prefix=/home/builder/.local
-      - make
-      - make install
-      - ct-ng x86_64-w64-mingw32
-      - ct-ng build
+      - apt-get install -y gcc-mingw-w64
+      - rustup target install x86_64-pc-windows-gnu
+      - |
+        cat .cargo/config <<EOF
+        [target.x86_64-pc-windows-gnu]
+        linker = "x86_64-w64-mingw32-gcc"
+        EOF
+      - cargo build --target x86_64-pc-windows-gnu --release
 
   #
   # Arsenal Runtime
