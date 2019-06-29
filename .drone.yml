@@ -1,0 +1,29 @@
+---
+kind: pipeline
+name: book
+  
+steps:
+  - name: test
+    image: hrektts/mdbook
+    commands:
+      - mdbook test
+
+  - name: build
+    image: hrektts/mdbook
+    commands:
+      - mdbook build
+    
+  - name: publish
+    image: plugins/gh-pages
+    settings:
+      pages_directory: build/book
+      username:
+        from_secret: github_username
+      password:
+        from_secret: github_access_key
+    when:
+      event:
+        - push
+      branch:
+        - master
+
