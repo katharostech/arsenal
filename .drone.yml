@@ -35,12 +35,16 @@ steps:
   - name: test-arsenal
     group: test
     image: rustlang/rust:nightly
+    depends_on:
+      - clone
     commands:
       - cargo test
 
   - name: test-arsenal-runtime
     group: test
     image: rust:latest
+    depends_on:
+      - clone
     commands:
       - apt update
       - >
