@@ -47,28 +47,30 @@ steps:
   # Arsenal
   #
 
-  - name: test-arsenal
-    image: rustlang/rust:nightly
-    depends_on:
-      - clone
-    commands:
-      - cargo test
+  # - name: test-arsenal
+  #   image: rustlang/rust:nightly
+  #   depends_on:
+  #     - clone
+  #   commands:
+  #     - cargo test
   
-  - name: build-arsenal-linux
-    image: rustlang/rust:nightly
-    depends_on:
-      - test-arsenal
-    commands:
-      - cargo build --release
+  # - name: build-arsenal-linux
+  #   image: rustlang/rust:nightly
+  #   depends_on:
+  #     - test-arsenal
+  #   commands:
+  #     - cargo build --release
 
   - name: build-arsenal-windows
     image: rustlang/rust:nightly
     depends_on:
-      - test-arsenal
+      # - test-arsenal
+      - clone
     commands:
       - apt-get update
       - apt-get install -y gcc-mingw-w64
       - rustup target install x86_64-pc-windows-gnu
+      - mkdir -p .cargo
       - |
         cat .cargo/config <<EOF
         [target.x86_64-pc-windows-gnu]
@@ -80,18 +82,18 @@ steps:
   # Arsenal Runtime
   #
 
-  - name: test-arsenal-runtime
-    image: rust:latest
-    depends_on:
-      - clone
-    commands:
-      - apt update
-      - >
-        apt install -y gcc pkg-config openssl libasound2-dev cmake
-        build-essential python3 libfreetype6-dev libexpat1-dev
-        libxcb-composite0-dev libssl-dev
-      - cd arsenal-runtime
-      - cargo test
+  # - name: test-arsenal-runtime
+  #   image: rust:latest
+  #   depends_on:
+  #     - clone
+  #   commands:
+  #     - apt update
+  #     - >
+  #       apt install -y gcc pkg-config openssl libasound2-dev cmake
+  #       build-essential python3 libfreetype6-dev libexpat1-dev
+  #       libxcb-composite0-dev libssl-dev
+  #     - cd arsenal-runtime
+  #     - cargo test
 
 trigger:
   event:
