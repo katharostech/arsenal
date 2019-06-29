@@ -43,7 +43,10 @@ steps:
     image: rust:latest
     commands:
       - apt update
-      - apt install -y libasound2-dev
+      - >
+        apt install -y gcc pkg-config openssl libasound2-dev cmake
+        build-essential python3 libfreetype6-dev libexpat1-dev
+        libxcb-composite0-dev libssl-dev
       - cd arsenal-runtime
       - cargo test
 
