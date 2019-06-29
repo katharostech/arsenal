@@ -33,18 +33,32 @@ name: arsenal
 
 steps:
   - name: test-arsenal
-    group: test
     image: rustlang/rust:nightly
-    depends_on:
+    depends_on: # Depending on "clone" makes these tasks run in parallel
       - clone
+    volumes: &arsenal-volumes
+      - name: arsenal-rustup
+        path: /usr/local/rustup
+      - name: arsenal-cargo
+        path: /usr/local/cargo
     commands:
       - cargo test
+  
+  - name: build-arsenal
+    image: rustlang/rust:nightly
+    depends_on:
+      - test-arsenal
+    volumes: *arsenal-volumes 
+    commands:
+      - cargo build --release
 
   - name: test-arsenal-runtime
-    group: test
     image: rust:latest
     depends_on:
       - clone
+    volumes: &arsenal-runtime-volumes
+      - name: arsenal-runtime-root
+        path: /
     commands:
       - apt update
       - >
@@ -54,4 +68,13 @@ steps:
       - cd arsenal-runtime
       - cargo test
 
+  - name: build-arsenal-runtime
+    image: rust:latest
+    depends_on:
+      - test-arsenal-runtime
+    volumes: *arsenal-runtime-volumes
+    commands:
+      - cd arsenal-runtime
+      - cargo build --release
+      
 
