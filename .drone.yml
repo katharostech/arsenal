@@ -72,10 +72,8 @@ steps:
       - rustup target install x86_64-pc-windows-gnu
       - mkdir -p .cargo
       - |
-        cat .cargo/config <<EOF
-        [target.x86_64-pc-windows-gnu]
-        linker = "x86_64-w64-mingw32-gcc"
-        EOF
+        echo '[target.x86_64-pc-windows-gnu]
+        linker = "x86_64-w64-mingw32-gcc"' > .cargo/config
       - cargo build --target x86_64-pc-windows-gnu --release
 
   #
