@@ -42,6 +42,8 @@ steps:
     group: test
     image: rust:latest
     commands:
+      - apt update
+      - apt install -y libasound2-dev
       - cd arsenal-runtime
       - cargo test
 
