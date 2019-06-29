@@ -1,8 +1,8 @@
+---
 #
 # Documentation
 #
 
----
 kind: pipeline
 name: book
   
@@ -30,6 +30,12 @@ steps:
         - push
       branch:
         - master
+
+trigger:
+  event:
+    - pull_request
+  branch:
+    - master
 
 ---
 kind: pipeline
@@ -86,5 +92,9 @@ steps:
         libxcb-composite0-dev libssl-dev
       - cd arsenal-runtime
       - cargo test
-      
 
+trigger:
+  event:
+    - pull_request
+  branch:
+    - master
