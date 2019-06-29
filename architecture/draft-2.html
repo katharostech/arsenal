@@ -153,23 +153,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#architecture-draft-2" id="architecture-draft-2"><h1>Architecture Draft 2</h1></a>
+                        <h1><a class="header" href="#architecture-draft-2" id="architecture-draft-2">Architecture Draft 2</a></h1>
 <p>Arsenal will provide what is necessary to achieve a full Blender integration with the <a href="https://github.com/amethyst/amethyst">Amethyst</a> game engine. Extra, more opinionated components may be added on top of Amethyst if deemed necessary to provide the particular user experience that we are targeting with Arsenal, but the goal of Arsenal will be to build as much on top of Amethyst as possible, with contributions being made to Amethyst to help facilitate Arsenal's goals.</p>
 <p><img src="./assets/arsenalArchitecture-2.svg" alt="Architecture Diagram" /></p>
-<a class="header" href="#components" id="components"><h2>Components</h2></a>
-<a class="header" href="#blender-plugin" id="blender-plugin"><h3>Blender Plugin</h3></a>
+<h2><a class="header" href="#components" id="components">Components</a></h2>
+<h3><a class="header" href="#blender-plugin" id="blender-plugin">Blender Plugin</a></h3>
 <p>The Arsenal Blender plugin will be made up of two components: the Python plugin, and the Rust Python extension. The Python plugin uses Blender's Python API to provide the UI elements specific to Arsenal inside of Blender while using the Rust Python extension to do the heavy lifting required for asset exporting.</p>
 <p>The line between the Blender plugin and the Python extension is not fully decided at this point. The Rust extension should be used, at least, to do any processing intensive operations and will allow us to multi-thread things like asset conversion and scene export. The Python plugin may be sufficient for most other tasks if it is not decided that it is preferable to write those components in Rust due to things like Rust's static typing.</p>
 <p>The Blender integration should orchestrate everything necessary to develop your game and build it for release. It is possible that CLIs may alternatively be used for tasks like building and distribution.</p>
-<a class="header" href="#amethyst" id="amethyst"><h3>Amethyst</h3></a>
+<h3><a class="header" href="#amethyst" id="amethyst">Amethyst</a></h3>
 <p>Amethyst and its ecosystem will provide all of the core components of the game engine.</p>
-<a class="header" href="#rendering" id="rendering"><h4>Rendering</h4></a>
+<h4><a class="header" href="#rendering" id="rendering">Rendering</a></h4>
 <p>We will be using Amethyst's <a href="https://github.com/amethyst/rendy">Rendy</a> rendering library. If the render that Amethyst comes with on top of Rendy is sufficient for our taste we may not need to implement anything extra from a rendering standpoint. If necessary, though, we can write our own, more targeted, renderer on top of Rendy.</p>
-<a class="header" href="#scripting" id="scripting"><h4>Scripting</h4></a>
+<h4><a class="header" href="#scripting" id="scripting">Scripting</a></h4>
 <p>Establishing Amethyst's scripting ability will be essential to Arsenal. There is currently an <a href="https://github.com/amethyst/rfcs/blob/master/0001-scripting.md">RFC</a> for scripting in Amethyst and establishing that in the engine will be necessary for Arsenal. Arsenal will then make it easy to create and use scripts in the supported languages, from Blender ( though script editing will not be done in Blender ).</p>
-<a class="header" href="#blender-components-and-systems" id="blender-components-and-systems"><h4>Blender Components and Systems</h4></a>
+<h4><a class="header" href="#blender-components-and-systems" id="blender-components-and-systems">Blender Components and Systems</a></h4>
 <p>In order to support a Blender-compatible scene graph, we will add the components and systems necessary to handle Blender objects in the game during runtime. These components will be built into the version of Amethyst distributed with Arsenal.</p>
-<a class="header" href="#distribution" id="distribution"><h2>Distribution</h2></a>
+<h2><a class="header" href="#distribution" id="distribution">Distribution</a></h2>
 <p>Ideally Arsenal would be distributed as a self-contained SDK that has everything needed to start development. The SDK would contain the Blender plugin and builds of Amethyst and all other supporting tools necessary to develop games with Arsenal.</p>
 <p>From a scripting standpoint, if you want to script with Rust or other compiled languages, we may require that you install those tools separately, but support for Lua scripting should come out-of-the box so you can get started right-away.</p>
 

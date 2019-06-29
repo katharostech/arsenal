@@ -153,17 +153,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
+                        <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
 <p>Arsenal is the idea for a Blender integrated game engine written in Rust. Currently there is no game engine, it is just an idea, but we are currently doing the planning, investigation, experimentation, and documentation that is necessary to get the project started. The source code for the project is on <a href="https://github.com/katharostech/arsenal">GitHub</a>.</p>
 <p>To start, we are developing an <a href="./architecture.html">architecture outline</a> that lays out how we want to structure the components of the project.</p>
-<a class="header" href="#motivation" id="motivation"><h2>Motivation</h2></a>
+<h2><a class="header" href="#motivation" id="motivation">Motivation</a></h2>
 <p>We at <a href="https://katharostech.com">Katharos Technology</a> have been planning to use <a href="https://armory3d.org/">Armory3D</a> for our games until recent <a href="http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag">concerns</a> about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.</p>
 <p>We have decided that it would not be the best route to simply rewrite Armory in Rust. Instead we think it would be better to design a new engine, potentially built on existing Rust tools like Amethyst, and provide a rich Blender integration and Logic Node system similar to what Armory has today.</p>
-<a class="header" href="#roadmap" id="roadmap"><h2>Roadmap</h2></a>
+<h2><a class="header" href="#roadmap" id="roadmap">Roadmap</a></h2>
 <p>You can view our <a href="https://github.com/katharostech/arsenal/milestones">roadmap</a> by looking at the milestones on GitHub. The roadmap will likely change as we find out what work needs to be done more specifically.</p>
-<a class="header" href="#feedback" id="feedback"><h2>Feedback</h2></a>
+<h2><a class="header" href="#feedback" id="feedback">Feedback</a></h2>
 <p>If you have any thoughts or feedback you can open an <a href="https://github.com/katharostech/arsenal/issues/new">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
-<a class="header" href="#the-vision" id="the-vision"><h1>The Vision</h1></a>
+<h1><a class="header" href="#the-vision" id="the-vision">The Vision</a></h1>
 <p>These need to be refined into a more succinct vision statement, but here are the major design points that drive the Arsenal vision:</p>
 <ul>
 <li>We need the engine to scale to a game of any size, even up to AAA games, with no technological bottleneck.
@@ -226,89 +226,89 @@
 <blockquote>
 <p><strong>See Also:</strong> <a href="./FAQ.html">FAQ</a></p>
 </blockquote>
-<a class="header" href="#architecture" id="architecture"><h1>Architecture</h1></a>
+<h1><a class="header" href="#architecture" id="architecture">Architecture</a></h1>
 <p>We are currently in the process of prototyping the architecture for Arsenal. These are the drafts for the project architecture that we have made so far:</p>
 <ul>
 <li><a href="./architecture/draft-2.html">Draft 2</a> - The current plan for how Arsenal will be built. This may change and the draft will be update or else a new one created.</li>
 <li><a href="./architecture/draft-1.html">Draft 1</a> - The first design concept. See <a href="./architecture/draft-1.html#draft-status">draft status</a> to see why it was decided against.</li>
 </ul>
-<a class="header" href="#architecture-draft-2" id="architecture-draft-2"><h1>Architecture Draft 2</h1></a>
+<h1><a class="header" href="#architecture-draft-2" id="architecture-draft-2">Architecture Draft 2</a></h1>
 <p>Arsenal will provide what is necessary to achieve a full Blender integration with the <a href="https://github.com/amethyst/amethyst">Amethyst</a> game engine. Extra, more opinionated components may be added on top of Amethyst if deemed necessary to provide the particular user experience that we are targeting with Arsenal, but the goal of Arsenal will be to build as much on top of Amethyst as possible, with contributions being made to Amethyst to help facilitate Arsenal's goals.</p>
-<p><img src="./assets/arsenalArchitecture-2.svg" alt="Architecture Diagram" /></p>
-<a class="header" href="#components" id="components"><h2>Components</h2></a>
-<a class="header" href="#blender-plugin" id="blender-plugin"><h3>Blender Plugin</h3></a>
+<p><img src="architecture/./assets/arsenalArchitecture-2.svg" alt="Architecture Diagram" /></p>
+<h2><a class="header" href="#components" id="components">Components</a></h2>
+<h3><a class="header" href="#blender-plugin" id="blender-plugin">Blender Plugin</a></h3>
 <p>The Arsenal Blender plugin will be made up of two components: the Python plugin, and the Rust Python extension. The Python plugin uses Blender's Python API to provide the UI elements specific to Arsenal inside of Blender while using the Rust Python extension to do the heavy lifting required for asset exporting.</p>
 <p>The line between the Blender plugin and the Python extension is not fully decided at this point. The Rust extension should be used, at least, to do any processing intensive operations and will allow us to multi-thread things like asset conversion and scene export. The Python plugin may be sufficient for most other tasks if it is not decided that it is preferable to write those components in Rust due to things like Rust's static typing.</p>
 <p>The Blender integration should orchestrate everything necessary to develop your game and build it for release. It is possible that CLIs may alternatively be used for tasks like building and distribution.</p>
-<a class="header" href="#amethyst" id="amethyst"><h3>Amethyst</h3></a>
+<h3><a class="header" href="#amethyst" id="amethyst">Amethyst</a></h3>
 <p>Amethyst and its ecosystem will provide all of the core components of the game engine.</p>
-<a class="header" href="#rendering" id="rendering"><h4>Rendering</h4></a>
+<h4><a class="header" href="#rendering" id="rendering">Rendering</a></h4>
 <p>We will be using Amethyst's <a href="https://github.com/amethyst/rendy">Rendy</a> rendering library. If the render that Amethyst comes with on top of Rendy is sufficient for our taste we may not need to implement anything extra from a rendering standpoint. If necessary, though, we can write our own, more targeted, renderer on top of Rendy.</p>
-<a class="header" href="#scripting" id="scripting"><h4>Scripting</h4></a>
+<h4><a class="header" href="#scripting" id="scripting">Scripting</a></h4>
 <p>Establishing Amethyst's scripting ability will be essential to Arsenal. There is currently an <a href="https://github.com/amethyst/rfcs/blob/master/0001-scripting.md">RFC</a> for scripting in Amethyst and establishing that in the engine will be necessary for Arsenal. Arsenal will then make it easy to create and use scripts in the supported languages, from Blender ( though script editing will not be done in Blender ).</p>
-<a class="header" href="#blender-components-and-systems" id="blender-components-and-systems"><h4>Blender Components and Systems</h4></a>
+<h4><a class="header" href="#blender-components-and-systems" id="blender-components-and-systems">Blender Components and Systems</a></h4>
 <p>In order to support a Blender-compatible scene graph, we will add the components and systems necessary to handle Blender objects in the game during runtime. These components will be built into the version of Amethyst distributed with Arsenal.</p>
-<a class="header" href="#distribution" id="distribution"><h2>Distribution</h2></a>
+<h2><a class="header" href="#distribution" id="distribution">Distribution</a></h2>
 <p>Ideally Arsenal would be distributed as a self-contained SDK that has everything needed to start development. The SDK would contain the Blender plugin and builds of Amethyst and all other supporting tools necessary to develop games with Arsenal.</p>
 <p>From a scripting standpoint, if you want to script with Rust or other compiled languages, we may require that you install those tools separately, but support for Lua scripting should come out-of-the box so you can get started right-away.</p>
-<a class="header" href="#architecture-draft-1" id="architecture-draft-1"><h1>Architecture Draft 1</h1></a>
+<h1><a class="header" href="#architecture-draft-1" id="architecture-draft-1">Architecture Draft 1</a></h1>
 <p>The first Arsenal architecture draft is shown below:</p>
-<p><img src="./assets/arsenalArchitecture-1.svg" alt="Architecture Diagram" /></p>
-<a class="header" href="#core-components" id="core-components"><h2>Core Components</h2></a>
-<a class="header" href="#kinc" id="kinc"><h3>Kinc</h3></a>
+<p><img src="architecture/./assets/arsenalArchitecture-1.svg" alt="Architecture Diagram" /></p>
+<h2><a class="header" href="#core-components" id="core-components">Core Components</a></h2>
+<h3><a class="header" href="#kinc" id="kinc">Kinc</a></h3>
 <p>We are considering building on <a href="https://github.com/Kode/Kinc">Kinc</a>, which is the C/C++ library that Armory is built on. Kinc handles the platform and graphics abstraction that allows Armory to target different graphics API's like Vulcan, DirectX, and Metal, and allows Armory to target game consoles as well. The maintainer of Kinc is also working on creating Rust bindings which will make it easier to integrate with.</p>
 <p>We like Kinc because we know who the maintainer is and we could potentially port Armory's renderer by building on top of Kinc, but going with a full Rust solution is probably more pragmatic, and we are going to consider both options.</p>
-<a class="header" href="#amethyst-1" id="amethyst-1"><h3>Amethyst</h3></a>
+<h3><a class="header" href="#amethyst-1" id="amethyst-1">Amethyst</a></h3>
 <p><a href="https://github.com/amethyst/amethyst">Amethyst</a> is along the lines of what we want the core of the engine to be. The ECS and highly parallel design will allow the engine to scale well from small games to very large games. One of the reasons we don't want to simply rewrite Armory in Rust is because we see building the engine itself on an ECS as a large advantage in engine design.</p>
-<a class="header" href="#renderer" id="renderer"><h3>Renderer</h3></a>
+<h3><a class="header" href="#renderer" id="renderer">Renderer</a></h3>
 <p>Something we may want to port from Armory is its renderer. Armory has a very good renderer and if we built on Kinc it would mean that we wouldn't have to change the API that it uses to communicate to the graphics hardware. It would be very nice if we could leverage the already awesome Armory renderer, but it may still may be better to go with Amethysts pure Rust <a href="https://github.com/amethyst/rendy">renderer</a> and instead take just the shaders from Armory or just make our own.</p>
-<a class="header" href="#arsenal-engine" id="arsenal-engine"><h3>Arsenal Engine</h3></a>
+<h3><a class="header" href="#arsenal-engine" id="arsenal-engine">Arsenal Engine</a></h3>
 <p>Additionally we would need our own components and systems that we add on top of Amethyst to add physics simulation and Blender elements like objects, lights, speakers, etc.</p>
 <p>All of these elements, Kinc, Amethyst, the renderer, and the Arsenal specific systems would be built together to make up the Arsenal shared library which will be utilized by the Blender plugin and the Arsenal executable.</p>
-<a class="header" href="#blender-integration" id="blender-integration"><h2>Blender Integration</h2></a>
+<h2><a class="header" href="#blender-integration" id="blender-integration">Blender Integration</a></h2>
 <p>The Arsenal Blender integration will be provided by two components: the Python Blender Plugin, and the Rust Python Extension. The Python Blender Plugin, is used to provide all of the extra Blender UI elements and integrations through the Blender Python API. The Rust Python Extension is a native Python module that is loaded by the Blender plugin and used to do parallel asset conversion, to build the Arsenal game, and to run the Arsenal game from inside blender ( in a separate window, but in the same process ).</p>
 <p>The Rust Python Extension will be dynamically linked to the Arsenal library, which will give it full access to the Arsenal engine API while simultaneously acting as a Python module that allows the Python Blender Plugin the ability to do advanced integrations with the engine such as live-sync, hot reload, etc. Tools such as the <a href="https://github.com/Kode/krafix">Krafix</a> GLSL cross-compiler could also be embedded into the Rust Python Extension to make it more self-contained and hopefully eliminate most of the need to install other tools on the user's system.</p>
-<a class="header" href="#arsenal-games" id="arsenal-games"><h3>Arsenal Games</h3></a>
+<h3><a class="header" href="#arsenal-games" id="arsenal-games">Arsenal Games</a></h3>
 <p>The Arsenal game itself will be a Rust crate that is created alongside the .blend file by the Blender plugin, very similar to the way that Armory creates a Kha project adjacent to Armory blends. The game crate is built as a shared library that acts like an Arsenal &quot;plugin&quot; and is loaded by the Arsenal library as directed by the Blender plugin. The game crate also gets dynamically linked to the Arsenal library to give it full access to the game engine API.</p>
 <p>To run the Arsenal game standalone, you use the Arsenal executable, which links to the Arsenal library and directs it to load the game crate and run the game.</p>
-<a class="header" href="#arsenal-mods" id="arsenal-mods"><h3>Arsenal Mods</h3></a>
+<h3><a class="header" href="#arsenal-mods" id="arsenal-mods">Arsenal Mods</a></h3>
 <p>In addition to the game crate, there may be any number of &quot;mod&quot; crates that are nearly identical to game crates, except that they are loaded after the game crate. Mod crates are created in different blends than the game crate and can be loaded dynamically, if the game allows, to let other players add their own functionality and extensions to the game.</p>
-<a class="header" href="#experimentation-done-so-far" id="experimentation-done-so-far"><h2>Experimentation Done So Far</h2></a>
+<h2><a class="header" href="#experimentation-done-so-far" id="experimentation-done-so-far">Experimentation Done So Far</a></h2>
 <p>All of the above architecture is theoretical. We have been working on proving out different elements of the architecture to make sure that it is feasible. So far we have successfully made a Rust Python extension that can be imported into a Blender plugin with a single operator that executes a Rust function.</p>
 <p>The largest problem we are having is getting Rust crates to dynamically link to other Rust crates. It should be possible, but it may require that you use the exact same version of Rust for all libraries involved. This could cause problems with things like the fact that Amethyst only supports Rust stable and the PyO3 library we are using for the Python extension requires Rust nightly. We need to do some research to see if there is a way to provide a stable ABI over which to link Rust crates to each-other conveniently.</p>
-<a class="header" href="#draft-status" id="draft-status"><h2>Draft Status</h2></a>
+<h2><a class="header" href="#draft-status" id="draft-status">Draft Status</a></h2>
 <p>This design draft has been decided against due to the fact that there is no way in Rust to do dynamic linking between crates built by different versions of Rust. A Rust <a href="https://internals.rust-lang.org/t/dynamically-linking-rust-crates-to-rust-crates/10369?u=zicklag">forum topic</a> was brought up to discuss this. This design relied heavily on being able to dynamically Rust crates and is therefore unfeasible.</p>
-<a class="header" href="#faq" id="faq"><h1>FAQ</h1></a>
-<a class="header" href="#is-being-cross-platform-one-of-your-game-engines-main-focus" id="is-being-cross-platform-one-of-your-game-engines-main-focus"><h2>Is being cross platform one of your game engine's main focus?</h2></a>
+<h1><a class="header" href="#faq" id="faq">FAQ</a></h1>
+<h2><a class="header" href="#is-being-cross-platform-one-of-your-game-engines-main-focus" id="is-being-cross-platform-one-of-your-game-engines-main-focus">Is being cross platform one of your game engine's main focus?</a></h2>
 <p>Yes. Arsenal should be able to deploy to every major target out there. This is going to be mostly handled by the <a href="https://amethyst.rs">Amethyst</a> engine that we are building on top of so it should not be a large burden to the project.</p>
 <p>Compared to Armory, Arsenal will probably have less of an issue targeting multiple platforms because we don't have to maintain the Krom ( development, JavaScript ) version of Armory games and the C/C++ version of Armory games, which was what caused so much of a difficulty with the Bullet physics integration. Arsenal will have <strong>one</strong> version that can be used for production and for development so we won't have to manage two different runtimes. WASM support for Amethyst is also being <a href="https://amethyst.rs/posts/moss-grant-announce">sponsored by Mozilla</a> right now.</p>
 <p>Also, because it is written in Rust, Arsenal shouldn't have any problem integrating with native libraries on different targets, something that gave Armory a bit of trouble because of Krom.</p>
-<a class="header" href="#what-platform-will-your-engine-focus-on" id="what-platform-will-your-engine-focus-on"><h2>What platform will your engine focus on?</h2></a>
+<h2><a class="header" href="#what-platform-will-your-engine-focus-on" id="what-platform-will-your-engine-focus-on">What platform will your engine focus on?</a></h2>
 <p>To start we will focus on the desktop platforms: Linux, Windows, and Mac. After that we will want to go to consoles. This is in the roadmap for the Amethyst project so we may not need to do any work on this ourselves.</p>
-<a class="header" href="#what-dimension-will-your-game-engine-focus-on" id="what-dimension-will-your-game-engine-focus-on"><h2>What dimension will your game engine focus on?</h2></a>
+<h2><a class="header" href="#what-dimension-will-your-game-engine-focus-on" id="what-dimension-will-your-game-engine-focus-on">What dimension will your game engine focus on?</a></h2>
 <p>3D will be the most important for us at first but it should not be hard to add extra controls that allow you to more easily create purely 2D elements after that. We definitely want you to be able to do both.</p>
 <p>If we start with 3D, 2.5D is more of a special case of the physics engine, because it is 3D graphics, with 2D physics. The rust <a href="https://www.nphysics.org/">nphysics</a> library supports both 2D and 3D physics so that might end up being easy to accomplish.</p>
 <p>Supporting pure 2D should just be a matter of rendering and making the UX inside of Blender easy enough to place 2D objects so that might also be an easy feature to add when we get to it.</p>
-<a class="header" href="#what-will-your-game-engine-feature" id="what-will-your-game-engine-feature"><h2>What will your game engine feature?</h2></a>
+<h2><a class="header" href="#what-will-your-game-engine-feature" id="what-will-your-game-engine-feature">What will your game engine feature?</a></h2>
 <p>That is less clear at the present time. We will start by focusing on the core elements needed to make any game and on giving the developer enough control to work anything that they might need into their game. More specific features like terrain and AI editors would be great to work in eventually, but our development effort will be guided by the features that we need to develop our own games.</p>
 <p>We should have no problem accepting contributions for extra features as long as we deem it compliant to our standards.</p>
-<a class="header" href="#when-do-you-intend-to-release-the-first-version-10" id="when-do-you-intend-to-release-the-first-version-10"><h2>When do you intend to release the first version? (1.0)</h2></a>
+<h2><a class="header" href="#when-do-you-intend-to-release-the-first-version-10" id="when-do-you-intend-to-release-the-first-version-10">When do you intend to release the first version? (1.0)</a></h2>
 <p>We have no way of determining an accurate timeline at this point. It will definitely be more of a &quot;work on it until we feel it is stable&quot;. But as it is critical to our own  game development, it will have the highest of priorities.</p>
 <p>We are going to develop a &quot;living&quot; roadmap that we will update as we figure out what we need to work into the engine. Initially it will likely be rather inaccurate until we figure out more of what needs to be worked into Arsenal and into Amethyst.</p>
-<a class="header" href="#how-do-you-support-your-game-engine-development" id="how-do-you-support-your-game-engine-development"><h2>How do you support your game engine development?</h2></a>
+<h2><a class="header" href="#how-do-you-support-your-game-engine-development" id="how-do-you-support-your-game-engine-development">How do you support your game engine development?</a></h2>
 <p>Development of Arsenal is a part of the work of Katharos Technology as it will be the engine that we use to make our games. Work at Katharos Technology is funded by trusting God to provide for what we need to continue work. Donations are welcome.</p>
 <p>We do not know where funding for the project will come from as the project continues; we are trusting that God will give us what we need to continue the project if that is His will. We will never charge for Arsenal, though. Arsenal will be free and Open Source from the start.</p>
 <p>See our <a href="https://katharostech.com/about-us">about us</a> page to understand more about what our goal is as an organization.</p>
-<a class="header" href="#what-will-be-your-game-engine-license" id="what-will-be-your-game-engine-license"><h2>What will be your game engine license?</h2></a>
+<h2><a class="header" href="#what-will-be-your-game-engine-license" id="what-will-be-your-game-engine-license">What will be your game engine license?</a></h2>
 <p>The current plan is for the engine to be licensed under MIT, but the ownership of the copyright will be reserved by Katharos Technology. That means that contributors have to sign a <a href="https://cla-assistant.io/katharostech/arsenal">CLA</a> and that we may re-license the engine under any other license that we choose if we need to for any reason. This is to protect us, as an organization, from putting a legal restriction on our use of our own software that we may regret later. We have the full intention of always providing the software under a free and Open Source license; part of what we want to accomplish with Katharos Technology is to give people the tools they need to make their own games.</p>
-<a class="header" href="#how-do-you-decide-what-features-to-work-on" id="how-do-you-decide-what-features-to-work-on"><h2>How Do You Decide What Features to Work On?</h2></a>
+<h2><a class="header" href="#how-do-you-decide-what-features-to-work-on" id="how-do-you-decide-what-features-to-work-on">How Do You Decide What Features to Work On?</a></h2>
 <p>The development of the engine will be heavily directed by the need that we have for the engine at Katharos Technolgy. This means that we may not be able to facilitate developing features for everybody's use-cases, but it does mean that we have a vested interest in making the engine capable of producing high quality commercial games.</p>
 <p>If other people want to contribute features that we may not have time to work on ourselves, there should be no reason that we cannot merge those features if they fit our vision.</p>
-<a class="header" href="#is-arsenal-a-blender-plugin-or-a-game-engine" id="is-arsenal-a-blender-plugin-or-a-game-engine"><h2>Is Arsenal A Blender Plugin or a Game Engine?</h2></a>
+<h2><a class="header" href="#is-arsenal-a-blender-plugin-or-a-game-engine" id="is-arsenal-a-blender-plugin-or-a-game-engine">Is Arsenal A Blender Plugin or a Game Engine?</a></h2>
 <p>In reality, even though we call Arsenal an engine, the plan is to build Arsenal almost entirely on top of the <a href="https://amethyst.rs">Amethyst</a> game engine while creating our own Blender based user experience. We have the documentation for the engine design <a href="https://katharostech.github.io/arsenal/architecture.html">here</a>.</p>
-<a class="header" href="#news" id="news"><h1>News</h1></a>
+<h1><a class="header" href="#news" id="news">News</a></h1>
 <p>Here is a record of significant events or updates made to the engine. We will make an effort to keep this up-to-date as things progress.</p>
-<a class="header" href="#june-2019" id="june-2019"><h2>June 2019</h2></a>
+<h2><a class="header" href="#june-2019" id="june-2019">June 2019</a></h2>
 <ul>
 <li><strong>23rd</strong>: The <a href="https://github.com/katharostech/arsenal/issues/5">Basic glTF Exporter</a> was merged. The exporter proved out the ability to write a Blender plugin in Rust. The advantages of using Rust were demonstrated in Rust's strong type system and its amazing performance. Our exporter was able to <a href="https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911/9?u=zicklag">perform  22 times faster</a> than the <a href="https://github.com/KhronosGroup/glTF-Blender-IO">official Blender glTF Exporter</a> by the Khronos Group.</li>
 <li><strong>10th</strong>: Announcement of project on <a href="https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911">Amethyst form</a></li>
