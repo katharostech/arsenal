@@ -32,6 +32,6 @@ In order to support a Blender-compatible scene graph, we will add the components
 
 ## Distribution
 
-Ideally Arsenal would be distributed as a self-contained SDK that has everything needed to start development. The SDK would contain the Blender plugin and builds of Amethyst and all other supporting tools necessary to develop games with Arsenal.
+Arsenal will be distributed as a Blender addon and, ideally, will be usable with no additional setup, other than putting the addon in the Blender addons directory. The addon should be self-contained with all of the tools required to use the engine.
 
-From a scripting standpoint, if you want to script with Rust or other compiled languages, we may require that you install those tools separately, but support for Lua scripting should come out-of-the box so you can get started right-away.
+From a scripting standpoint, if you want to script with Rust or other compiled languages, we may require that you install those tools separately, but support for Lua scripting and Logic Nodes should come out-of-the box so you can get started right-away.
