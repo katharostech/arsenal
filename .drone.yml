@@ -27,3 +27,22 @@ steps:
       branch:
         - master
 
+---
+kind: pipeline
+name: arsenal
+
+steps:
+  - name: test-arsenal
+    group: test
+    image: rustlang/rust:nightly
+    commands:
+      - cargo test
+
+  - name: test-arsenal-runtime
+    group: test
+    image: rust:latest
+    commands:
+      - cd arsenal-runtime
+      - cargo test
+
+
