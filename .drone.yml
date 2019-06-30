@@ -68,7 +68,6 @@ steps:
       - clone
     commands:
       # Install Cross-compiler toolchain
-      - pwd
       - apt-get update
       - apt-get install -y gcc-mingw-w64
       - rustup target install x86_64-pc-windows-gnu
@@ -78,6 +77,7 @@ steps:
       # Python windows build
       - wget https://www.python.org/ftp/python/3.5.3/python-3.5.3-embed-amd64.zip
       - mkdir /build/python-win
+      - ln -s /build/python-win/python35.dll /build/python-win/libpythonXY.dll
       - cd /build/python-win
       - unzip /build/*.zip
       - cd /build
