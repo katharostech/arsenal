@@ -68,6 +68,7 @@ steps:
       - clone
     commands:
       # Install Cross-compiler toolchain
+      - pwd
       - apt-get update
       - apt-get install -y gcc-mingw-w64
       - rustup target install x86_64-pc-windows-gnu
