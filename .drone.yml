@@ -83,7 +83,7 @@ steps:
       # Python headers from source
       - git clone --depth 1 --branch 3.5 https://github.com/python/cpython.git
       - cp cpython/PC/pyconfig.h cpython/Include/pyconfig.h
-      - echo '#define '#define Py_ENABLE_SHARED 0' >> cpython/Include/pyconfig.h
+      - echo '#define Py_ENABLE_SHARED 0' >> cpython/Include/pyconfig.h
       - echo '#define WITH_THREAD 1' >> cpython/Include/pyconfig.h
       - export PYO3_CROSS_INCLUDE_DIR=/build/cpython/Include
       - export PYO3_CROSS_LIB_DIR=/build/python-win
