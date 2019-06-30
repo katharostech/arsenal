@@ -1,8 +1,4 @@
 ---
-#
-# Documentation
-#
-
 kind: pipeline
 name: book
   
@@ -91,6 +87,8 @@ trigger:
 ---
 kind: pipeline
 name: arsenal-windows
+
+steps:
 
   # Build Python Extension for Windows
   - name: build-arsenal
