@@ -37,8 +37,9 @@ trigger:
     - tag
     - push
   refs:
-    - refs/heads/master
     - refs/tags/release-draft
+  branch:
+    - master
 
 ---
 kind: pipeline
