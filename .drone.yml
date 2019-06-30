@@ -1,4 +1,8 @@
 ---
+#
+# Documentation
+#
+
 kind: pipeline
 name: book
   
@@ -62,7 +66,7 @@ steps:
       - cargo build --release
 
   # Package Linux distrobution
-  - name: package-arsenal
+  - name: package-arsenal-plugin
     image: rust:latest
     depends_on:
       - build-arsenal
@@ -147,7 +151,7 @@ steps:
       - cargo build --target x86_64-pc-windows-gnu --release
 
   # Package Windows distrobution
-  - name: package-arsenal
+  - name: package-arsenal-plugin
     image: rust:latest
     depends_on:
       - build-arsenal
@@ -163,10 +167,29 @@ steps:
       - cd build
       - zip -r arsenal-blender-windows.zip arsenal-blender-windows
 
+  # Publish draft to GitHub releases
+  - name: publish-draft
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_access_key
+      files:
+        - build/arsenal-blender-windows.zip
+      title: test-release
+      draft: true
+      checksum:
+        - sha256
+        - md5
+    when:
+      event:
+        - push
+      branch:
+        - dev
+
 trigger:
   event:
     - pull_request
     - push
   branch:
     - dev
-    - master
+    - maste
