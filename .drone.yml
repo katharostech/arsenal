@@ -1,94 +1,94 @@
 ---
-#
-# Documentation
-#
+# #
+# # Documentation
+# #
 
-kind: pipeline
-name: book
+# kind: pipeline
+# name: book
   
-steps:
-  - name: test
-    image: hrektts/mdbook
-    commands:
-      - mdbook test
+# steps:
+#   - name: test
+#     image: hrektts/mdbook
+#     commands:
+#       - mdbook test
 
-  - name: build
-    image: hrektts/mdbook
-    commands:
-      - mdbook build
+#   - name: build
+#     image: hrektts/mdbook
+#     commands:
+#       - mdbook build
     
-  - name: publish
-    image: plugins/gh-pages
-    settings:
-      pages_directory: build/book
-      username:
-        from_secret: github_username
-      password:
-        from_secret: github_access_key
-    when:
-      event:
-        - push
-      branch:
-        - master
+#   - name: publish
+#     image: plugins/gh-pages
+#     settings:
+#       pages_directory: build/book
+#       username:
+#         from_secret: github_username
+#       password:
+#         from_secret: github_access_key
+#     when:
+#       event:
+#         - push
+#       branch:
+#         - master
 
-trigger:
-  event:
-    - pull_request
-  branch:
-    - master
+# trigger:
+#   event:
+#     - pull_request
+#   branch:
+#     - master
 
----
-kind: pipeline
-name: arsenal-linux
+# ---
+# kind: pipeline
+# name: arsenal-linux
 
-steps:
+# steps:
   
-  # Build Python Extension for Linux
-  - name: build-arsenal
-    image: rustlang/rust:nightly
-    depends_on:
-      - clone
-    commands:
-      - cargo build --release
+#   # Build Python Extension for Linux
+#   - name: build-arsenal
+#     image: rustlang/rust:nightly
+#     depends_on:
+#       - clone
+#     commands:
+#       - cargo build --release
 
-  # Build Arsenal runtime for Linux
-  - name: build-arsenal-runtime
-    image: rust:latest
-    depends_on:
-      - clone
-    commands:
-      - apt-get update
-      - >
-        apt-get install -y gcc pkg-config openssl libasound2-dev cmake
-        build-essential python3 libfreetype6-dev libexpat1-dev
-        libxcb-composite0-dev libssl-dev
-      - cd arsenal-runtime
-      - cargo build --release
+#   # Build Arsenal runtime for Linux
+#   - name: build-arsenal-runtime
+#     image: rust:latest
+#     depends_on:
+#       - clone
+#     commands:
+#       - apt-get update
+#       - >
+#         apt-get install -y gcc pkg-config openssl libasound2-dev cmake
+#         build-essential python3 libfreetype6-dev libexpat1-dev
+#         libxcb-composite0-dev libssl-dev
+#       - cd arsenal-runtime
+#       - cargo build --release
 
-  # Package Linux distrobution
-  - name: package-arsenal-plugin
-    image: rust:latest
-    depends_on:
-      - build-arsenal
-      - build-arsenal-runtime
-    commands:
-      - mkdir -p build/
-      - cp -r arsenal-blender build/arsenal-blender-linux
-      - mkdir -p build/arsenal-blender-linux/bin
-      - mv target/release/libarsenal.so build/arsenal-blender-linux/arsenal.so
-      - mv arsenal-runtime/target/release/arsenal-runtime build/arsenal-blender-linux/bin/arsenal-runtime
-      - cd build
-      - tar -czf arsenal-blender-linux.tgz arsenal-blender-linux
+#   # Package Linux distrobution
+#   - name: package-arsenal-plugin
+#     image: rust:latest
+#     depends_on:
+#       - build-arsenal
+#       - build-arsenal-runtime
+#     commands:
+#       - mkdir -p build/
+#       - cp -r arsenal-blender build/arsenal-blender-linux
+#       - mkdir -p build/arsenal-blender-linux/bin
+#       - mv target/release/libarsenal.so build/arsenal-blender-linux/arsenal.so
+#       - mv arsenal-runtime/target/release/arsenal-runtime build/arsenal-blender-linux/bin/arsenal-runtime
+#       - cd build
+#       - tar -czf arsenal-blender-linux.tgz arsenal-blender-linux
 
-trigger:
-  event:
-    - pull_request
-    - push
-  branch:
-    - dev
-    - master
+# trigger:
+#   event:
+#     - pull_request
+#     - push
+#   branch:
+#     - dev
+#     - master
 
----
+# ---
 kind: pipeline
 name: arsenal-windows
 
@@ -190,11 +190,11 @@ steps:
 
 trigger:
   event:
-    - pull_request
-    - push
+    # - pull_request
+    # - push
     - tag
   ref:
     - refs/tags/*-draft
   branch:
-    - dev
-    - master
+    # - dev
+    # - master
