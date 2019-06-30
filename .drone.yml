@@ -102,9 +102,9 @@ steps:
     depends_on:
       - clone
     commands:
-      - apt update
+      - apt-get update
       - >
-        apt install -y gcc pkg-config openssl libasound2-dev cmake
+        apt-get install -y gcc pkg-config openssl libasound2-dev cmake
         build-essential python3 libfreetype6-dev libexpat1-dev
         libxcb-composite0-dev libssl-dev
       - cd arsenal-runtime
@@ -116,9 +116,9 @@ steps:
     depends_on:
       - clone
     commands:
-      - apt update
+      - apt-get update
       - >
-        apt install -y gcc pkg-config openssl libasound2-dev cmake
+        apt-get install -y gcc pkg-config openssl libasound2-dev cmake
         build-essential python3 libfreetype6-dev libexpat1-dev
         libxcb-composite0-dev libssl-dev
       - rustup target install x86_64-pc-windows-gnu
@@ -129,8 +129,40 @@ steps:
         linker = "x86_64-w64-mingw32-gcc"' >> .cargo/config
       - cargo build --release
 
+  # Package Linux distrobution
+  - name: package-arsenal-runtime-linux
+    image: rust:latest
+    depends_on:
+      - build-arsenal-linux
+      - build-arsenal-runtime-linux
+    commands:
+      - cp -r arsenal-blender build/arsenal-blender-linux
+      - mkdir -p build/arsenal-blender-linux/bin
+      - mv target/release/libarsenal.so build/arsenal-blender-linux/arsenal.so
+      - mv arsenal-runtime/target/release/arsenal-runtime build/arsenal-blender-linux/bin/arsenal-runtime
+      - cd build
+      - tar -czf arsenal-blender-linux.tgz arsenal-blender-linux
+
+  # Package Windows distrobution
+  - name: package-arsenal-runtime-windows
+    image: rust:latest
+    depends_on:
+      - build-arsenal-windows
+      - build-arsenal-runtime-windows
+    commands:
+      - apt-get update
+      - apt-get install -y zip
+      - cp -r arsenal-blender build/arsenal-blender-windows
+      - mkdir -p build/arsenal-blender-windows/bin
+      - mv target/x86_64-pc-windows-gnu/release/arsenal.dll build/arsenal-blender-windows/arsenal.dll
+      - mv arsenal-runtime/target/x86_64-pc-windows-gnu/release/arsenal-runtime.exe build/arsenal-blender-windows/bin/arsenal-runtime
+      - cd build
+      - zip -r arsenal-blender-windows.zip arsenal-blender-windows
+
 trigger:
   event:
     - pull_request
+    - push
   branch:
+    - dev
     - master
