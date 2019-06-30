@@ -188,13 +188,13 @@ steps:
       ref:
         - refs/tags/.*-draft
 
-trigger:
-  event:
-    - pull_request
-    - push
-    - tag
-  ref:
-    - refs/tags/.*-draft
-  branch:
-    - dev
-    - maste
+# trigger:
+#   event:
+#     - pull_request
+#     - push
+#     - tag
+#   ref:
+#     - refs/tags/.*-draft
+#   branch:
+#     - dev
+#     - maste
