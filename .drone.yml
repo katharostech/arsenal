@@ -46,25 +46,19 @@ steps:
   #
   # Arsenal
   #
-
-  # - name: test-arsenal
-  #   image: rustlang/rust:nightly
-  #   depends_on:
-  #     - clone
-  #   commands:
-  #     - cargo test
   
-  # - name: build-arsenal-linux
-  #   image: rustlang/rust:nightly
-  #   depends_on:
-  #     - test-arsenal
-  #   commands:
-  #     - cargo build --release
+  # Build Python Extension for Linux
+  - name: build-arsenal-linux
+    image: rustlang/rust:nightly
+    depends_on:
+      - clone
+    commands:
+      - cargo build --release
 
+  # Build Python Extension for Windows
   - name: build-arsenal-windows
     image: rustlang/rust:nightly
     depends_on:
-      # - test-arsenal
       - clone
     commands:
       # Install Cross-compiler toolchain
@@ -86,15 +80,16 @@ steps:
       - cp cpython/PC/pyconfig.h cpython/Include/pyconfig.h
       - echo '#define Py_ENABLE_SHARED 0' >> cpython/Include/pyconfig.h
       - echo '#define WITH_THREAD 1' >> cpython/Include/pyconfig.h
+      # Configure build to use Windows linker and libraries
       - export PYO3_CROSS_INCLUDE_DIR=/build/cpython/Include
       - export PYO3_CROSS_LIB_DIR=/build/python-win
       - echo 'fn main() { println!("cargo:rustc-link-search=/build/python-win"); }' > /drone/src/build.rs
-      # Compile project
-      - cd /drone/src
       - mkdir -p .cargo
       - |
         echo '[target.x86_64-pc-windows-gnu]
-        linker = "x86_64-w64-mingw32-gcc"' > .cargo/config
+        linker = "x86_64-w64-mingw32-gcc"' > /drone/src/.cargo/config
+      # Compile project
+      - cd /drone/src
       - cargo build --target x86_64-pc-windows-gnu --release
 
   #
