@@ -37,7 +37,8 @@ trigger:
     - tag
     - push
   refs:
-    - refs/tags/release-draft
+    include:
+      - refs/tags/release-draft
   branch:
     - master
 
