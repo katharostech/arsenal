@@ -32,15 +32,14 @@ steps:
         - master
 
 trigger:
-  include:
-    event:
-      - pull_request
-      - push
-      - tag
-  ref:
+  event:
+    - pull_request
+    - tag
+    - push
+  refs:
     include:
-      - refs/tags/release-draft
       - refs/heads/master
+      - refs/tags/release-draft
 
 ---
 kind: pipeline
@@ -86,15 +85,8 @@ steps:
       - tar -czf arsenal-blender-linux.tgz arsenal-blender-linux
 
 trigger:
-  include:
-    event:
-      - pull_request
-      - push
-      - tag
-  ref:
-    include:
-      - refs/tags/release-draft
-      - refs/heads/master
+  branch:
+    - none
 
 ---
 kind: pipeline
@@ -195,12 +187,5 @@ steps:
         - refs/tags/release-draft
 
 trigger:
-  event:
-    include:
-      - pull_request
-      - push
-      - tag
-  ref:
-    include:
-      - refs/tags/release-draft
-      - refs/heads/master
+  branch:
+    - none
