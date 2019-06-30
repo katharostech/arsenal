@@ -84,10 +84,10 @@ steps:
       - export PYO3_CROSS_INCLUDE_DIR=/build/cpython/Include
       - export PYO3_CROSS_LIB_DIR=/build/python-win
       - echo 'fn main() { println!("cargo:rustc-link-search=/build/python-win"); }' > /drone/src/build.rs
-      - mkdir -p .cargo
+      - mkdir -p /drone/src/.cargo
       - |
         echo '[target.x86_64-pc-windows-gnu]
-        linker = "x86_64-w64-mingw32-gcc"' > /drone/src/.cargo/config
+        linker = "x86_64-w64-mingw32-gcc"' >> /drone/src/.cargo/config
       # Compile project
       - cd /drone/src
       - cargo build --target x86_64-pc-windows-gnu --release
