@@ -182,11 +182,11 @@ steps:
       checksum:
         - sha256
         - md5
-    when:
-      event:
-        - tag
-      ref:
-        - refs/tags/.*-draft
+    # when:
+    #   event:
+    #     - tag
+    #   ref:
+    #     - refs/tags/.*-draft
 
 # trigger:
 #   event:
