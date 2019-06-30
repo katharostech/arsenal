@@ -37,9 +37,8 @@ trigger:
     - tag
     - push
   refs:
-    include:
-      - refs/heads/master
-      - refs/tags/release-draft
+    - refs/heads/master
+    - refs/tags/release-draft
 
 ---
 kind: pipeline
