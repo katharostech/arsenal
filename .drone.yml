@@ -38,9 +38,10 @@ trigger:
     - push
   refs:
     include:
+      - refs/heads/master
       - refs/tags/release-draft
-  branch:
-    - master
+    exclude:
+      - "*"
 
 ---
 kind: pipeline
