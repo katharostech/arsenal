@@ -123,9 +123,10 @@ steps:
       #   libxcb-composite0-dev libssl-dev
       # - rustup target install x86_64-pc-windows-gnu
       - cd arsenal-runtime
+      - mkdir -p .cargo
       - |
         echo '[target.x86_64-pc-windows-gnu]
-        linker = "x86_64-w64-mingw32-gcc"' >> /drone/src/.cargo/config
+        linker = "x86_64-w64-mingw32-gcc"' >> .cargo/config
       - cargo build --release
 
 trigger:
