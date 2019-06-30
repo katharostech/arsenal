@@ -32,6 +32,10 @@ steps:
         - master
 
 trigger:
+  event:
+    - pull_request
+    - push
+    - tag
   ref:
     - refs/tags/release-draft
     - refs/heads/master
@@ -80,6 +84,10 @@ steps:
       - tar -czf arsenal-blender-linux.tgz arsenal-blender-linux
 
 trigger:
+  event:
+    - pull_request
+    - push
+    - tag
   ref:
     - refs/tags/release-draft
     - refs/heads/master
@@ -183,6 +191,10 @@ steps:
         - refs/tags/release-draft
 
 trigger:
+  event:
+    - pull_request
+    - push
+    - tag
   ref:
     - refs/tags/release-draft
     - refs/heads/master
