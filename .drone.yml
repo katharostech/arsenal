@@ -67,12 +67,32 @@ steps:
       # - test-arsenal
       - clone
     commands:
+      # Install Cross-compiler toolchain
       - apt-get update
       - apt-get install -y gcc-mingw-w64
       - rustup target install x86_64-pc-windows-gnu
+      # Download Python headers and Windows build
+      - mkdir -p /build
+      - cd /build
+      # Python windows build
+      - wget https://www.python.org/ftp/python/3.5.3/python-3.5.3-embed-amd64.zip
+      - mkdir /build/python-win
+      - cd /build/python-win
+      - unzip /build/*.zip
+      - cd /build
+      # Python headers from source
+      - git clone --depth 1 --branch 3.5 https://github.com/python/cpython.git
+      - cp cpython/PC/pyconfig.h cpython/Include/pyconfig.h
+      - echo '#define '#define Py_ENABLE_SHARED 0' >> cpython/Include/pyconfig.h
+      - echo '#define WITH_THREAD 1' >> cpython/Include/pyconfig.h
+      - export PYO3_CROSS_INCLUDE_DIR=/build/cpython/Include
+      - export PYO3_CROSS_LIB_DIR=/build/python-win
+      - echo 'fn main() { println!("cargo:rustc-link-search=/build/python-win"); }' > /drone/src/build.rs
+      # Compile project
+      - cd /drone/src
       - mkdir -p .cargo
       - |
-        echo '[target.x86_64-pc-windows-gnu]
+        echo '[target.x86_6-pc-windows-gnu]
         linker = "x86_64-w64-mingw32-gcc"' > .cargo/config
       - cargo build --target x86_64-pc-windows-gnu --release
 
