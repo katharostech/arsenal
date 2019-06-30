@@ -127,7 +127,7 @@ steps:
       - |
         echo '[target.x86_64-pc-windows-gnu]
         linker = "x86_64-w64-mingw32-gcc"' >> .cargo/config
-      - cargo build --release
+      - cargo build --target x86_64-pc-windows-gnu --release
 
   # Package Linux distrobution
   - name: package-arsenal-runtime-linux
