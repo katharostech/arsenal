@@ -38,8 +38,9 @@ trigger:
       - push
       - tag
   ref:
-    - refs/tags/release-draft
-    - refs/heads/master
+    include:
+      - refs/tags/release-draft
+      - refs/heads/master
 
 ---
 kind: pipeline
@@ -91,8 +92,9 @@ trigger:
       - push
       - tag
   ref:
-    - refs/tags/release-draft
-    - refs/heads/master
+    include:
+      - refs/tags/release-draft
+      - refs/heads/master
 
 ---
 kind: pipeline
@@ -199,5 +201,6 @@ trigger:
       - push
       - tag
   ref:
-    - refs/tags/release-draft
-    - refs/heads/master
+    include:
+      - refs/tags/release-draft
+      - refs/heads/master
