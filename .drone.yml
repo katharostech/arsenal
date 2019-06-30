@@ -170,6 +170,8 @@ steps:
   # Publish draft to GitHub releases
   - name: publish-draft
     image: plugins/github-release
+    depends_on:
+      - package-arsenal-plugin
     settings:
       api_key:
         from_secret: github_access_key
@@ -182,14 +184,17 @@ steps:
         - md5
     when:
       event:
-        - push
-      branch:
-        - dev
+        - tag
+      tag:
+        - .*-draft
 
 trigger:
   event:
     - pull_request
     - push
+    - tag
+  tag:
+    - .*-draft
   branch:
     - dev
     - maste
