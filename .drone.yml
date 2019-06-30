@@ -93,7 +93,7 @@ steps:
       - cd /drone/src
       - mkdir -p .cargo
       - |
-        echo '[target.x86_6-pc-windows-gnu]
+        echo '[target.x86_64-pc-windows-gnu]
         linker = "x86_64-w64-mingw32-gcc"' > .cargo/config
       - cargo build --target x86_64-pc-windows-gnu --release
 
