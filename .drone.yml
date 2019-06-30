@@ -185,16 +185,16 @@ steps:
     when:
       event:
         - tag
-      tag:
-        - .*-draft
+      ref:
+        - refs/tags/.*-draft
 
 trigger:
   event:
     - pull_request
     - push
     - tag
-  tag:
-    - .*-draft
+  ref:
+    - refs/tags/.*-draft
   branch:
     - dev
     - maste
