@@ -96,18 +96,37 @@ steps:
   # Arsenal Runtime
   #
 
-  # - name: test-arsenal-runtime
-  #   image: rust:latest
-  #   depends_on:
-  #     - clone
-  #   commands:
-  #     - apt update
-  #     - >
-  #       apt install -y gcc pkg-config openssl libasound2-dev cmake
-  #       build-essential python3 libfreetype6-dev libexpat1-dev
-  #       libxcb-composite0-dev libssl-dev
-  #     - cd arsenal-runtime
-  #     - cargo test
+  # Build Arsenal runtime for Linux
+  - name: build-arsenal-runtime-linux
+    image: rust:latest
+    depends_on:
+      - clone
+    commands:
+      - apt update
+      - >
+        apt install -y gcc pkg-config openssl libasound2-dev cmake
+        build-essential python3 libfreetype6-dev libexpat1-dev
+        libxcb-composite0-dev libssl-dev
+      - cd arsenal-runtime
+      - cargo build --release
+
+  # Build Arsenal runtime for Windows
+  - name: build-arsenal-runtime-windows
+    image: rust:latest
+    depends_on:
+      - clone
+    commands:
+      # - apt update
+      # - >
+      #   apt install -y gcc pkg-config openssl libasound2-dev cmake
+      #   build-essential python3 libfreetype6-dev libexpat1-dev
+      #   libxcb-composite0-dev libssl-dev
+      # - rustup target install x86_64-pc-windows-gnu
+      - cd arsenal-runtime
+      - |
+        echo '[target.x86_64-pc-windows-gnu]
+        linker = "x86_64-w64-mingw32-gcc"' >> /drone/src/.cargo/config
+      - cargo build --release
 
 trigger:
   event:
