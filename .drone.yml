@@ -136,6 +136,7 @@ steps:
       - build-arsenal-linux
       - build-arsenal-runtime-linux
     commands:
+      - mkdir -p build/
       - cp -r arsenal-blender build/arsenal-blender-linux
       - mkdir -p build/arsenal-blender-linux/bin
       - mv target/release/libarsenal.so build/arsenal-blender-linux/arsenal.so
@@ -150,6 +151,7 @@ steps:
       - build-arsenal-windows
       - build-arsenal-runtime-windows
     commands:
+      - mkdir -p build/
       - apt-get update
       - apt-get install -y zip
       - cp -r arsenal-blender build/arsenal-blender-windows
