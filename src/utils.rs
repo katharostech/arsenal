@@ -42,6 +42,18 @@ pub mod python {
 
         Ok(arsenal_plugin_path.into())
     }
+
+    /// Get the path to the arsenal_runtime executable
+    pub fn get_arsenal_runtime_path(py: Python) -> PyResult<String> {
+        let arsenal_runtime_path = PathBuf::from(get_arsenal_plugin_path(py)?)
+            .join("bin")
+            .join("arsenal-runtime");
+
+        Ok(arsenal_runtime_path
+            .to_str()
+            .ok_or_else(|| IOError::py_err("Path to arsenal-runtime not valid UTF-8"))?
+            .into())
+    }
 }
 
 /// Blender utilities

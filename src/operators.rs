@@ -1,7 +1,7 @@
 pub mod py {
     use std::path::PathBuf;
     use std::process::Command;
-    use crate::utils::python::get_arsenal_plugin_path;
+    use crate::utils::python::get_arsenal_runtime_path;
     use crate::utils::blender::get_build_dir;
     use crate::exporter;
     use pyo3::prelude::*;
@@ -22,17 +22,8 @@ pub mod py {
             // Export the blend
             exporter::export(py, &build_dir)?;
 
-            // Get arsenal runtime binary path
-            let arsenal_runtime_path =
-                PathBuf::from(get_arsenal_plugin_path(py)?)
-                .join("bin")
-                .join("arsenal-runtime");
-            let arsenal_runtime_path = arsenal_runtime_path
-                .to_str()
-                .ok_or_else(|| IOError::py_err("Path to arsenal-runtime not valid UTF-8"))?;
-
             // Run the exported scene with the arsenal runtime
-            Command::new(arsenal_runtime_path) 
+            Command::new(&get_arsenal_runtime_path(py)?) 
                 .current_dir(&build_dir)
                 .arg(PathBuf::from(&build_dir)
                     .join("scene.ron")
