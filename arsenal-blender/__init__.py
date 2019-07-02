@@ -8,6 +8,11 @@ bl_info = {
     "category": "Game",
 }
 
+from os import chmod
+from os.path import dirname, join
+import stat
+from glob import glob
+
 import bpy
 from . import operators
 from . import panels
@@ -32,6 +37,13 @@ class ArsenalAddonPreferences(bpy.types.AddonPreferences):
 blender_classes.append(ArsenalAddonPreferences)
 
 def register():
+    # Ensure "Execute" permissions on files in the "bin" dir
+    addon_dir = dirname(__spec__.origin)
+    bin_path = join(addon_dir, "bin", "*")
+    for file_path in glob(bin_path):
+        chmod(file_path, 0o755)
+
+    # Register Blender Classes
     for blender_class in blender_classes:
         bpy.utils.register_class(blender_class)
 
@@ -39,6 +51,7 @@ def register():
     panels.register()
 
 def unregister():
+    # Unregister Blender Classes
     blender_classes.reverse()
     for blender_class in blender_classes:
         bpy.utils.unregister_class(blender_class)
