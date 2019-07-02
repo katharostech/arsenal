@@ -10,3 +10,4 @@ build-dir = "build/book"
 [output.html]
 git_repository_url = "https://github.com/katharostech/arsenal"
 theme = "book/theme"
+default-theme = "rust"
