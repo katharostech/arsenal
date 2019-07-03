@@ -1,6 +1,7 @@
 import bpy
 
 from . import arsenal
+from .menus import SaveBeforeRunMenu
 
 blender_classes = []
 
@@ -10,6 +11,11 @@ class ArsenalRun(bpy.types.Operator):
     bl_label = "Run Game"
 
     def execute(self, context):
+        # Ensure blend has been saved before running game
+        if bpy.data.filepath == "":
+            bpy.ops.wm.call_menu(name=SaveBeforeRunMenu.bl_idname)
+            return {'FINISHED'}
+
         print("Running Arsenal Game")
         arsenal.operators.arsenal_run(context)
         return {'FINISHED'}

@@ -15,6 +15,7 @@ from glob import glob
 
 import bpy
 from . import operators
+from . import menus
 from . import panels
 
 blender_classes = []
@@ -48,6 +49,7 @@ def register():
         bpy.utils.register_class(blender_class)
 
     operators.register()
+    menus.register()
     panels.register()
 
 def unregister():
@@ -57,5 +59,6 @@ def unregister():
         bpy.utils.unregister_class(blender_class)
 
     panels.unregister()
+    menus.unregister()
     operators.unregister()
 
