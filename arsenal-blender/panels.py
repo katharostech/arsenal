@@ -5,7 +5,7 @@ blender_classes = []
 class ArsenalRunner(bpy.types.Panel):
     """Arsenal Runner"""
     bl_label = "Arsenal"
-    bl_idname = "ARS_PT_RUNNER"
+    bl_idname = "ARSENAL_PT_runner"
     bl_space_type = 'PROPERTIES'
     bl_region_type = 'WINDOW'
     bl_context = "render"
