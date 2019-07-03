@@ -14,6 +14,7 @@ import stat
 from glob import glob
 
 import bpy
+from . import keymaps
 from . import operators
 from . import menus
 from . import panels
@@ -48,6 +49,7 @@ def register():
     for blender_class in blender_classes:
         bpy.utils.register_class(blender_class)
 
+    keymaps.register()
     operators.register()
     menus.register()
     panels.register()
@@ -58,6 +60,7 @@ def unregister():
     for blender_class in blender_classes:
         bpy.utils.unregister_class(blender_class)
 
+    keymaps.register()
     panels.unregister()
     menus.unregister()
     operators.unregister()
