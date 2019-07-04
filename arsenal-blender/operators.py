@@ -1,7 +1,6 @@
 import bpy
 
 from . import arsenal
-from .menus import SaveBeforeRunMenu
 
 blender_classes = []
 
@@ -13,7 +12,11 @@ class ArsenalRun(bpy.types.Operator):
     def execute(self, context):
         # Ensure blend has been saved before running game
         if bpy.data.filepath == "":
-            bpy.ops.wm.call_menu(name=SaveBeforeRunMenu.bl_idname)
+            def draw_popup(popup, context):
+                popup.layout.operator_context = 'INVOKE_AREA'
+                popup.layout.label(text="Save Blend Before Running Game")
+                popup.layout.operator("wm.save_mainfile")
+            context.window_manager.popover(draw_popup)
             return {'FINISHED'}
 
         print("Running Arsenal Game")
