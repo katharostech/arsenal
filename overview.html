@@ -49,11 +49,11 @@
         <noscript><p><img src="//matomo.katharostech.com/matomo.php?idsite=4&amp;rec=1" style="border:0;" alt="" /></p></noscript>
         <!-- End Matomo Code -->
     </head>
-    <body class="light">
+    <body class="rust">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = "light";
+            var default_theme = "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html" class="active">Overview</a></li><li><a href="vision.html"><strong aria-hidden="true">1.</strong> The Vision</a></li><li><a href="architecture.html"><strong aria-hidden="true">2.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">2.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">2.2.</strong> Draft 1</a></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="overview.html" class="active">Overview</a></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="architecture.html"><strong aria-hidden="true">3.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">3.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">3.2.</strong> Draft 1</a></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -114,8 +114,8 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
@@ -164,6 +164,8 @@
                     <main>
                         <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
 <p>Arsenal is a Blender integrated game engine written in Rust. The project is in <em>very</em> early stages of development, but we are doing the planning, investigation, experimentation, and documentation that is necessary to get the project going. The source code for the project is on <a href="https://github.com/katharostech/arsenal">GitHub</a>.</p>
+<h2><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h2>
+<p>If you want to try out Arsenal, you can download the latest release <a href="https://github.com/katharostech/arsenal/releases">here</a>. The <a href="https://github.com/katharostech/arsenal/blob/master/CHANGEFILE.md">change log</a> will have the list of the updates made with each release. The <a href="./getting-started.html">getting started</a> page will show you how to install Arsenal and run your first game.</p>
 <h2><a class="header" href="#motivation" id="motivation">Motivation</a></h2>
 <p>We at <a href="https://katharostech.com">Katharos Technology</a> have been planning to use <a href="https://armory3d.org/">Armory3D</a> for our games until recent <a href="http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag">concerns</a> about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.</p>
 <p>Arsenal will be built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine and will provide a full Blender integration that will allow you to build games in Blender. Arsenal will also come with a Logic Node system that will allow non-programmers to build out game logic.</p>
@@ -180,7 +182,7 @@
                         
 
                         
-                            <a rel="next" href="vision.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="getting-started.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -194,7 +196,7 @@
                 
 
                 
-                    <a href="vision.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="getting-started.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

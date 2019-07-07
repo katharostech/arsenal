@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Overview - Arsenal Game Engine</title>
+        <title>Getting Started - Arsenal Game Engine</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="architecture.html"><strong aria-hidden="true">3.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">3.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">3.2.</strong> Draft 1</a></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li><a href="getting-started.html" class="active"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="architecture.html"><strong aria-hidden="true">3.</strong> Architecture</a></li><li><ol class="section"><li><a href="architecture/draft-2.html"><strong aria-hidden="true">3.1.</strong> Draft 2 - Current</a></li><li><a href="architecture/draft-1.html"><strong aria-hidden="true">3.2.</strong> Draft 1</a></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -162,25 +162,55 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
-<p>Arsenal is a Blender integrated game engine written in Rust. The project is in <em>very</em> early stages of development, but we are doing the planning, investigation, experimentation, and documentation that is necessary to get the project going. The source code for the project is on <a href="https://github.com/katharostech/arsenal">GitHub</a>.</p>
-<h2><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h2>
-<p>If you want to try out Arsenal, you can download the latest release <a href="https://github.com/katharostech/arsenal/releases">here</a>. The <a href="https://github.com/katharostech/arsenal/blob/master/CHANGEFILE.md">change log</a> will have the list of the updates made with each release. The <a href="./getting-started.html">getting started</a> page will show you how to install Arsenal and run your first game.</p>
-<h2><a class="header" href="#motivation" id="motivation">Motivation</a></h2>
-<p>We at <a href="https://katharostech.com">Katharos Technology</a> have been planning to use <a href="https://armory3d.org/">Armory3D</a> for our games until recent <a href="http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag">concerns</a> about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.</p>
-<p>Arsenal will be built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine and will provide a full Blender integration that will allow you to build games in Blender. Arsenal will also come with a Logic Node system that will allow non-programmers to build out game logic.</p>
-<p>More details of what we are trying to accomplish with Arsenal can be found in our <a href="./vision.html">Vision</a>.</p>
-<h2><a class="header" href="#roadmap" id="roadmap">Roadmap</a></h2>
-<p>You can view our <a href="https://github.com/katharostech/arsenal/milestones">roadmap</a> by looking at the milestones on GitHub. The roadmap will likely change as we find out what work needs to be done more specifically.</p>
-<h2><a class="header" href="#feedback" id="feedback">Feedback</a></h2>
-<p>If you have any thoughts or feedback you can open an <a href="https://github.com/katharostech/arsenal/issues/new">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
+                        <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
+<p>Welcome to Arsenal's Getting Started page! This doc will tell you how to install Arsenal and run your first &quot;game&quot;.</p>
+<blockquote>
+<p><strong>Disclaimer:</strong> Arsenal cannot make real games yet. Currently Arsenal can export your Blender scene to a game with colorless models, static lights, and an orbit camera. That's it. Still, this represents a big step in the direction of allowing you to make games inside of Blender, so if you are still interested, lets get started!</p>
+</blockquote>
+<h2><a class="header" href="#installing" id="installing">Installing</a></h2>
+<p>Arsenal is made up of a completely self-contained Blender plugin. Before you can use it you must install <a href="https://builder.blender.org/download/">Blender 2.80 Beta</a>. After installing Blender you can download the latest version of Arsenal from <a href="https://github.com/katharostech/arsenal/releases">GitHub</a>. We have builds of Arsenal for 64bit Windows, Mac, and Linux platforms.</p>
+<p>Once you have downloaded Arsenal, start up Blender and open the user preferences.</p>
+<p><img src="./assets/blender-preferences.png" alt="Blender Preferences" /></p>
+<p>In the Blender preferences go to the Add-ons tab and click Install.</p>
+<p><img src="./assets/install-addon-button.png" alt="Install Add-on Button" /></p>
+<p>Navigate to the arsenal zip file that you downloaded earlier and double-click it. This will add Arsenal to the Blender add-on list. Click the check box next to the add-on name to enable the add-on and then click &quot;Save Preferences&quot;.</p>
+<blockquote>
+<p><strong>Note:</strong> Some versions of Blender will not have the &quot;Save Preferences&quot; button. In that case the preferences will be automatically saved.</p>
+</blockquote>
+<p><img src="./assets/enable-addon-checkbox.png" alt="Enable Add-on Check box" /></p>
+<p>You can close the preferences dialog and that's it! Now all we have to do is run a game.</p>
+<h2><a class="header" href="#running-a-game" id="running-a-game">Running a Game</a></h2>
+<p>Now that we have Arsenal installed, go ahead and save the blend. You can't run an Arsenal game if the blend has not been saved yet. After the blend is saved, we can run it! We just have to click the &quot;Run Game&quot; button in the &quot;Arsenal&quot; panel of the &quot;Render&quot; tab.</p>
+<p><img src="./assets/run-game-button.png" alt="Run Game Button" /></p>
+<p>Here is the result:</p>
+<p><img src="./assets/arsenal-with-a-cube.png" alt="Arsenal With a Cube" /></p>
+<p>Arsenal will export the scene with the basic cube in it and it will run a game that allows you to view your scene by moving the mouse to orbit the camera around the world center. You can hit the escape button to exit the game.</p>
+<p>Congratulations you ran your first Arsenal game! It isn't much yet, but it's a start.</p>
+<p>So far there are a couple things to note about the game:</p>
+<ul>
+<li>Arsenal added two lights to the scene: a blue light and a red light. Arsenal doesn't yet export the lights from the Blender scene. That will be fixed in a later release</li>
+<li>Arsenal only exports objects smooth shaded so the cube looks kind of non cube-like. This will also be fixed later.</li>
+</ul>
+<p>Now that we've got it running, lets mess around with our scene a bit more. Go ahead and add whatever objects you want to the scene and click &quot;Run Game&quot; again. Arsenal will re-export the scene and run the game with your new updates.</p>
+<p><img src="./assets/full-arsenal-scene.png" alt="Full Arsenal Scene" /></p>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
+<p>That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.</p>
+<p>If you had any trouble getting through the tutorial or if you have any questions, you can open up a <a href="https://github.com/katharostech/arsenal/issues">GitHub issue</a> and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on <a href="https://github.com/katharostech/arsenal">GitHub</a>!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
+                        
+                            <a rel="next" href="vision.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -190,7 +220,15 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
+                
+                    <a href="vision.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
