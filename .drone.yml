@@ -86,7 +86,7 @@ steps:
       - mv target/release/libarsenal.so build/arsenal-blender/arsenal.so
       - mv arsenal-runtime/target/release/arsenal-runtime build/arsenal-blender/bin/arsenal-runtime
       - cd build
-      - zip -r arsenal-blender-linux.zip arsenal-blender
+      - zip -r arsenal-blender-linux-x86_64.zip arsenal-blender
 
   # Publish draft to GitHub releases
   - name: publish-draft
@@ -98,7 +98,7 @@ steps:
       api_key:
         from_secret: github_access_key
       files:
-        - build/arsenal-blender-linux.zip
+        - build/arsenal-blender-linux-x86_64.zip
       draft: true
     when:
       ref:
@@ -113,7 +113,7 @@ steps:
       api_key:
         from_secret: github_access_key
       files:
-        - build/arsenal-blender-linux.zip
+        - build/arsenal-blender-linux-x86_64.zip
     when:
       ref:
         - refs/tags/v*
@@ -199,7 +199,7 @@ steps:
       - mv target/x86_64-pc-windows-gnu/release/arsenal.dll build/arsenal-blender/arsenal.pyd
       - mv arsenal-runtime/target/x86_64-pc-windows-gnu/release/arsenal-runtime.exe build/arsenal-blender/bin/arsenal-runtime
       - cd build
-      - zip -r arsenal-blender-windows.zip arsenal-blender
+      - zip -r arsenal-blender-windows-x86_64.zip arsenal-blender
 
   # Publish draft to GitHub releases
   - name: publish-draft
@@ -211,7 +211,7 @@ steps:
       api_key:
         from_secret: github_access_key
       files:
-        - build/arsenal-blender-windows.zip
+        - build/arsenal-blender-windows-x86_64.zip
       draft: true
     when:
       ref:
@@ -226,7 +226,7 @@ steps:
       api_key:
         from_secret: github_access_key
       files:
-        - build/arsenal-blender-windows.zip
+        - build/arsenal-blender-windows-x86_64.zip
     when:
       ref:
         - refs/tags/v*
@@ -317,7 +317,7 @@ steps:
       - mv target/x86_64-apple-darwin/release/libarsenal.dylib build/arsenal-blender/arsenal.so
       - mv arsenal-runtime/target/x86_64-apple-darwin/release/arsenal-runtime build/arsenal-blender/bin/arsenal-runtime
       - cd build
-      - zip -r arsenal-blender-mac.zip arsenal-blender
+      - zip -r arsenal-blender-mac-x86_64.zip arsenal-blender
 
   # Publish draft to GitHub releases
   - name: publish-draft
@@ -329,7 +329,7 @@ steps:
       api_key:
         from_secret: github_access_key
       files:
-        - build/arsenal-blender-mac.zip
+        - build/arsenal-blender-mac-x86_64.zip
       draft: true
     when:
       ref:
@@ -344,7 +344,7 @@ steps:
       api_key:
         from_secret: github_access_key
       files:
-        - build/arsenal-blender-mac.zip
+        - build/arsenal-blender-mac-x86_64.zip
     when:
       ref:
         - refs/tags/v*
