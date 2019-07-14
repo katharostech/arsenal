@@ -31,6 +31,7 @@ trigger:
   branch:
     exclude:
       - feature/*
+      - dependabot/*
 
 ---
 kind: pipeline
@@ -122,6 +123,7 @@ trigger:
   branch:
     exclude:
       - feature/*
+      - dependabot/*
 
 ---
 kind: pipeline
@@ -234,7 +236,8 @@ steps:
 trigger:
   branch:
     exclude:
-      - feature/*
+      - feature/*      
+      - dependabot/*
 
 ---
 kind: pipeline
@@ -353,3 +356,4 @@ trigger:
   branch:
     exclude:
       - feature/*
+      - dependabot/*
