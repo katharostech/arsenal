@@ -42,6 +42,9 @@ pub struct VertexData {
 ///
 /// Taken straight from here:
 /// https://github.com/gltf-rs/gltf/blob/75df52c9bb849428262968b77d6d41c9d9709a10/examples/export/main.rs#L29
+///
+/// Copyright (c) 2017 The gltf Library Developers
+/// Licensed under the [MIT license](https://github.com/gltf-rs/gltf/blob/75df52c9bb849428262968b77d6d41c9d9709a10/LICENSE-MIT)
 #[cfg_attr(feature = "enable_profiling", flame)]
 fn to_padded_byte_vector<T>(vec: Vec<T>) -> Vec<u8> {
     let byte_length = vec.len() * std::mem::size_of::<T>();
