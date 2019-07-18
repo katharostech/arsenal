@@ -1,13 +1,14 @@
 [book]
 authors = ["Zicklag"]
 multilingual = false
-src = "book"
+src = "."
 title = "Arsenal Game Engine"
 
 [build]
-build-dir = "build/book"
+build-dir = "build"
 
 [output.html]
 git_repository_url = "https://github.com/katharostech/arsenal"
-theme = "book/theme"
+theme = "theme"
 default-theme = "rust"
+

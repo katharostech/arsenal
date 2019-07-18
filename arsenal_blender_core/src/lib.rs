@@ -14,12 +14,12 @@ pub mod exporter;
 pub mod operators;
 pub mod utils;
 
-/// The Arsenal Python extension
-///
-/// This is a native Rust Python extension used by the arsenal-blender Blender
-/// plugin to preform most processing intensive operations.
+/// Arsenal Blender Core
+/// 
+/// This is the core library used to perform most work in the arsenal-blender
+/// plugin.
 #[pymodule]
-fn arsenal(_py: Python, module: &PyModule) -> PyResult<()> {
+fn core(_py: Python, module: &PyModule) -> PyResult<()> {
     // Put module wrappings in their own scopes so that the * import doesn't
     // shadow the parent modules.
     {

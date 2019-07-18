@@ -1,6 +1,6 @@
 # Getting Started
 
-Welcome to Arsenal's Getting Started page! This doc will tell you how to install Arsenal and run your first "game".
+Welcome to Arsenal's Getting Started page! This guide will tell you how to install Arsenal and run your first "game".
 
 > **Disclaimer:** Arsenal cannot make real games yet. Currently Arsenal can export your Blender scene to a game with colorless models, static lights, and an orbit camera. That's it. Still, this represents a big step in the direction of allowing you to make games inside of Blender, so if you are still interested, lets get started!
 

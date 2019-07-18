@@ -7,10 +7,5 @@ build/
 
 # This makes it easy to add a symlink for the rust extension and binaries during
 # development without accidentally adding the symlink to git.
-arsenal-blender/arsenal.so
-arsenal-blender/bin/
-
-# Cargo
-/target
-**/*.rs.bk
-Cargo.lock
+arsenal_blender/core.so
+arsenal_blender/bin/

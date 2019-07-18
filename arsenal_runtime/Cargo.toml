@@ -1,5 +1,5 @@
 [package]
-name = "arsenal-runtime"
+name = "arsenal_runtime"
 version = "0.1.0"
 authors = []
 edition = "2018"

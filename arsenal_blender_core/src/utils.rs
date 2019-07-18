@@ -25,8 +25,9 @@ pub mod python {
         let module_path: String = sys
             .getattr(py, "modules")?
             .cast_as::<PyDict>(py)?
-            .get_item("arsenal-blender")
-            .ok_or_else(|| Exception::py_err("Could not load arsenal-blender module"))?
+            .get_item("arsenal_blender")
+            .ok_or_else(
+                || Exception::py_err("Could not load arsenal_blender module, used to determine Blender plugin path."))?
             .to_object(py)
             .getattr(py, "__spec__")?
             .getattr(py, "origin")?
@@ -47,7 +48,7 @@ pub mod python {
     pub fn get_arsenal_runtime_path(py: Python) -> PyResult<String> {
         let arsenal_runtime_path = PathBuf::from(get_arsenal_plugin_path(py)?)
             .join("bin")
-            .join("arsenal-runtime");
+            .join("arsenal_runtime");
 
         Ok(arsenal_runtime_path
             .to_str()
