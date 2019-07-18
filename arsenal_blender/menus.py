@@ -1,6 +1,6 @@
 import bpy
 
-from . import arsenal
+from . import core
 
 blender_classes = []
 

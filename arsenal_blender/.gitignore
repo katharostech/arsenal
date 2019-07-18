@@ -1,0 +1,7 @@
+__pycache__/
+
+# This makes it easy to symlink/copy in the rest of the Arsenal dependencies
+#without tracking it.
+core.so
+core.pyd
+bin/

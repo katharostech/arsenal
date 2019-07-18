@@ -1,6 +1,6 @@
 import bpy
 
-from . import arsenal
+from . import core
 
 blender_classes = []
 
@@ -20,7 +20,7 @@ class ArsenalRun(bpy.types.Operator):
             return {'FINISHED'}
 
         print("Running Arsenal Game")
-        arsenal.operators.arsenal_run(context)
+        core.operators.arsenal_run(context)
         return {'FINISHED'}
 
 blender_classes.append(ArsenalRun)

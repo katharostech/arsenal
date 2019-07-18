@@ -6,17 +6,19 @@ steps:
   - name: test
     image: hrektts/mdbook
     commands:
+      - cd docs/arsenal_book
       - mdbook test
 
   - name: build
     image: hrektts/mdbook
     commands:
+      - cd docs/arsenal_book
       - mdbook build
     
   - name: publish
     image: plugins/gh-pages
     settings:
-      pages_directory: build/book
+      pages_directory: docs/arsenal_book/build
       username:
         from_secret: github_username
       password:
@@ -40,7 +42,7 @@ name: arsenal-linux
 steps:
   
   # Build Python Extension for Linux
-  - name: build-arsenal
+  - name: build-arsenal-blender-core
     image: rustlang/rust:nightly
     depends_on:
       - clone
@@ -55,7 +57,7 @@ steps:
       - make -j$(nproc)
       - make install
       # Compile Arsenal plugin
-      - cd /drone/src
+      - cd /drone/src/arsenal_blender_core
       - cargo build --release
 
   # Build Arsenal runtime for Linux
@@ -69,25 +71,25 @@ steps:
         apt-get install -y gcc pkg-config openssl libasound2-dev cmake
         build-essential python3 libfreetype6-dev libexpat1-dev
         libxcb-composite0-dev libssl-dev
-      - cd arsenal-runtime
+      - cd arsenal_runtime
       - cargo build --release
 
   # Package Linux distribution
   - name: package-arsenal-plugin
     image: rust:1.35
     depends_on:
-      - build-arsenal
+      - build-arsenal-blender-core
       - build-arsenal-runtime
     commands:
       - mkdir -p build/
       - apt-get update
       - apt-get install -y zip
-      - cp -r arsenal-blender build/arsenal-blender
-      - mkdir -p build/arsenal-blender/bin
-      - mv target/release/libarsenal.so build/arsenal-blender/arsenal.so
-      - mv arsenal-runtime/target/release/arsenal-runtime build/arsenal-blender/bin/arsenal-runtime
+      - cp -r arsenal_blender build/arsenal_blender
+      - mkdir -p build/arsenal_blender/bin
+      - mv arsenal_blender_core/target/release/libcore.so build/arsenal_blender/core.so
+      - mv arsenal_runtime/target/release/arsenal_runtime build/arsenal_blender/bin/arsenal_runtime
       - cd build
-      - zip -r arsenal-blender-linux-x86_64.zip arsenal-blender
+      - zip -r arsenal-blender-linux-x86_64.zip arsenal_blender
 
   # Publish draft to GitHub releases
   - name: publish-draft
@@ -132,7 +134,7 @@ name: arsenal-windows
 steps:
 
   # Build Python Extension for Windows
-  - name: build-arsenal
+  - name: build-arsenal-blender-core
     image: rustlang/rust:nightly
     depends_on:
       - clone
@@ -150,7 +152,7 @@ steps:
       - unzip /build/*.zip
       - ln -s /build/python-win/python37.dll /build/python-win/libpythonXY.dll
       - cd /build
-      # Python headers from source
+      # Get pyconfig.h from Python source
       - git clone --depth 1 --branch 3.7 https://github.com/python/cpython.git
       - cp cpython/PC/pyconfig.h cpython/Include/pyconfig.h
       - echo '#define Py_ENABLE_SHARED 0' >> cpython/Include/pyconfig.h
@@ -158,13 +160,14 @@ steps:
       # Configure build to use Windows linker and libraries
       - export PYO3_CROSS_INCLUDE_DIR=/build/cpython/Include
       - export PYO3_CROSS_LIB_DIR=/build/python-win
-      - echo 'fn main() { println!("cargo:rustc-link-search=/build/python-win"); }' > /drone/src/build.rs
-      - mkdir -p /drone/src/.cargo
+      - cd /drone/src/arsenal_blender_core
+      - echo 'fn main() { println!("cargo:rustc-link-search=/build/python-win"); }' > build.rs
+      - rm -rf .cargo # Remove any existing build config as we will creating our own here
+      - mkdir -p .cargo
       - |
         echo '[target.x86_64-pc-windows-gnu]
-        linker = "x86_64-w64-mingw32-gcc"' >> /drone/src/.cargo/config
+        linker = "x86_64-w64-mingw32-gcc"' >> .cargo/config
       # Compile project
-      - cd /drone/src
       - cargo build --target x86_64-pc-windows-gnu --release
 
   # Build Arsenal runtime for Windows
@@ -179,7 +182,8 @@ steps:
         cmake build-essential python3 libfreetype6-dev libexpat1-dev
         libxcb-composite0-dev libssl-dev
       - rustup target install x86_64-pc-windows-gnu
-      - cd arsenal-runtime
+      - cd arsenal_runtime
+      - rm -rf .cargo # Remove any existing build config as we will creating our own here
       - mkdir -p .cargo
       - |
         echo '[target.x86_64-pc-windows-gnu]
@@ -190,18 +194,18 @@ steps:
   - name: package-arsenal-plugin
     image: rust:1.35
     depends_on:
-      - build-arsenal
+      - build-arsenal-blender-core
       - build-arsenal-runtime
     commands:
       - mkdir -p build/
       - apt-get update
       - apt-get install -y zip
-      - cp -r arsenal-blender build/arsenal-blender
-      - mkdir -p build/arsenal-blender/bin
-      - mv target/x86_64-pc-windows-gnu/release/arsenal.dll build/arsenal-blender/arsenal.pyd
-      - mv arsenal-runtime/target/x86_64-pc-windows-gnu/release/arsenal-runtime.exe build/arsenal-blender/bin/arsenal-runtime
+      - cp -r arsenal_blender build/arsenal_blender
+      - mkdir -p build/arsenal_blender/bin
+      - mv arsenal_blender_core/target/x86_64-pc-windows-gnu/release/core.dll build/arsenal_blender/core.pyd
+      - mv arsenal_runtime/target/x86_64-pc-windows-gnu/release/arsenal_runtime.exe build/arsenal_blender/bin/arsenal_runtime
       - cd build
-      - zip -r arsenal-blender-windows-x86_64.zip arsenal-blender
+      - zip -r arsenal-blender-windows-x86_64.zip arsenal_blender
 
   # Publish draft to GitHub releases
   - name: publish-draft
@@ -281,25 +285,25 @@ steps:
       - export PYO3_CROSS_LIB_DIR=/build/python-mac/Versions/3.7/lib
       - export CC=x86_64-apple-darwin15-clang
       # Configure build to use Mac linker and libraries
-      - mkdir -p /drone/src/.cargo
+      - cd /drone/src/arsenal_blender_core
+      - rm -rf .cargo # Remove any existing build config as we will creating our own here
+      - mkdir -p .cargo
       - |
         echo '[target.x86_64-apple-darwin]
         linker = "x86_64-apple-darwin15-clang"
-        rustflags = ["-C", "rpath", "-C", "link-arg=-undefined","-C", "link-arg=dynamic_lookup"]' >> /drone/src/.cargo/config
-      # Compile arsenal Python extension
-      - cd /drone/src
-      # Copy python library to relase dir to be released with arsenal
+        rustflags = ["-C", "rpath", "-C", "link-arg=-undefined","-C", "link-arg=dynamic_lookup"]' >> .cargo/config
+      # Compile arsenal_blender_core
       - cargo build --target x86_64-apple-darwin --release
       # Compile arsenal runtime
+      - cd /drone/src/arsenal_runtime
+      - rm -rf .cargo # Remove any existing build config as we will creating our own here
+      - mkdir -p .cargo
+      - |
+        echo '[target.x86_64-apple-darwin]
+        linker = "x86_64-apple-darwin15-clang"' >> .cargo/config
       - rustup toolchain add stable-2019-05-23
       - rustup default stable-2019-05-23
       - rustup target add x86_64-apple-darwin
-      - cd arsenal-runtime
-      - echo "[replace]" >> Cargo.toml # Patch coreaudio-sys so that it can be cross-compiled on Linux
-      - >
-        echo '"coreaudio-sys:0.2.2" = 
-        { git = "https://github.com/zicklag/coreaudio-sys.git",
-        branch = "feature/support-linux-cross-compiling" }' >> Cargo.toml
       - export COREAUDIO_FRAMEWORKS_PATH='/System/Library/Frameworks'
       - >
         export COREAUDIO_CFLAGS='-I/System/Library/Frameworks/Kernel.framework/Headers
@@ -315,12 +319,12 @@ steps:
       - mkdir -p build/
       - apt-get update
       - apt-get install -y zip
-      - cp -r arsenal-blender build/arsenal-blender
-      - mkdir -p build/arsenal-blender/bin
-      - mv target/x86_64-apple-darwin/release/libarsenal.dylib build/arsenal-blender/arsenal.so
-      - mv arsenal-runtime/target/x86_64-apple-darwin/release/arsenal-runtime build/arsenal-blender/bin/arsenal-runtime
+      - cp -r arsenal_blender build/arsenal_blender
+      - mkdir -p build/arsenal_blender/bin
+      - mv arsenal_blender_core/target/x86_64-apple-darwin/release/libcore.dylib build/arsenal_blender/core.so
+      - mv arsenal_runtime/target/x86_64-apple-darwin/release/arsenal_runtime build/arsenal_blender/bin/arsenal_runtime
       - cd build
-      - zip -r arsenal-blender-mac-x86_64.zip arsenal-blender
+      - zip -r arsenal-blender-mac-x86_64.zip arsenal_blender
 
   # Publish draft to GitHub releases
   - name: publish-draft
