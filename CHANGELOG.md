@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Add a development guide to the arsenal book
+- Move arsenal book to the `docs/` folder
+- Organize project structure to better separate the modules: **arsenal_blender**, **arsenal_blender_core**, **arsenal_runtime**.
+
 ## [0.1.0] - 2019-07-06
 
 ### Added
