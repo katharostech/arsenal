@@ -7,7 +7,7 @@ title = "Arsenal Game Engine"
 build-dir = "build"
 
 [output.html]
-git_repository_url = "https://github.com/katharostech/arsenal"
+git-repository-url = "https://github.com/katharostech/arsenal"
 theme = "theme"
 default-theme = "rust"
 

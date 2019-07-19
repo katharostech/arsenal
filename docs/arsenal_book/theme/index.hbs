@@ -141,8 +141,11 @@
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             {{#if git_repository_url}}
-                            <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository">
+                            <a href="{{git_repository_url}}" title="Project Source Code" aria-label="Project Source Code">
                                 <i id="git-repository-button" class="fa {{git_repository_icon}}"></i>
+                            </a>
+                            <a href="{{git_repository_url}}/edit/master/docs/arsenal_book/src/{{path}}" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                                <i id="git-repository-button" class="fa fa-pencil"></i>
                             </a>
                             {{/if}}
                         </div>
