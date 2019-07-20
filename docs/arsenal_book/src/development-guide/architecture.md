@@ -2,7 +2,7 @@
 
 At a high level, Arsenal is composed of three main components, all of which are located in the root of the Arsenal git repository: **Arsenal Blender**, **Arsenal Blender Core**, and **Arsenal Runtime**.
 
-![Architecture Diagram](./assets/architecture.svg)
+![Architecture Diagram](../assets/architecture.svg)
 
 ## Arsenal Blender
 
@@ -40,4 +40,4 @@ Amethyst is also very modular in design which allows us to add or replace compon
 
 ### Arsenal Components
 
-In addition to Amethyst, we will also be developing additional components that are specific to Arsenal. This will include things like our live Blender sync and other features, many of which will still be built on top of other Amethyst components.
+In addition to Amethyst, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Amethyst components. These will also be bundled into the Arsenal Runtime.
