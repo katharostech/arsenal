@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Architecture - Arsenal Game Engine</title>
+        <title>Making Changes - Arsenal Game Engine</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="../overview.html">Overview</a></li><li class="spacer"></li><li><a href="../getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="../vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="../contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="../contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="../development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="../development-guide/architecture.html" class="active"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="../development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="../using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="../using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="../using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="../FAQ.html">FAQ</a></li><li class="affix"><a href="../news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../overview.html">Overview</a></li><li class="spacer"></li><li><a href="../getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="../vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="../contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="../contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="../development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="../development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="../development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="../using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="../using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="../using-git/making-changes.html" class="active"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="../FAQ.html">FAQ</a></li><li class="affix"><a href="../news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -137,7 +137,7 @@
                             <a href="https://github.com/katharostech/arsenal" title="Project Source Code" aria-label="Project Source Code">
                                 <i id="git-repository-button" class="fa fa-github"></i>
                             </a>
-                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/development-guide/architecture.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/using-git/making-changes.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
                                 <i id="git-repository-button" class="fa fa-pencil"></i>
                             </a>
                             
@@ -169,38 +169,116 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#architecture" id="architecture">Architecture</a></h1>
-<p>At a high level, Arsenal is composed of three main components, all of which are located in the root of the Arsenal git repository: <strong>Arsenal Blender</strong>, <strong>Arsenal Blender Core</strong>, and <strong>Arsenal Runtime</strong>.</p>
-<p><img src="../assets/architecture.svg" alt="Architecture Diagram" /></p>
-<h2><a class="header" href="#arsenal-blender" id="arsenal-blender">Arsenal Blender</a></h2>
-<p><a href="https://github.com/katharostech/arsenal/tree/master/arsenal_blender">Arsenal Blender</a> is the top level of the Arsenal Blender plugin. Arsenal Blender contains all of the Python code that creates the Arsenal UI elements and operators inside of Blender. Arsenal Blender is the &quot;glue&quot; that binds the <strong>Arsenal Blender Core</strong> and the <strong>Arsenal Runtime</strong> to the Blender interface. If you want to work on our Blender user-experience, this is the place to start.</p>
-<h2><a class="header" href="#arsenal-blender-core" id="arsenal-blender-core">Arsenal Blender Core</a></h2>
-<p>The <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_blender_core">Arsenal Blender Core</a> is the portion of the Blender plugin that is written in Rust and that handles most of the heavy lifting in the Blender plugin. Arsenal Blender uses the Arsenal Blender Core to do the more process intensive tasks and it will use it to communicate with your Arsenal game while it is running to provide features like hot reload and live sync.</p>
-<p>The goal of the Arsenal Blender Core is to provide the highest possible performance and to remove any limits on what the Arsenal Blender plugin can do. Because it is written in Rust instead of Python, the Arsenal Blender Core can accomplish things like multi-threading and communicating with native system libraries when necessary.</p>
-<p>The Arsenal Blender Core is implemented as a native Python module and, even though it is written in Rust, it is imported by Arsenal Blender just like any other Python module would be. Because the Arsenal Blender Core is imported by Arsenal Blender, both components run fully inside of the Blender process.</p>
-<h3><a class="header" href="#game-data" id="game-data">Game Data</a></h3>
-<p>When you run an Arsenal game, your Blender file and all of the Logic Nodes and other code get exported to a <code>build_[projectname]</code> directory adjacent to the Blend. The Arsenal Blender Core is responsible for doing the export. The exported data is then loaded and run inside the Arsenal Runtime.</p>
-<h2><a class="header" href="#arsenal-runtime" id="arsenal-runtime">Arsenal Runtime</a></h2>
-<p>The <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_runtime">Arsenal Runtime</a> is what is responsible for actually running the game data that is exported from Blender. This runs completely <strong>outside</strong> of Blender. This is important for licensing reasons, because you can not commercially market a game that has any Blender code in it. Arsenal games, despite being <em>developed</em> in Blender, will have no Blender code in the game.</p>
-<p>The Arsenal Runtime is written in Rust and combines great tools from the Rust gamedev community. The bulk of the Arsenal runtime is built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine.</p>
-<h3><a class="header" href="#amethyst" id="amethyst">Amethyst</a></h3>
-<p>Amethyst pulls most of the weight in the Arsenal runtime and provides windowing, audio, an ECS, a Renderer, an input system, and other components foundational to a running game. Amethyst takes care of a lot of the difficult aspects of designing a game engine for us and allows us to focus on our Blender user experience and integration.</p>
-<p>Amethyst is also very modular in design which allows us to add or replace components as we need without locking us into a particular design.</p>
-<h3><a class="header" href="#arsenal-components" id="arsenal-components">Arsenal Components</a></h3>
-<p>In addition to Amethyst, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Amethyst components. These will also be bundled into the Arsenal Runtime.</p>
+                        <h1><a class="header" href="#making-changes" id="making-changes">Making Changes</a></h1>
+<h2><a class="header" href="#creating-a-branch" id="creating-a-branch">Creating a Branch</a></h2>
+<p>When making changes to a Git repository, you usually do your changes in what is called a Git <strong>branch</strong>. A branch is like a stream in which you can make changes in your Git repo without effecting other branches. This allows you to work on multiple things at the same time, without getting different separate changes mixed up with each-other. For each change that you will want to submit to Arsenal, you should create a branch to do it in.</p>
+<p>First open your Git terminal in the Arsenal git repository. If you type <code>git status</code> in the terminal and hit enter, it will tell you that you are on the branch &quot;master&quot; and that there is nothing to commit:</p>
+<pre><code class="language-bash">$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+</code></pre>
+<p>This means that you are on the branch master and there have been no changes.</p>
+<p>Now we are going to create a new branch to make some changes in:</p>
+<pre><code class="language-bash">$ git branch my-changes
+$ git checkout my-changes
+On branch my-changes
+nothing to commit, working directory clean
+</code></pre>
+<p>First we run <code>git branch my-changes</code> which creates a new branch called <code>my-changes</code>, then we run <code>git checkout my-changes</code> to switch our current branch to the new branch that we just created. Git then tells us that we have created a new branch and that there are no changes.</p>
+<p>You can switch back and forth between branches whenever you want by running <code>git checkout branch-name</code>.</p>
+<h2><a class="header" href="#making-a-change" id="making-a-change">Making a Change</a></h2>
+<p>Now that we have a branch to work in, its time to make some changes! Go ahead and change some files. Maybe you could <a href="../contributing/documentation.html">contribute to the documentation</a>. Once you have made some changes, we can see what has happened by running <code>git status</code>:</p>
+<pre><code class="language-bash">$ git status
+On branch my-changes
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   docs/arsenal_book/src/FAQ.md
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+<p>Git tells us that a file has been changed. Before git will &quot;save&quot; the change, though, we have to <strong>commit</strong> the change. Before we can commit the change we need to <strong>add</strong> the changes that we want to commit.</p>
+<pre><code class="language-bash">$ git add .
+$ git commit -m 'Add an FAQ'
+[my-changes d777617] Add an FAQ
+ 1 file changed, 4 insertions(+)
+</code></pre>
+<p>The reason for a separate <code>add</code> step is to allow you to add only the changes that you want to, in case there were multiple changes and you only wanted some of them. When we said <code>git add .</code> the <code>.</code> meant that we want to add everything in the current directory and any directories in the current directory.</p>
+<p>When we say <code>git commit -m 'Add an FAQ'</code> the <code>-m</code> tells Git to create a commit with the following <strong>message</strong> which we put inside of single quotes. Once that is done, we can see our new commit by doing a <code>git log</code>:</p>
+<pre><code class="language-bash">$ git log
+commit d777617c3056137e14c5a66546d3f9782f13c031
+Author: Zicklag &lt;zicklag@katharostech.com&gt;
+Date:   Fri Jul 19 18:21:31 2019 -0500
+
+    Add an FAQ
+
+commit ec8c092a3ff9da84383e486e09ab204846abc4ca
+Author: Zicklag &lt;zicklag@katharostech.com&gt;
+Date:   Thu Jul 18 22:09:54 2019 -0500
+
+    Add Unreleased Changes to the Changelog
+
+    - Add a development guide to the arsenal book
+    - Move arsenal book to the docs/ folder
+    - Organize project structure to better separate the modules
+
+commit 8f433b10208b1c68cc42ec745889a78a9acb1641
+Author: Zicklag &lt;zicklag@katharostech.com&gt;
+Date:   Wed Jul 17 21:04:26 2019 -0500
+:
+</code></pre>
+<p>You can move up and down through the history with the <code>k</code> and <code>j</code> keys and you can exit with the <code>q</code> key. The log will show our latest commit on top of the stack and all of the other commits in history below it.</p>
+<h2><a class="header" href="#pushing-your-changes" id="pushing-your-changes">Pushing Your Changes</a></h2>
+<p>Now that we have made our change and committed it, we can push it up to our fork on GitHub:</p>
+<pre><code class="language-bash">$ git push origin my-changes
+Username for 'https://github.com': zicklag
+Password for 'https://zicklag@github.com':
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 483 bytes | 0 bytes/s, done.
+Total 6 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote:
+remote: Create a pull request for 'my-changes' on GitHub by visiting:
+remote:      https://github.com/zicklag/arsenal/pull/new/my-changes
+remote:
+To https://github.com/zicklag/arsenal.git
+ * [new branch]      my-changes -&gt; my-changes
+</code></pre>
+<p>When we run <code>git push origin my-changes</code> we are telling Git to push the changes in the current branch to our <code>origin</code>, is our fork, where we cloned the repo from. We also have to tell it push to a branch named <code>my-changes</code> in our fork. Once that is done, GitHub conveniently gives us a link that we can use to create a <strong>pull request</strong> so that we can get our changes merged into the official Arsenal repo.</p>
+<h2><a class="header" href="#creating-a-pull-request" id="creating-a-pull-request">Creating a Pull Request</a></h2>
+<p>You can now follow the link that Git provided to create a pull request for your changes.</p>
+<p><img src="../assets/submit-pull-request.png" alt="Submit Pull Request" /></p>
+<p>Here you can add any extra information that might be applicable to your changes, and once you submit the pull request, we will review your changes and either merge them or comment on what we would like changed.</p>
+<p>If we request changes, you can make the changes, add and commit them, and push them again just like you already have. This will update your pull request automatically.</p>
+<p>Once your changes have been approved, they will be merged into the project and you will be an official contributor!</p>
+<h2><a class="header" href="#finishing-up" id="finishing-up">Finishing Up</a></h2>
+<p>After your pull request has been merged you can checkout the master branch again and pull in the latest changes from the official repo to make sure you are up to date.</p>
+<pre><code class="language-bash">$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+$ git pull arsenal master
+From https://github.com/katharostech/arsenal
+ * branch            master     -&gt; FETCH_HEAD
+Current branch master is up to date.
+</code></pre>
+<p>You are now ready to create a new branch and start making more contributions.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../development-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../using-git/creating-a-sandbox.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../development-guide/building.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../FAQ.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -212,13 +290,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../development-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../using-git/creating-a-sandbox.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../development-guide/building.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../FAQ.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

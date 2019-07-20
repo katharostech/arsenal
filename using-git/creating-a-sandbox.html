@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Getting Started - Arsenal Game Engine</title>
+        <title>Creating a Sandbox - Arsenal Game Engine</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -11,21 +11,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -52,7 +52,7 @@
     <body class="rust">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = "rust";
         </script>
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html" class="active"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../overview.html">Overview</a></li><li class="spacer"></li><li><a href="../getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="../vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="../contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="../contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="../development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="../development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="../development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="../using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="../using-git/creating-a-sandbox.html" class="active"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="../using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="../FAQ.html">FAQ</a></li><li class="affix"><a href="../news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -130,14 +130,14 @@
                         <h1 class="menu-title">Arsenal Game Engine</h1>
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
                             <a href="https://github.com/katharostech/arsenal" title="Project Source Code" aria-label="Project Source Code">
                                 <i id="git-repository-button" class="fa fa-github"></i>
                             </a>
-                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/getting-started.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/using-git/creating-a-sandbox.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
                                 <i id="git-repository-button" class="fa fa-pencil"></i>
                             </a>
                             
@@ -169,53 +169,52 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
-<p>Welcome to Arsenal's Getting Started page! This guide will tell you how to install Arsenal and run your first &quot;game&quot;.</p>
+                        <h1><a class="header" href="#creating-a-sandbox" id="creating-a-sandbox">Creating a Sandbox</a></h1>
+<p>Once you have Git installed, you can download or <strong>clone</strong> your own copy of the Arsenal project to your computer. The first step to that is to <strong>fork</strong> the Arsenal GitHub repository.</p>
+<h2><a class="header" href="#forking-arsenal" id="forking-arsenal">Forking Arsenal</a></h2>
+<p>A fork on GitHub is like your own personal copy of somebody else's GitHub repository. In your own fork, you can make any sort of changes that you want, without having to get approval or worry about ruining somebody else's work. Once you are happy with the changes that you have made in your fork, you can create a <strong>pull request</strong> to the original repository and ask that you changes get included in the official repo.</p>
+<p>You can create a fork on GitHub by clicking the fork icon in the top right corner of the GitHub repository home page.</p>
+<p><img src="../assets/fork-a-repo.png" alt="Fork a Repo" /></p>
+<p>GitHub will take a second to fork the repo before presenting you with your own copy of the Arsenal project! You can tell that it is a fork because it will have your name in the upper-left hand and a note that it was forked from <code>katharostech/arsenal</code>.</p>
+<p><img src="../assets/your-fork-name.png" alt="Your Fork Name" /></p>
+<p>Now that you have a fork, you can <strong>clone</strong> it to your computer.</p>
+<h2><a class="header" href="#cloning-your-fork" id="cloning-your-fork">Cloning Your Fork</a></h2>
+<p>In order to test and make changes to your fork, you need to clone it to your computer. Cloning is a Git term that means to copy the repo to a local machine with all of the included Git history. When you clone a repo, it doesn't just give you the current state of the repo, but the entire history of the repo since it was created. It also keeps track of what is necessary to get the latest changes to the repo when things are updated.</p>
+<p>On the homepage of your fork, there will be a green button that says &quot;Clone or Download&quot;. Click this button and copy the URL inside to your clipboard.</p>
+<p><img src="../assets/clone-your-fork.png" alt="Clone Your Fork" /></p>
+<p>Now you have to find a place that you want to put the repo on your system. Probably in a &quot;git&quot; folder somewhere. Once you have that, you have to open up your Git terminal in that directory. On Windows, the Git terminal, or Git Bash, would have been installed when you installed Git and you can open it by right-clicking on a folder and selecting &quot;Open with Git Bash&quot;.</p>
+<p>Inside of the terminal paste the following, replacing the URL with the URL that you copied from your fork.</p>
+<pre><code class="language-bash">git clone https://github.com/zicklag/arsenal.git
+</code></pre>
+<p>This will clone the repo to a directory named &quot;arsenal&quot; wherever you opened the terminal. You can now browse the whole Arsenal repo on your computer.</p>
+<h2><a class="header" href="#adding-the-arsenal-remote" id="adding-the-arsenal-remote">Adding the Arsenal Remote</a></h2>
+<p>Now that you have cloned your fork, you need to tell Git about the official Arsenal repo so that you can get updates when we make changes.</p>
+<p>In your terminal, we will change directory to the newly cloned repository and then add a new <strong>remote</strong> called &quot;arsenal&quot; and set it to the official Arsenal repo:</p>
+<pre><code class="language-bash">cd arsenal
+git remote add arsenal https://github.com/katharostech/arsenal.git
+</code></pre>
+<p>Now that git knows about our official Arsenal repo, you can update your local sandbox with the latest changes from GitHub by running:</p>
+<pre><code class="language-bash">$ git pull arsenal master
+From https://github.com/katharostech/arsenal
+ * branch            master     -&gt; FETCH_HEAD
+Current branch my-changes is up to date.
+</code></pre>
 <blockquote>
-<p><strong>Disclaimer:</strong> Arsenal cannot make real games yet. Currently Arsenal can export your Blender scene to a game with colorless models, static lights, and an orbit camera. That's it. Still, this represents a big step in the direction of allowing you to make games inside of Blender, so if you are still interested, lets get started!</p>
+<p><strong>Note:</strong> Don't type the <code>$</code> sign. Lines that start with a <code>$</code> represent lines that you are supposed to type. Lines without a <code>$</code> indicate lines that were output by git.</p>
 </blockquote>
-<h2><a class="header" href="#installing" id="installing">Installing</a></h2>
-<p>Arsenal is made up of a completely self-contained Blender plugin. Before you can use it you must install <a href="https://builder.blender.org/download/">Blender 2.80 Beta</a>. After installing Blender you can download the latest version of Arsenal from <a href="https://github.com/katharostech/arsenal/releases">GitHub</a>. We have builds of Arsenal for 64bit Windows, Mac, and Linux platforms.</p>
-<p>Once you have downloaded Arsenal, start up Blender and open the user preferences.</p>
-<p><img src="./assets/blender-preferences.png" alt="Blender Preferences" /></p>
-<p>In the Blender preferences go to the Add-ons tab and click Install.</p>
-<p><img src="./assets/install-addon-button.png" alt="Install Add-on Button" /></p>
-<p>Navigate to the arsenal zip file that you downloaded earlier and double-click it. This will add Arsenal to the Blender add-on list. Click the check box next to the add-on name to enable the add-on and then click &quot;Save Preferences&quot;.</p>
-<blockquote>
-<p><strong>Note:</strong> Some versions of Blender will not have the &quot;Save Preferences&quot; button. In that case the preferences will be automatically saved.</p>
-</blockquote>
-<p><img src="./assets/enable-addon-checkbox.png" alt="Enable Add-on Check box" /></p>
-<p>You can close the preferences dialog and that's it! Now all we have to do is run a game.</p>
-<h2><a class="header" href="#running-a-game" id="running-a-game">Running a Game</a></h2>
-<p>Now that we have Arsenal installed, go ahead and save the blend. You can't run an Arsenal game if the blend has not been saved yet. After the blend is saved, we can run it! We just have to click the &quot;Run Game&quot; button in the &quot;Arsenal&quot; panel of the &quot;Render&quot; tab.</p>
-<p><img src="./assets/run-game-button.png" alt="Run Game Button" /></p>
-<p>Here is the result:</p>
-<p><img src="./assets/arsenal-with-a-cube.png" alt="Arsenal With a Cube" /></p>
-<p>Arsenal will export the scene with the basic cube in it and it will run a game that allows you to view your scene by moving the mouse to orbit the camera around the world center. You can hit the escape button to exit the game.</p>
-<p>Congratulations you ran your first Arsenal game! It isn't much yet, but it's a start.</p>
-<p>So far there are a couple things to note about the game:</p>
-<ul>
-<li>Arsenal added two lights to the scene: a blue light and a red light. Arsenal doesn't yet export the lights from the Blender scene. That will be fixed in a later release</li>
-<li>Arsenal only exports objects smooth shaded so the cube looks kind of non cube-like. This will also be fixed later.</li>
-</ul>
-<p>Now that we've got it running, lets mess around with our scene a bit more. Go ahead and add whatever objects you want to the scene and click &quot;Run Game&quot; again. Arsenal will re-export the scene and run the game with your new updates.</p>
-<p><img src="./assets/full-arsenal-scene.png" alt="Full Arsenal Scene" /></p>
-<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
-<p>That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.</p>
-<p>If you had any trouble getting through the tutorial or if you have any questions, you can open up a <a href="https://github.com/katharostech/arsenal/issues">GitHub issue</a> and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on <a href="https://github.com/katharostech/arsenal">GitHub</a>!</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../using-git.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="vision.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../using-git/making-changes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -227,13 +226,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../using-git.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="vision.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../using-git/making-changes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -248,14 +247,14 @@
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         

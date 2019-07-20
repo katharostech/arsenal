@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Getting Started - Arsenal Game Engine</title>
+        <title>Documentation - Arsenal Game Engine</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -11,21 +11,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -52,7 +52,7 @@
     <body class="rust">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = "rust";
         </script>
 
@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html" class="active"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="../overview.html">Overview</a></li><li class="spacer"></li><li><a href="../getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="../vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="../contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="../contributing/documentation.html" class="active"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="../development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="../development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="../development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="../using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="../using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="../using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="../FAQ.html">FAQ</a></li><li class="affix"><a href="../news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -130,14 +130,14 @@
                         <h1 class="menu-title">Arsenal Game Engine</h1>
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
                             <a href="https://github.com/katharostech/arsenal" title="Project Source Code" aria-label="Project Source Code">
                                 <i id="git-repository-button" class="fa fa-github"></i>
                             </a>
-                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/getting-started.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/contributing/documentation.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
                                 <i id="git-repository-button" class="fa fa-pencil"></i>
                             </a>
                             
@@ -169,53 +169,49 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
-<p>Welcome to Arsenal's Getting Started page! This guide will tell you how to install Arsenal and run your first &quot;game&quot;.</p>
-<blockquote>
-<p><strong>Disclaimer:</strong> Arsenal cannot make real games yet. Currently Arsenal can export your Blender scene to a game with colorless models, static lights, and an orbit camera. That's it. Still, this represents a big step in the direction of allowing you to make games inside of Blender, so if you are still interested, lets get started!</p>
-</blockquote>
-<h2><a class="header" href="#installing" id="installing">Installing</a></h2>
-<p>Arsenal is made up of a completely self-contained Blender plugin. Before you can use it you must install <a href="https://builder.blender.org/download/">Blender 2.80 Beta</a>. After installing Blender you can download the latest version of Arsenal from <a href="https://github.com/katharostech/arsenal/releases">GitHub</a>. We have builds of Arsenal for 64bit Windows, Mac, and Linux platforms.</p>
-<p>Once you have downloaded Arsenal, start up Blender and open the user preferences.</p>
-<p><img src="./assets/blender-preferences.png" alt="Blender Preferences" /></p>
-<p>In the Blender preferences go to the Add-ons tab and click Install.</p>
-<p><img src="./assets/install-addon-button.png" alt="Install Add-on Button" /></p>
-<p>Navigate to the arsenal zip file that you downloaded earlier and double-click it. This will add Arsenal to the Blender add-on list. Click the check box next to the add-on name to enable the add-on and then click &quot;Save Preferences&quot;.</p>
-<blockquote>
-<p><strong>Note:</strong> Some versions of Blender will not have the &quot;Save Preferences&quot; button. In that case the preferences will be automatically saved.</p>
-</blockquote>
-<p><img src="./assets/enable-addon-checkbox.png" alt="Enable Add-on Check box" /></p>
-<p>You can close the preferences dialog and that's it! Now all we have to do is run a game.</p>
-<h2><a class="header" href="#running-a-game" id="running-a-game">Running a Game</a></h2>
-<p>Now that we have Arsenal installed, go ahead and save the blend. You can't run an Arsenal game if the blend has not been saved yet. After the blend is saved, we can run it! We just have to click the &quot;Run Game&quot; button in the &quot;Arsenal&quot; panel of the &quot;Render&quot; tab.</p>
-<p><img src="./assets/run-game-button.png" alt="Run Game Button" /></p>
-<p>Here is the result:</p>
-<p><img src="./assets/arsenal-with-a-cube.png" alt="Arsenal With a Cube" /></p>
-<p>Arsenal will export the scene with the basic cube in it and it will run a game that allows you to view your scene by moving the mouse to orbit the camera around the world center. You can hit the escape button to exit the game.</p>
-<p>Congratulations you ran your first Arsenal game! It isn't much yet, but it's a start.</p>
-<p>So far there are a couple things to note about the game:</p>
-<ul>
-<li>Arsenal added two lights to the scene: a blue light and a red light. Arsenal doesn't yet export the lights from the Blender scene. That will be fixed in a later release</li>
-<li>Arsenal only exports objects smooth shaded so the cube looks kind of non cube-like. This will also be fixed later.</li>
-</ul>
-<p>Now that we've got it running, lets mess around with our scene a bit more. Go ahead and add whatever objects you want to the scene and click &quot;Run Game&quot; again. Arsenal will re-export the scene and run the game with your new updates.</p>
-<p><img src="./assets/full-arsenal-scene.png" alt="Full Arsenal Scene" /></p>
-<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
-<p>That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.</p>
-<p>If you had any trouble getting through the tutorial or if you have any questions, you can open up a <a href="https://github.com/katharostech/arsenal/issues">GitHub issue</a> and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on <a href="https://github.com/katharostech/arsenal">GitHub</a>!</p>
+                        <h1><a class="header" href="#documentation" id="documentation">Documentation</a></h1>
+<p>The documentation for Arsenal is on this site and built with an Open Source tool called <a href="https://github.com/rust-lang-nursery/mdBook">mdBook</a>. There are two different ways you can contribute to the documentation: with the <a href="#using-github">GitHub online editor</a>, or by <a href="#using-a-local-sandbox">setting up a local sandbox</a> on your computer.</p>
+<h2><a class="header" href="#using-github" id="using-github">Using GitHub</a></h2>
+<p>If you don't want to install any extra tools on your computer, it is easy to contribute to the documentation though the GitHub web interface. To edit a page just click the pencil icon at the top right of any page in the docs:</p>
+<p><img src="..//assets/edit-on-github.png" alt="Edit On GitHub" /></p>
+<p>This will bring you to the GitHub editor for that page. You can make your edit and preview your changes with the preview button.</p>
+<p><img src="../assets/github-preview.png" alt="GitHub Preview" /></p>
+<p>Once you are done, you can propose your changes. Please give your contribution a short tile and optionally a description.</p>
+<p><img src="../assets/submit-github-change.png" alt="Submit GitHub Change" /></p>
+<p>After submitting that form, it will bring you to a page that summarizes the changes that you made. From there click &quot;Create Pull Request&quot;.</p>
+<p><img src="../assets/create-pull-request.png" alt="Create Pull Request" /></p>
+<p>Finally, you can fill out any extra information that you want us to have and, once you submit it, we will review your changes and either merge them or comment on what we would like changed.</p>
+<p><img src="../assets/submit-pull-request.png" alt="Submit Pull Request" /></p>
+<p>That's it! 🎉</p>
+<h2><a class="header" href="#using-a-local-sandbox" id="using-a-local-sandbox">Using a Local Sandbox</a></h2>
+<p>Before you can make changes in your local sandbox, you have to create it! See the <a href="../using-git.html">Using Git</a> guide to learn how get your sandbox setup and how to make changes and contribute them. Once you understand how that works, you can start making changes.</p>
+<p>All of the documentation for Arsenal is written in <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>, a simple markup language. The documentation can be found in the <a href="https://github.com/katharostech/arsenal/tree/master/docs/arsenal_book/src"><code>docs/arsenal_book/src</code></a> directory. You can edit those files with your favorite text editor. If you just want to make simple changes, then that could be all that you need, but if you want to get a live preview of what your changes will look like on the actual site, then you can install <a href="https://github.com/rust-lang-nursery/mdBook">mdBook</a>.</p>
+<h3><a class="header" href="#installing-mdbook" id="installing-mdbook">Installing mdBook</a></h3>
+<p><a href="https://github.com/rust-lang-nursery/mdBook">mdBook</a> is the tool that we use to convert our markdown documentation to a nice looking documentation website. You can read the <a href="https://rust-lang-nursery.github.io/mdBook/">mdBook Documentation</a> if you want to understand more about how it works. For now, though, go ahead and download and install the latest <a href="https://github.com/rust-lang-nursery/mdBook/releases">release</a> of mdBook.</p>
+<h3><a class="header" href="#serving-the-site-locally" id="serving-the-site-locally">Serving the Site Locally</a></h3>
+<p>Once mdBook is installed, to view the site locally, open a terminal in the <code>docs/arsenal_book</code> directory and run:</p>
+<pre><code class="language-bash">$ mdbook serve -o
+2019-07-19 19:43:20 [INFO] (mdbook::book): Book building has started
+2019-07-19 19:43:20 [INFO] (mdbook::book): Running the html backend
+2019-07-19 19:43:20 [INFO] (mdbook::cmd::serve): Serving on: http://localhost:3000
+2019-07-19 19:43:20 [INFO] (ws): Listening for new connections on 127.0.0.1:3001.
+2019-07-19 19:43:20 [INFO] (mdbook::cmd::watch): Listening for changes...
+2019-07-19 19:43:24 [INFO] (ws::io): Accepted a new tcp connection from 127.0.0.1:48088.
+</code></pre>
+<p>mdBook will build the site and open it in your web browser. Additionally, mdBook will watch the docs for changes and update the site automatically.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../contributing.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="vision.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../development-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -227,13 +223,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../contributing.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="vision.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../development-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -248,14 +244,14 @@
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         

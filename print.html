@@ -33,6 +33,23 @@
         
 
         
+
+        <!-- Matomo -->
+        <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//matomo.katharostech.com/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '4']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+        </script>
+        <noscript><p><img src="//matomo.katharostech.com/matomo.php?idsite=4&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Matomo Code -->
     </head>
     <body class="rust">
         <!-- Provide site root to javascript -->
@@ -80,7 +97,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -117,6 +134,13 @@
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                            <a href="https://github.com/katharostech/arsenal" title="Project Source Code" aria-label="Project Source Code">
+                                <i id="git-repository-button" class="fa fa-github"></i>
+                            </a>
+                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/print.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                                <i id="git-repository-button" class="fa fa-pencil"></i>
                             </a>
                             
                         </div>
@@ -259,13 +283,46 @@
 <h1><a class="header" href="#contributing" id="contributing">Contributing</a></h1>
 <p>If you want to help Arsenal development, we welcome contributions of any kind! Whether it is writing Rust or Python, or contributing documentation or ideas, we strive to be open and communicative to our community and we want to provide you what you need to help out.</p>
 <p>If you have any questions about how you can help, you can comment on our GitHub issue: <a href="https://github.com/katharostech/arsenal/issues/57">How Can I Help Arsenal Development?</a>.</p>
+<h2><a class="header" href="#documentation" id="documentation">Documentation</a></h2>
+<p>At Katharos Technology we place a very high value on documentation, but it can be a lot of work to create and maintain effective and helpful documentation. Any help, large or small, with Arsenal's documentation will be greatly appreciated.</p>
+<p>Contributing to the documentation is very easy and can be done <a href="./contributing/documentation.html#using-github">directly on GitHub</a> without installing any tools on your computer. More details on contributing to the docs can be found in the <a href="./contributing/documentation.html">Documentation</a> section.</p>
 <h2><a class="header" href="#development" id="development">Development</a></h2>
 <p>If you are looking to get into Arsenal development, the <a href="./development-guide.html">Development Guide</a> will tell you how to get started.</p>
+<h1><a class="header" href="#documentation-1" id="documentation-1">Documentation</a></h1>
+<p>The documentation for Arsenal is on this site and built with an Open Source tool called <a href="https://github.com/rust-lang-nursery/mdBook">mdBook</a>. There are two different ways you can contribute to the documentation: with the <a href="contributing/#using-github">GitHub online editor</a>, or by <a href="contributing/#using-a-local-sandbox">setting up a local sandbox</a> on your computer.</p>
+<h2><a class="header" href="#using-github" id="using-github">Using GitHub</a></h2>
+<p>If you don't want to install any extra tools on your computer, it is easy to contribute to the documentation though the GitHub web interface. To edit a page just click the pencil icon at the top right of any page in the docs:</p>
+<p><img src="contributing/..//assets/edit-on-github.png" alt="Edit On GitHub" /></p>
+<p>This will bring you to the GitHub editor for that page. You can make your edit and preview your changes with the preview button.</p>
+<p><img src="contributing/../assets/github-preview.png" alt="GitHub Preview" /></p>
+<p>Once you are done, you can propose your changes. Please give your contribution a short tile and optionally a description.</p>
+<p><img src="contributing/../assets/submit-github-change.png" alt="Submit GitHub Change" /></p>
+<p>After submitting that form, it will bring you to a page that summarizes the changes that you made. From there click &quot;Create Pull Request&quot;.</p>
+<p><img src="contributing/../assets/create-pull-request.png" alt="Create Pull Request" /></p>
+<p>Finally, you can fill out any extra information that you want us to have and, once you submit it, we will review your changes and either merge them or comment on what we would like changed.</p>
+<p><img src="contributing/../assets/submit-pull-request.png" alt="Submit Pull Request" /></p>
+<p>That's it! 🎉</p>
+<h2><a class="header" href="#using-a-local-sandbox" id="using-a-local-sandbox">Using a Local Sandbox</a></h2>
+<p>Before you can make changes in your local sandbox, you have to create it! See the <a href="contributing/../using-git.html">Using Git</a> guide to learn how get your sandbox setup and how to make changes and contribute them. Once you understand how that works, you can start making changes.</p>
+<p>All of the documentation for Arsenal is written in <a href="https://guides.github.com/features/mastering-markdown/">Markdown</a>, a simple markup language. The documentation can be found in the <a href="https://github.com/katharostech/arsenal/tree/master/docs/arsenal_book/src"><code>docs/arsenal_book/src</code></a> directory. You can edit those files with your favorite text editor. If you just want to make simple changes, then that could be all that you need, but if you want to get a live preview of what your changes will look like on the actual site, then you can install <a href="https://github.com/rust-lang-nursery/mdBook">mdBook</a>.</p>
+<h3><a class="header" href="#installing-mdbook" id="installing-mdbook">Installing mdBook</a></h3>
+<p><a href="https://github.com/rust-lang-nursery/mdBook">mdBook</a> is the tool that we use to convert our markdown documentation to a nice looking documentation website. You can read the <a href="https://rust-lang-nursery.github.io/mdBook/">mdBook Documentation</a> if you want to understand more about how it works. For now, though, go ahead and download and install the latest <a href="https://github.com/rust-lang-nursery/mdBook/releases">release</a> of mdBook.</p>
+<h3><a class="header" href="#serving-the-site-locally" id="serving-the-site-locally">Serving the Site Locally</a></h3>
+<p>Once mdBook is installed, to view the site locally, open a terminal in the <code>docs/arsenal_book</code> directory and run:</p>
+<pre><code class="language-bash">$ mdbook serve -o
+2019-07-19 19:43:20 [INFO] (mdbook::book): Book building has started
+2019-07-19 19:43:20 [INFO] (mdbook::book): Running the html backend
+2019-07-19 19:43:20 [INFO] (mdbook::cmd::serve): Serving on: http://localhost:3000
+2019-07-19 19:43:20 [INFO] (ws): Listening for new connections on 127.0.0.1:3001.
+2019-07-19 19:43:20 [INFO] (mdbook::cmd::watch): Listening for changes...
+2019-07-19 19:43:24 [INFO] (ws::io): Accepted a new tcp connection from 127.0.0.1:48088.
+</code></pre>
+<p>mdBook will build the site and open it in your web browser. Additionally, mdBook will watch the docs for changes and update the site automatically.</p>
 <h1><a class="header" href="#development-guide" id="development-guide">Development Guide</a></h1>
 <p>Welcome to the development guide! This guide will tell you everything you need to get started with Arsenal development. If you have any questions or are having trouble getting started, go ahead and <a href="https://github.com/katharostech/arsenal/issues/new/choose">create an issue</a> and we will try to help.</p>
 <h1><a class="header" href="#architecture" id="architecture">Architecture</a></h1>
 <p>At a high level, Arsenal is composed of three main components, all of which are located in the root of the Arsenal git repository: <strong>Arsenal Blender</strong>, <strong>Arsenal Blender Core</strong>, and <strong>Arsenal Runtime</strong>.</p>
-<p><img src="development-guide/./assets/architecture.svg" alt="Architecture Diagram" /></p>
+<p><img src="development-guide/../assets/architecture.svg" alt="Architecture Diagram" /></p>
 <h2><a class="header" href="#arsenal-blender" id="arsenal-blender">Arsenal Blender</a></h2>
 <p><a href="https://github.com/katharostech/arsenal/tree/master/arsenal_blender">Arsenal Blender</a> is the top level of the Arsenal Blender plugin. Arsenal Blender contains all of the Python code that creates the Arsenal UI elements and operators inside of Blender. Arsenal Blender is the &quot;glue&quot; that binds the <strong>Arsenal Blender Core</strong> and the <strong>Arsenal Runtime</strong> to the Blender interface. If you want to work on our Blender user-experience, this is the place to start.</p>
 <h2><a class="header" href="#arsenal-blender-core" id="arsenal-blender-core">Arsenal Blender Core</a></h2>
@@ -281,7 +338,206 @@
 <p>Amethyst pulls most of the weight in the Arsenal runtime and provides windowing, audio, an ECS, a Renderer, an input system, and other components foundational to a running game. Amethyst takes care of a lot of the difficult aspects of designing a game engine for us and allows us to focus on our Blender user experience and integration.</p>
 <p>Amethyst is also very modular in design which allows us to add or replace components as we need without locking us into a particular design.</p>
 <h3><a class="header" href="#arsenal-components" id="arsenal-components">Arsenal Components</a></h3>
-<p>In addition to Amethyst, we will also be developing additional components that are specific to Arsenal. This will include things like our live Blender sync and other features, many of which will still be built on top of other Amethyst components.</p>
+<p>In addition to Amethyst, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Amethyst components. These will also be bundled into the Arsenal Runtime.</p>
+<h1><a class="header" href="#building-arsenal" id="building-arsenal">Building Arsenal</a></h1>
+<blockquote>
+<p><strong>Note:</strong> Currently, building Arsenal involves manually compiling the separate components and copying them to the correct spot in the Blender plugin. This process will soon be automated using a makefile so that you don't have to manually structure the project during development.</p>
+</blockquote>
+<h2><a class="header" href="#prerequisites" id="prerequisites">Prerequisites</a></h2>
+<h3><a class="header" href="#all-oses" id="all-oses">All OSes</a></h3>
+<p>For every OS you will need to have <a href="https://rust-lang.org">Rust</a> installed. The easiest way to do that is with <a href="https://rustup.rs/">Rustup</a>.</p>
+<p>You also need Rust nightly and Rust 1.35 which can be installed with Rustup:</p>
+<pre><code class="language-bash">rustup toolchain install nightly
+rustup toolchain install stable-2019-07-01
+</code></pre>
+<h3><a class="header" href="#windows-and-macos" id="windows-and-macos">Windows and MacOS</a></h3>
+<p>On Windows and MacOS you need to install Python 3.7 which can be downloaded from <a href="https://www.python.org/downloads/">Python.org</a>.</p>
+<h3><a class="header" href="#linux" id="linux">Linux</a></h3>
+<p>On Linux you will need to install the <a href="https://github.com/amethyst/amethyst#dependencies">Amethyst Dependencies</a> and <code>python3-dev</code>.</p>
+<h2><a class="header" href="#building-arsenal-blender-core" id="building-arsenal-blender-core">Building Arsenal Blender Core</a></h2>
+<p>The <a href="development-guide/./architecture.html#arsenal-blender-core">Arsenal Blender Core</a> (Core) is in the <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_blender_core"><code>arsenal_blender_core</code></a> directory in the git repository. The Core is a normal rust crate and can be built with Cargo.</p>
+<pre><code class="language-bash">cd arsenal_blender_core
+cargo +nightly build
+</code></pre>
+<h3><a class="header" href="#cargo-features" id="cargo-features">Cargo Features</a></h3>
+<p>There is an optional feature for Core called <code>enable_profiling</code> that will dump a <a href="https://github.com/TyOverby/flame">flamegraph</a> to the current directory when executing the Blender export. This can be useful for investigation potential performance optimizations ( see <a href="https://github.com/ferrous-systems/flamegraph#systems-performance-work-guided-by-flamegraphs">Systems Performance Work Guided By Flamegraphs</a> ).</p>
+<pre><code class="language-bash">cargo +nightly build --features enable_profiling
+</code></pre>
+<p>Once that finishes we can build the Arsenal Runtime.</p>
+<h2><a class="header" href="#building-arsenal-runtime" id="building-arsenal-runtime">Building Arsenal Runtime</a></h2>
+<p>The <a href="development-guide/./architecture.html#arsenal-runtime">Arsenal Runtime</a> is in the <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_runtime"><code>arsenal_runtime</code></a> dir. The Arsenal Runtime is also built with Cargo:</p>
+<pre><code class="language-bash">cd arsenal_runtime
+cargo +stable-2019-07-01 build
+</code></pre>
+<h2><a class="header" href="#packaging-arsenal-blender-plugin" id="packaging-arsenal-blender-plugin">Packaging Arsenal Blender Plugin</a></h2>
+<p>After you have built Core and the Runtime, you have to copy the built assets to the <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_blender"><code>arsenal_blender</code></a> dir. On Linux and MacOS you can create symlinks to avoid having to re-copy the assets every time you rebuild them during development.</p>
+<pre><code class="language-bash"># Do this in the root of the repository. We assume you are using Git Bash on
+# Windows.
+
+# This is the same for all platforms
+mkdir arsenal_blender/bin
+
+# The library names are different for different platforms
+
+# Windows
+cp arsenal_runtime/target/debug/arsenal_runtime arsenal_blender/bin
+cp arsenal_blender_core/target/debug/core.dll arsenal_blender/core.pyd
+
+# Linux
+ln -s ../../arsenal_runtime/target/debug/arsenal_runtime arsenal_blender/bin
+ln -s ../arsenal_blender_core/target/debug/libcore.so arsenal_blender/core.so
+
+# MacOS
+ln -s ../../arsenal_runtime/target/debug/arsenal_runtime arsenal_blender/bin
+ln -s ../arsenal_blender_core/target/debug/libcore.dylib arsenal_blender/core.so
+</code></pre>
+<p>After those are in place, you can copy, on Windows, or symlink, on Mac and Linux, the <code>arsenal_blender</code> dir to your blender Addons directory.</p>
+<pre><code class="language-bash"># Windows
+cp arsenal_blender ${APPDATA}/Blender\ Foundation/Blender/2.80/scripts/addons
+
+# Linux &amp; MacOS
+ln -s /path/to/arsenal/arsenal_blender ~/.config/blender/2.8/scripts/addons
+</code></pre>
+<p>When that is done you just have to enable the plugin from the Blender interface and you are finished!</p>
+<h1><a class="header" href="#using-git" id="using-git">Using Git</a></h1>
+<p>Git is our source code management tool. It provides a way to keep track of our changes and handle multiple different people contributing to the project at the same time.</p>
+<blockquote>
+<p><strong>Note:</strong> There is a lot that you could learn about Git, but only a little that you need to know to start contributing to Arsenal. Here we will go through the basics of getting started with Git for contributing to Arsenal, but we will not be able to cover everything.</p>
+<p>If you are having trouble getting started, feel free to <a href="https://github.com/katharostech/arsenal/issues/new/choose">open an issue</a> and we will try to help you. Also, if you need a more comprehensive guide to Git, check out the <a href="https://git-scm.com/book/en/v2">Pro Git Book</a> which can be read online for free.</p>
+</blockquote>
+<h2><a class="header" href="#installing-git" id="installing-git">Installing Git</a></h2>
+<p>To install Git, head over to the <a href="https://git-scm.com/downloads">Git Download Page</a> and follow the instructions for you operating system.</p>
+<p>After you have installed Git you can move on to <a href="./using-git/creating-a-sandbox.html">creating your own sandbox</a> to make changes in.</p>
+<h1><a class="header" href="#creating-a-sandbox" id="creating-a-sandbox">Creating a Sandbox</a></h1>
+<p>Once you have Git installed, you can download or <strong>clone</strong> your own copy of the Arsenal project to your computer. The first step to that is to <strong>fork</strong> the Arsenal GitHub repository.</p>
+<h2><a class="header" href="#forking-arsenal" id="forking-arsenal">Forking Arsenal</a></h2>
+<p>A fork on GitHub is like your own personal copy of somebody else's GitHub repository. In your own fork, you can make any sort of changes that you want, without having to get approval or worry about ruining somebody else's work. Once you are happy with the changes that you have made in your fork, you can create a <strong>pull request</strong> to the original repository and ask that you changes get included in the official repo.</p>
+<p>You can create a fork on GitHub by clicking the fork icon in the top right corner of the GitHub repository home page.</p>
+<p><img src="using-git/../assets/fork-a-repo.png" alt="Fork a Repo" /></p>
+<p>GitHub will take a second to fork the repo before presenting you with your own copy of the Arsenal project! You can tell that it is a fork because it will have your name in the upper-left hand and a note that it was forked from <code>katharostech/arsenal</code>.</p>
+<p><img src="using-git/../assets/your-fork-name.png" alt="Your Fork Name" /></p>
+<p>Now that you have a fork, you can <strong>clone</strong> it to your computer.</p>
+<h2><a class="header" href="#cloning-your-fork" id="cloning-your-fork">Cloning Your Fork</a></h2>
+<p>In order to test and make changes to your fork, you need to clone it to your computer. Cloning is a Git term that means to copy the repo to a local machine with all of the included Git history. When you clone a repo, it doesn't just give you the current state of the repo, but the entire history of the repo since it was created. It also keeps track of what is necessary to get the latest changes to the repo when things are updated.</p>
+<p>On the homepage of your fork, there will be a green button that says &quot;Clone or Download&quot;. Click this button and copy the URL inside to your clipboard.</p>
+<p><img src="using-git/../assets/clone-your-fork.png" alt="Clone Your Fork" /></p>
+<p>Now you have to find a place that you want to put the repo on your system. Probably in a &quot;git&quot; folder somewhere. Once you have that, you have to open up your Git terminal in that directory. On Windows, the Git terminal, or Git Bash, would have been installed when you installed Git and you can open it by right-clicking on a folder and selecting &quot;Open with Git Bash&quot;.</p>
+<p>Inside of the terminal paste the following, replacing the URL with the URL that you copied from your fork.</p>
+<pre><code class="language-bash">git clone https://github.com/zicklag/arsenal.git
+</code></pre>
+<p>This will clone the repo to a directory named &quot;arsenal&quot; wherever you opened the terminal. You can now browse the whole Arsenal repo on your computer.</p>
+<h2><a class="header" href="#adding-the-arsenal-remote" id="adding-the-arsenal-remote">Adding the Arsenal Remote</a></h2>
+<p>Now that you have cloned your fork, you need to tell Git about the official Arsenal repo so that you can get updates when we make changes.</p>
+<p>In your terminal, we will change directory to the newly cloned repository and then add a new <strong>remote</strong> called &quot;arsenal&quot; and set it to the official Arsenal repo:</p>
+<pre><code class="language-bash">cd arsenal
+git remote add arsenal https://github.com/katharostech/arsenal.git
+</code></pre>
+<p>Now that git knows about our official Arsenal repo, you can update your local sandbox with the latest changes from GitHub by running:</p>
+<pre><code class="language-bash">$ git pull arsenal master
+From https://github.com/katharostech/arsenal
+ * branch            master     -&gt; FETCH_HEAD
+Current branch my-changes is up to date.
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> Don't type the <code>$</code> sign. Lines that start with a <code>$</code> represent lines that you are supposed to type. Lines without a <code>$</code> indicate lines that were output by git.</p>
+</blockquote>
+<h1><a class="header" href="#making-changes" id="making-changes">Making Changes</a></h1>
+<h2><a class="header" href="#creating-a-branch" id="creating-a-branch">Creating a Branch</a></h2>
+<p>When making changes to a Git repository, you usually do your changes in what is called a Git <strong>branch</strong>. A branch is like a stream in which you can make changes in your Git repo without effecting other branches. This allows you to work on multiple things at the same time, without getting different separate changes mixed up with each-other. For each change that you will want to submit to Arsenal, you should create a branch to do it in.</p>
+<p>First open your Git terminal in the Arsenal git repository. If you type <code>git status</code> in the terminal and hit enter, it will tell you that you are on the branch &quot;master&quot; and that there is nothing to commit:</p>
+<pre><code class="language-bash">$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working directory clean
+</code></pre>
+<p>This means that you are on the branch master and there have been no changes.</p>
+<p>Now we are going to create a new branch to make some changes in:</p>
+<pre><code class="language-bash">$ git branch my-changes
+$ git checkout my-changes
+On branch my-changes
+nothing to commit, working directory clean
+</code></pre>
+<p>First we run <code>git branch my-changes</code> which creates a new branch called <code>my-changes</code>, then we run <code>git checkout my-changes</code> to switch our current branch to the new branch that we just created. Git then tells us that we have created a new branch and that there are no changes.</p>
+<p>You can switch back and forth between branches whenever you want by running <code>git checkout branch-name</code>.</p>
+<h2><a class="header" href="#making-a-change" id="making-a-change">Making a Change</a></h2>
+<p>Now that we have a branch to work in, its time to make some changes! Go ahead and change some files. Maybe you could <a href="using-git/../contributing/documentation.html">contribute to the documentation</a>. Once you have made some changes, we can see what has happened by running <code>git status</code>:</p>
+<pre><code class="language-bash">$ git status
+On branch my-changes
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+
+        modified:   docs/arsenal_book/src/FAQ.md
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre>
+<p>Git tells us that a file has been changed. Before git will &quot;save&quot; the change, though, we have to <strong>commit</strong> the change. Before we can commit the change we need to <strong>add</strong> the changes that we want to commit.</p>
+<pre><code class="language-bash">$ git add .
+$ git commit -m 'Add an FAQ'
+[my-changes d777617] Add an FAQ
+ 1 file changed, 4 insertions(+)
+</code></pre>
+<p>The reason for a separate <code>add</code> step is to allow you to add only the changes that you want to, in case there were multiple changes and you only wanted some of them. When we said <code>git add .</code> the <code>.</code> meant that we want to add everything in the current directory and any directories in the current directory.</p>
+<p>When we say <code>git commit -m 'Add an FAQ'</code> the <code>-m</code> tells Git to create a commit with the following <strong>message</strong> which we put inside of single quotes. Once that is done, we can see our new commit by doing a <code>git log</code>:</p>
+<pre><code class="language-bash">$ git log
+commit d777617c3056137e14c5a66546d3f9782f13c031
+Author: Zicklag &lt;zicklag@katharostech.com&gt;
+Date:   Fri Jul 19 18:21:31 2019 -0500
+
+    Add an FAQ
+
+commit ec8c092a3ff9da84383e486e09ab204846abc4ca
+Author: Zicklag &lt;zicklag@katharostech.com&gt;
+Date:   Thu Jul 18 22:09:54 2019 -0500
+
+    Add Unreleased Changes to the Changelog
+
+    - Add a development guide to the arsenal book
+    - Move arsenal book to the docs/ folder
+    - Organize project structure to better separate the modules
+
+commit 8f433b10208b1c68cc42ec745889a78a9acb1641
+Author: Zicklag &lt;zicklag@katharostech.com&gt;
+Date:   Wed Jul 17 21:04:26 2019 -0500
+:
+</code></pre>
+<p>You can move up and down through the history with the <code>k</code> and <code>j</code> keys and you can exit with the <code>q</code> key. The log will show our latest commit on top of the stack and all of the other commits in history below it.</p>
+<h2><a class="header" href="#pushing-your-changes" id="pushing-your-changes">Pushing Your Changes</a></h2>
+<p>Now that we have made our change and committed it, we can push it up to our fork on GitHub:</p>
+<pre><code class="language-bash">$ git push origin my-changes
+Username for 'https://github.com': zicklag
+Password for 'https://zicklag@github.com':
+Counting objects: 6, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 483 bytes | 0 bytes/s, done.
+Total 6 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote:
+remote: Create a pull request for 'my-changes' on GitHub by visiting:
+remote:      https://github.com/zicklag/arsenal/pull/new/my-changes
+remote:
+To https://github.com/zicklag/arsenal.git
+ * [new branch]      my-changes -&gt; my-changes
+</code></pre>
+<p>When we run <code>git push origin my-changes</code> we are telling Git to push the changes in the current branch to our <code>origin</code>, is our fork, where we cloned the repo from. We also have to tell it push to a branch named <code>my-changes</code> in our fork. Once that is done, GitHub conveniently gives us a link that we can use to create a <strong>pull request</strong> so that we can get our changes merged into the official Arsenal repo.</p>
+<h2><a class="header" href="#creating-a-pull-request" id="creating-a-pull-request">Creating a Pull Request</a></h2>
+<p>You can now follow the link that Git provided to create a pull request for your changes.</p>
+<p><img src="using-git/../assets/submit-pull-request.png" alt="Submit Pull Request" /></p>
+<p>Here you can add any extra information that might be applicable to your changes, and once you submit the pull request, we will review your changes and either merge them or comment on what we would like changed.</p>
+<p>If we request changes, you can make the changes, add and commit them, and push them again just like you already have. This will update your pull request automatically.</p>
+<p>Once your changes have been approved, they will be merged into the project and you will be an official contributor!</p>
+<h2><a class="header" href="#finishing-up" id="finishing-up">Finishing Up</a></h2>
+<p>After your pull request has been merged you can checkout the master branch again and pull in the latest changes from the official repo to make sure you are up to date.</p>
+<pre><code class="language-bash">$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+$ git pull arsenal master
+From https://github.com/katharostech/arsenal
+ * branch            master     -&gt; FETCH_HEAD
+Current branch master is up to date.
+</code></pre>
+<p>You are now ready to create a new branch and start making more contributions.</p>
 <h1><a class="header" href="#faq" id="faq">FAQ</a></h1>
 <h2><a class="header" href="#is-being-cross-platform-one-of-your-game-engines-main-focus" id="is-being-cross-platform-one-of-your-game-engines-main-focus">Is being cross platform one of your game engine's main focus?</a></h2>
 <p>Yes. Arsenal should be able to deploy to every major target out there. This is going to be mostly handled by the <a href="https://amethyst.rs">Amethyst</a> engine that we are building on top of so it should not be a large burden to the project.</p>

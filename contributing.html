@@ -31,6 +31,23 @@
         
 
         
+
+        <!-- Matomo -->
+        <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//matomo.katharostech.com/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '4']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+        </script>
+        <noscript><p><img src="//matomo.katharostech.com/matomo.php?idsite=4&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Matomo Code -->
     </head>
     <body class="rust">
         <!-- Provide site root to javascript -->
@@ -78,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html" class="active"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html" class="active"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -117,6 +134,13 @@
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
+                            <a href="https://github.com/katharostech/arsenal" title="Project Source Code" aria-label="Project Source Code">
+                                <i id="git-repository-button" class="fa fa-github"></i>
+                            </a>
+                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/contributing.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                                <i id="git-repository-button" class="fa fa-pencil"></i>
+                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -148,6 +172,9 @@
                         <h1><a class="header" href="#contributing" id="contributing">Contributing</a></h1>
 <p>If you want to help Arsenal development, we welcome contributions of any kind! Whether it is writing Rust or Python, or contributing documentation or ideas, we strive to be open and communicative to our community and we want to provide you what you need to help out.</p>
 <p>If you have any questions about how you can help, you can comment on our GitHub issue: <a href="https://github.com/katharostech/arsenal/issues/57">How Can I Help Arsenal Development?</a>.</p>
+<h2><a class="header" href="#documentation" id="documentation">Documentation</a></h2>
+<p>At Katharos Technology we place a very high value on documentation, but it can be a lot of work to create and maintain effective and helpful documentation. Any help, large or small, with Arsenal's documentation will be greatly appreciated.</p>
+<p>Contributing to the documentation is very easy and can be done <a href="./contributing/documentation.html#using-github">directly on GitHub</a> without installing any tools on your computer. More details on contributing to the docs can be found in the <a href="./contributing/documentation.html">Documentation</a> section.</p>
 <h2><a class="header" href="#development" id="development">Development</a></h2>
 <p>If you are looking to get into Arsenal development, the <a href="./development-guide.html">Development Guide</a> will tell you how to get started.</p>
 
@@ -162,7 +189,7 @@
                         
 
                         
-                            <a rel="next" href="development-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="contributing/documentation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -180,7 +207,7 @@
                 
 
                 
-                    <a href="development-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="contributing/documentation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

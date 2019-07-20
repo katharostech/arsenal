@@ -31,6 +31,23 @@
         
 
         
+
+        <!-- Matomo -->
+        <script type="text/javascript">
+        var _paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//matomo.katharostech.com/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '4']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+        </script>
+        <noscript><p><img src="//matomo.katharostech.com/matomo.php?idsite=4&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Matomo Code -->
     </head>
     <body class="rust">
         <!-- Provide site root to javascript -->
@@ -78,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -115,6 +132,13 @@
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                            <a href="https://github.com/katharostech/arsenal" title="Project Source Code" aria-label="Project Source Code">
+                                <i id="git-repository-button" class="fa fa-github"></i>
+                            </a>
+                            <a href="https://github.com/katharostech/arsenal/edit/master/docs/arsenal_book/src/index.md" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                                <i id="git-repository-button" class="fa fa-pencil"></i>
                             </a>
                             
                         </div>
