@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="affix"><a href="overview.html">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
+                <ol class="chapter"><li class="affix"><a href="index.html" class="active">Overview</a></li><li class="spacer"></li><li><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="vision.html"><strong aria-hidden="true">2.</strong> The Vision</a></li><li><a href="contributing.html"><strong aria-hidden="true">3.</strong> Contributing</a></li><li><ol class="section"><li><a href="contributing/documentation.html"><strong aria-hidden="true">3.1.</strong> Documentation</a></li></ol></li><li><a href="development-guide.html"><strong aria-hidden="true">4.</strong> Development Guide</a></li><li><ol class="section"><li><a href="development-guide/architecture.html"><strong aria-hidden="true">4.1.</strong> Architecture</a></li><li><a href="development-guide/building.html"><strong aria-hidden="true">4.2.</strong> Building Arsenal</a></li></ol></li><li><a href="using-git.html"><strong aria-hidden="true">5.</strong> Using Git</a></li><li><ol class="section"><li><a href="using-git/creating-a-sandbox.html"><strong aria-hidden="true">5.1.</strong> Creating a Sandbox</a></li><li><a href="using-git/making-changes.html"><strong aria-hidden="true">5.2.</strong> Making Changes</a></li><li class="spacer"></li></ol></li><li><a href="FAQ.html">FAQ</a></li><li class="affix"><a href="news.html">News</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -172,13 +172,13 @@
                         <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
 <p>Arsenal is a Blender integrated game engine written in Rust. The project is in <em>very</em> early stages of development, but we are doing the planning, investigation, experimentation, and documentation that is necessary to get the project going. The source code for the project is on <a href="https://github.com/katharostech/arsenal">GitHub</a>.</p>
 <h2><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h2>
-<p>If you want to try out Arsenal, you can download the latest release <a href="https://github.com/katharostech/arsenal/releases">here</a>. The <a href="https://github.com/katharostech/arsenal/blob/master/CHANGEFILE.md">change log</a> will have the list of the updates made with each release. The <a href="./getting-started.html">getting started</a> page will show you how to install Arsenal and run your first game.</p>
+<p>If you want to try out Arsenal, you can download the latest release <a href="https://github.com/katharostech/arsenal/releases">here</a>. The <a href="https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md">change log</a> will have the list of the updates made with each release. The <a href="./getting-started.html">getting started</a> page will show you how to install Arsenal and run your first game.</p>
 <h2><a class="header" href="#motivation" id="motivation">Motivation</a></h2>
 <p>We at <a href="https://katharostech.com">Katharos Technology</a> have been planning to use <a href="https://armory3d.org/">Armory3D</a> for our games until recent <a href="http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag">concerns</a> about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.</p>
 <p>Arsenal will be built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine and will provide a full Blender integration that will allow you to build games in Blender. Arsenal will also come with a Logic Node system that will allow non-programmers to build out game logic.</p>
 <p>More details of what we are trying to accomplish with Arsenal can be found in our <a href="./vision.html">Vision</a>.</p>
 <h2><a class="header" href="#roadmap" id="roadmap">Roadmap</a></h2>
-<p>You can view our <a href="https://github.com/katharostech/arsenal/milestones">roadmap</a> by looking at the milestones on GitHub. The roadmap will likely change as we find out what work needs to be done more specifically.</p>
+<p>You can view our <a href="https://github.com/katharostech/arsenal/milestones?direction=asc&amp;sort=title&amp;state=open">roadmap</a> by looking at the milestones on GitHub. What we are currently working on for Arsenal will be represented by the <a href="https://github.com/katharostech/arsenal/projects/1">Arsenal Workboard</a>.</p>
 <h2><a class="header" href="#feedback" id="feedback">Feedback</a></h2>
 <p>If you have any thoughts or feedback you can open an <a href="https://github.com/katharostech/arsenal/issues/new">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
 
@@ -189,6 +189,10 @@
                         
 
                         
+                            <a rel="next" href="getting-started.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
 
                         <div style="clear: both"></div>
                     </nav>
@@ -198,6 +202,10 @@
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
 
+                
+                    <a href="getting-started.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
