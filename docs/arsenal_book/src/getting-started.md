@@ -6,7 +6,7 @@ Welcome to Arsenal's Getting Started page! This guide will tell you how to insta
 
 ## Installing
 
-Arsenal is made up of a completely self-contained Blender plugin. Before you can use it you must install [Blender 2.80 Beta](https://builder.blender.org/download/). After installing Blender you can download the latest version of Arsenal from [GitHub](https://github.com/katharostech/arsenal/releases). We have builds of Arsenal for 64bit Windows, Mac, and Linux platforms.
+Arsenal is made up of a completely self-contained Blender plugin. Before you can use it you must install [Blender 2.80 Beta][blender28]. After installing Blender you can download the latest version of Arsenal from [GitHub][releases]. We have builds of Arsenal for 64bit Windows, Mac, and Linux platforms.
 
 Once you have downloaded Arsenal, start up Blender and open the user preferences.
 
@@ -23,6 +23,9 @@ Navigate to the arsenal zip file that you downloaded earlier and double-click it
 ![Enable Add-on Check box](./assets/enable-addon-checkbox.png)
 
 You can close the preferences dialog and that's it! Now all we have to do is run a game.
+
+[blender28]: https://builder.blender.org/download/
+[releases]: https://github.com/katharostech/arsenal/releases
 
 ## Running a Game
 
@@ -51,4 +54,7 @@ Now that we've got it running, lets mess around with our scene a bit more. Go ah
 
 That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.
 
-If you had any trouble getting through the tutorial or if you have any questions, you can open up a [GitHub issue](https://github.com/katharostech/arsenal/issues) and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on [GitHub](https://github.com/katharostech/arsenal)!
+If you had any trouble getting through the tutorial or if you have any questions, you can open up a [GitHub issue][issue] and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on [GitHub][repo]!
+
+[issue]: https://github.com/katharostech/arsenal/issues/new/choose
+[repo]: https://github.com/katharostech/arsenal
