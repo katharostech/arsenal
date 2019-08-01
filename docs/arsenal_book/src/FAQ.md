@@ -52,7 +52,7 @@ If other people want to contribute features that we may not have time to work on
 
 ## Is Arsenal A Blender Plugin or a Game Engine?
 
-In reality, even though we call Arsenal an engine, the plan is to build Arsenal almost entirely on top of the [Amethyst](https://amethyst.rs) game engine while creating our own Blender based user experience. We have the documentation for the engine design [here](../development-guide/architecture.html).
+In reality, even though we call Arsenal an engine, the plan is to build Arsenal almost entirely on top of the [Amethyst](https://amethyst.rs) game engine while creating our own Blender based user experience. We have the documentation for the engine design [here](./development-guide/architecture.html).
 
 ## Why Does Arsenal Export glTF Instead of Just Using Blender Files?
 
