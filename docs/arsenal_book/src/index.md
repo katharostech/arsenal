@@ -31,6 +31,15 @@ You can view our [roadmap] by looking at the milestones on GitHub. What we are c
 [roadmap]: https://github.com/katharostech/arsenal/milestones?direction=asc&sort=title&state=open
 [workboard]: https://github.com/katharostech/arsenal/projects/1
 
+## News
+
+We will be posting updates on the development progress of Arsenal on the [Arsenal feed][arsenal_feed] at [Katharostech.com]. Releases of Arsenal will be tracked in the [changelog]. Notable milestones or events will be put on the [News] page.
+
+[arsenal_feed]: https://katharostech.com/tag/arsenal
+[Katharostech.com]: https://katharostech.com
+[changelog]: https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md
+[News]: ./news.md
+
 ## Feedback
 
 If you have any thoughts or feedback you can open an [issue] or contact us on our [website][contact].
