@@ -44,6 +44,7 @@ steps:
   # Build Python Extension for Linux
   - name: build-arsenal-blender-core
     image: rustlang/rust:nightly
+    pull: always
     depends_on:
       - clone
     commands:
@@ -136,6 +137,7 @@ steps:
   # Build Python Extension for Windows
   - name: build-arsenal-blender-core
     image: rustlang/rust:nightly
+    pull: always
     depends_on:
       - clone
     commands:
@@ -252,6 +254,7 @@ steps:
   # Build Python Extension for Mac
   - name: build-arsenal
     image: rustlang/rust:nightly
+    pull: always
     depends_on:
       - clone
     commands:
