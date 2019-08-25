@@ -310,9 +310,8 @@ steps:
       - rustup toolchain add stable-2019-05-23
       - rustup default stable-2019-05-23
       - rustup target add x86_64-apple-darwin
-      - export COREAUDIO_FRAMEWORKS_PATH='/System/Library/Frameworks'
       - >
-        export COREAUDIO_CFLAGS='-I/System/Library/Frameworks/Kernel.framework/Headers
+        export BINDGEN_EXTRA_CLANG_ARGS='-I/System/Library/Frameworks/Kernel.framework/Headers
         -I/build/osxcross/target/SDK/MacOSX10.11.sdk/usr/include'
       - cargo build --target x86_64-apple-darwin --release
 
