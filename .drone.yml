@@ -145,6 +145,9 @@ steps:
       - apt-get update
       - apt-get install -y gcc-mingw-w64
       - rustup target install x86_64-pc-windows-gnu
+      # Patch Some MingW Libs. See https://github.com/rust-lang/rust/issues/47048#issuecomment-474118132
+      - cp -f /usr/x86_64-w64-mingw32/lib/dllcrt2.o /usr/local/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-pc-windows-gnu/lib/dllcrt2.o
+      - cp -f /usr/x86_64-w64-mingw32/lib/crt2.o /usr/local/rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-pc-windows-gnu/lib/crt2.o
       # Download Python headers and Windows build
       - mkdir -p /build
       - cd /build
