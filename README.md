@@ -15,12 +15,13 @@ Updates on Arsenal development are posted on the [Arsenal Feed][arsenal_feed] at
 
 ## Bugs, Feature Requests, and Questions
 
-We use [Taiga] for issue tracking. If you have any feature requests, bug reports, or questions you can submit an issue on our [Arsenal Taiga project][ars_taiga_project].
+We use [Taiga] for issue tracking. If you have any feature requests, bug reports, or questions you can submit an issue on our [Arsenal Taiga project][project]. More information about our issue management workflow can be found in the [Taiga project wiki][wiki].
 
 In order to submit issues, you must log in to Taiga. You can sign up for a Taiga account, or you can log in with your GitHub account.
 
 [Taiga]: https://taiga.io/
-[ars_taiga_project]: https://tree.taiga.io/project/zicklag-arsenal/issues
+[project]: https://tree.taiga.io/project/zicklag-arsenal/issues
+[wiki]: https://tree.taiga.io/project/zicklag-arsenal/wiki/home
 
 ## GitHub Stars Over Time
 
