@@ -54,7 +54,7 @@ Now that we've got it running, lets mess around with our scene a bit more. Go ah
 
 That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.
 
-If you had any trouble getting through the tutorial or if you have any questions, you can open up a [GitHub issue][issue] and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on [GitHub][repo]!
+If you had any trouble getting through the tutorial or if you have any questions, you can open up a [Taiga issue][issue] and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on [GitHub][repo]!
 
-[issue]: https://github.com/katharostech/arsenal/issues/new/choose
+[issue]: https://tree.taiga.io/project/zicklag-arsenal/issues
 [repo]: https://github.com/katharostech/arsenal

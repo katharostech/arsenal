@@ -26,10 +26,12 @@ More details of what we are trying to accomplish with Arsenal can be found in ou
 
 ## Roadmap
 
-You can view our [roadmap] by looking at the milestones on GitHub. What we are currently working on for Arsenal will be represented by the [Arsenal Workboard][workboard].
+You can view our [roadmap] by looking at the Sprints on Taiga. Each sprint represents an upcoming release and the stories that we plan on working on for that release. You can also see what work is in progress on the [Kanban board][kanban]. See the Taiga [wiki] for more information on our issue workflow.
 
-[roadmap]: https://github.com/katharostech/arsenal/milestones?direction=asc&sort=title&state=open
+[roadmap]: https://tree.taiga.io/project/zicklag-arsenal/backlog
 [workboard]: https://github.com/katharostech/arsenal/projects/1
+[kanban]: https://tree.taiga.io/project/zicklag-arsenal/kanban
+[wiki]: https://tree.taiga.io/project/zicklag-arsenal/wiki
 
 ## News
 
@@ -44,5 +46,5 @@ We will be posting updates on the development progress of Arsenal on the [Arsena
 
 If you have any thoughts or feedback you can open an [issue] or contact us on our [website][contact].
 
-[issue]: https://github.com/katharostech/arsenal/issues/new
+[issue]: https://tree.taiga.io/project/zicklag-arsenal/issues
 [contact]: https://katharostech.com/contact

@@ -14,7 +14,7 @@ Here is a record of significant events or updates made to the engine. We will ma
 - **10th**: Announcement of project on [Amethyst form][announcement]
 - **3rd**: Initial commit on the Arsenal repository
 
-[exporter]: https://github.com/katharostech/arsenal/issues/5
+[exporter]: https://tree.taiga.io/project/zicklag-arsenal/issue/5
 [faster_export]: https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911/9?u=zicklag
 [official_export]: https://github.com/KhronosGroup/glTF-Blender-IO
 [announcement]: https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911
