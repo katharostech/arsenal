@@ -180,11 +180,11 @@
 <p>Arsenal will be built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine and will provide a full Blender integration that will allow you to build games in Blender. Arsenal will also come with a Logic Node system that will allow non-programmers to build out game logic.</p>
 <p>More details of what we are trying to accomplish with Arsenal can be found in our <a href="./vision.html">Vision</a>.</p>
 <h2><a class="header" href="#roadmap" id="roadmap">Roadmap</a></h2>
-<p>You can view our <a href="https://github.com/katharostech/arsenal/milestones?direction=asc&amp;sort=title&amp;state=open">roadmap</a> by looking at the milestones on GitHub. What we are currently working on for Arsenal will be represented by the <a href="https://github.com/katharostech/arsenal/projects/1">Arsenal Workboard</a>.</p>
+<p>You can view our <a href="https://tree.taiga.io/project/zicklag-arsenal/backlog">roadmap</a> by looking at the Sprints on Taiga. Each sprint represents an upcoming release and the stories that we plan on working on for that release. You can also see what work is in progress on the <a href="https://tree.taiga.io/project/zicklag-arsenal/kanban">Kanban board</a>. See the Taiga <a href="https://tree.taiga.io/project/zicklag-arsenal/wiki">wiki</a> for more information on our issue workflow.</p>
 <h2><a class="header" href="#news" id="news">News</a></h2>
 <p>We will be posting updates on the development progress of Arsenal on the <a href="https://katharostech.com/tag/arsenal">Arsenal feed</a> at <a href="https://katharostech.com">Katharostech.com</a>. Releases of Arsenal will be tracked in the <a href="https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md">changelog</a>. Notable milestones or events will be put on the <a href="./news.html">News</a> page.</p>
 <h2><a class="header" href="#feedback" id="feedback">Feedback</a></h2>
-<p>If you have any thoughts or feedback you can open an <a href="https://github.com/katharostech/arsenal/issues/new">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
+<p>If you have any thoughts or feedback you can open an <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
 <h1><a class="header" href="#getting-started-1" id="getting-started-1">Getting Started</a></h1>
 <p>Welcome to Arsenal's Getting Started page! This guide will tell you how to install Arsenal and run your first &quot;game&quot;.</p>
 <blockquote>
@@ -218,7 +218,7 @@
 <p><img src="./assets/full-arsenal-scene.png" alt="Full Arsenal Scene" /></p>
 <h2><a class="header" href="#summary" id="summary">Summary</a></h2>
 <p>That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.</p>
-<p>If you had any trouble getting through the tutorial or if you have any questions, you can open up a <a href="https://github.com/katharostech/arsenal/issues/new/choose">GitHub issue</a> and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on <a href="https://github.com/katharostech/arsenal">GitHub</a>!</p>
+<p>If you had any trouble getting through the tutorial or if you have any questions, you can open up a <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">Taiga issue</a> and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on <a href="https://github.com/katharostech/arsenal">GitHub</a>!</p>
 <h1><a class="header" href="#the-vision" id="the-vision">The Vision</a></h1>
 <p>These need to be refined into a more succinct vision statement, but here are the major design points that drive the Arsenal vision:</p>
 <ul>
@@ -284,7 +284,7 @@
 </blockquote>
 <h1><a class="header" href="#contributing" id="contributing">Contributing</a></h1>
 <p>If you want to help Arsenal development, we welcome contributions of any kind! Whether it is writing Rust or Python, or contributing documentation or ideas, we strive to be open and communicative to our community and we want to provide you what you need to help out.</p>
-<p>If you have any questions about how you can help, you can comment on our GitHub issue: <a href="https://github.com/katharostech/arsenal/issues/57">How Can I Help Arsenal Development?</a>.</p>
+<p>If you have any questions about how you can help, you can comment on our Taiga issue: <a href="https://tree.taiga.io/project/zicklag-arsenal/issue/57">How Can I Help Arsenal Development?</a>.</p>
 <h2><a class="header" href="#documentation" id="documentation">Documentation</a></h2>
 <p>At Katharos Technology we place a very high value on documentation, but it can be a lot of work to create and maintain effective and helpful documentation. Any help, large or small, with Arsenal's documentation will be greatly appreciated.</p>
 <p>Contributing to the documentation is very easy and can be done <a href="./contributing/documentation.html#using-github">directly on GitHub</a> without installing any tools on your computer. More details on contributing to the docs can be found in the <a href="./contributing/documentation.html">Documentation</a> section.</p>
@@ -321,7 +321,7 @@
 </code></pre>
 <p>mdBook will build the site and open it in your web browser. Additionally, mdBook will watch the docs for changes and update the site automatically.</p>
 <h1><a class="header" href="#development-guide" id="development-guide">Development Guide</a></h1>
-<p>Welcome to the development guide! This guide will tell you everything you need to get started with Arsenal development. If you have any questions or are having trouble getting started, go ahead and <a href="https://github.com/katharostech/arsenal/issues/new/choose">create an issue</a> and we will try to help.</p>
+<p>Welcome to the development guide! This guide will tell you everything you need to get started with Arsenal development. If you have any questions or are having trouble getting started, go ahead and <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">create an issue</a> and we will try to help.</p>
 <h1><a class="header" href="#architecture" id="architecture">Architecture</a></h1>
 <p>At a high level, Arsenal is composed of three main components, all of which are located in the root of the Arsenal git repository: <strong>Arsenal Blender</strong>, <strong>Arsenal Blender Core</strong>, and <strong>Arsenal Runtime</strong>.</p>
 <p><img src="development-guide/../assets/architecture.svg" alt="Architecture Diagram" /></p>
@@ -405,7 +405,7 @@ ln -s /path/to/arsenal/arsenal_blender ~/.config/blender/2.8/scripts/addons
 <p>Git is our source code management tool. It provides a way to keep track of our changes and handle multiple different people contributing to the project at the same time.</p>
 <blockquote>
 <p><strong>Note:</strong> There is a lot that you could learn about Git, but only a little that you need to know to start contributing to Arsenal. Here we will go through the basics of getting started with Git for contributing to Arsenal, but we will not be able to cover everything.</p>
-<p>If you are having trouble getting started, feel free to <a href="https://github.com/katharostech/arsenal/issues/new/choose">open an issue</a> and we will try to help you. Also, if you need a more comprehensive guide to Git, check out the <a href="https://git-scm.com/book/en/v2">Pro Git Book</a> which can be read online for free.</p>
+<p>If you are having trouble getting started, feel free to <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">open an issue</a> and we will try to help you. Also, if you need a more comprehensive guide to Git, check out the <a href="https://git-scm.com/book/en/v2">Pro Git Book</a> which can be read online for free.</p>
 </blockquote>
 <h2><a class="header" href="#installing-git" id="installing-git">Installing Git</a></h2>
 <p>To install Git, head over to the <a href="https://git-scm.com/downloads">Git Download Page</a> and follow the instructions for you operating system.</p>
@@ -583,7 +583,7 @@ Current branch master is up to date.
 </ul>
 <h2><a class="header" href="#june-2019" id="june-2019">June 2019</a></h2>
 <ul>
-<li><strong>23rd</strong>: The <a href="https://github.com/katharostech/arsenal/issues/5">Basic glTF Exporter</a> was merged. The exporter proved out the ability to write a Blender plugin in Rust. The advantages of using Rust were demonstrated in Rust's strong type system and its amazing performance. Our exporter was able to <a href="https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911/9?u=zicklag">perform  22 times faster</a> than the <a href="https://github.com/KhronosGroup/glTF-Blender-IO">official Blender glTF Exporter</a> by the Khronos Group.</li>
+<li><strong>23rd</strong>: The <a href="https://tree.taiga.io/project/zicklag-arsenal/issue/5">Basic glTF Exporter</a> was merged. The exporter proved out the ability to write a Blender plugin in Rust. The advantages of using Rust were demonstrated in Rust's strong type system and its amazing performance. Our exporter was able to <a href="https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911/9?u=zicklag">perform  22 times faster</a> than the <a href="https://github.com/KhronosGroup/glTF-Blender-IO">official Blender glTF Exporter</a> by the Khronos Group.</li>
 <li><strong>10th</strong>: Announcement of project on <a href="https://community.amethyst.rs/t/arsenal-the-vision-for-a-full-amethyst-blender-integration/911">Amethyst form</a></li>
 <li><strong>3rd</strong>: Initial commit on the Arsenal repository</li>
 </ul>
