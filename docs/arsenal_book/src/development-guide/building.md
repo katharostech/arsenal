@@ -12,7 +12,7 @@ You also need Rust nightly and Rust 1.35 which can be installed with Rustup:
 
 ```bash
 rustup toolchain install nightly
-rustup toolchain install stable-2019-07-01
+rustup toolchain install stable-2019-05-23
 ```
 
 [rust]: https://rust-lang.org
@@ -60,7 +60,7 @@ The [Arsenal Runtime][arsenal_runtime] is in the [`arsenal_runtime`][runtime_dir
 
 ```bash
 cd arsenal_runtime
-cargo +stable-2019-07-01 build
+cargo +stable-2019-05-23 build
 ```
 
 [arsenal_runtime]: ./architecture.md#arsenal-runtime
