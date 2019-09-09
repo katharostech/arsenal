@@ -178,7 +178,7 @@
 <p>For every OS you will need to have <a href="https://rust-lang.org">Rust</a> installed. The easiest way to do that is with <a href="https://rustup.rs/">Rustup</a>.</p>
 <p>You also need Rust nightly and Rust 1.35 which can be installed with Rustup:</p>
 <pre><code class="language-bash">rustup toolchain install nightly
-rustup toolchain install stable-2019-07-01
+rustup toolchain install stable-2019-05-23
 </code></pre>
 <h3><a class="header" href="#windows-and-macos" id="windows-and-macos">Windows and MacOS</a></h3>
 <p>On Windows and MacOS you need to install Python 3.7 which can be downloaded from <a href="https://www.python.org/downloads/">Python.org</a>.</p>
@@ -197,7 +197,7 @@ cargo +nightly build
 <h2><a class="header" href="#building-arsenal-runtime" id="building-arsenal-runtime">Building Arsenal Runtime</a></h2>
 <p>The <a href="./architecture.html#arsenal-runtime">Arsenal Runtime</a> is in the <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_runtime"><code>arsenal_runtime</code></a> dir. The Arsenal Runtime is also built with Cargo:</p>
 <pre><code class="language-bash">cd arsenal_runtime
-cargo +stable-2019-07-01 build
+cargo +stable-2019-05-23 build
 </code></pre>
 <h2><a class="header" href="#packaging-arsenal-blender-plugin" id="packaging-arsenal-blender-plugin">Packaging Arsenal Blender Plugin</a></h2>
 <p>After you have built Core and the Runtime, you have to copy the built assets to the <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_blender"><code>arsenal_blender</code></a> dir. On Linux and MacOS you can create symlinks to avoid having to re-copy the assets every time you rebuild them during development.</p>
