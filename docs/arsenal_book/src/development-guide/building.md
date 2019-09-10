@@ -98,8 +98,11 @@ After those are in place, you can copy, on Windows, or symlink, on Mac and Linux
 # Windows
 cp arsenal_blender ${APPDATA}/Blender\ Foundation/Blender/2.80/scripts/addons
 
-# Linux & MacOS
+# Linux
 ln -s /path/to/arsenal/arsenal_blender ~/.config/blender/2.8/scripts/addons
+
+# MacOS
+ln -s /path/to/arsenal/arsenal_blender /Users/yourusername/Library/Application\ Support/Blender/2.80/scripts/addons/
 ```
 
 When that is done you just have to enable the plugin from the Blender interface and you are finished!
