@@ -1,6 +1,6 @@
 # The Vision
 
-These need to be refined into a more succinct vision statement, but here are the major design points that drive the Arsenal vision:
+In the shortest terms, we want to **make an engine that is approachable by as wide an audience as possible while supporting games of any size or complexity**. Here are some specific design goals:
 
 - We need the engine to scale to a game of any size, even up to AAA games, with no technological bottleneck.
     - The engine core should be written in Rust
