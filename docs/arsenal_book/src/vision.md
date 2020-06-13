@@ -1,13 +1,14 @@
 # The Vision
 
-These need to be refined into a more succinct vision statement, but here are the major design points that drive the Arsenal vision:
+The vision of Arsenal is to build an Open Source game engine that is suitable for games of any scale and that is easily approachable by a wide audience of both complete beginners and seasoned experts.
+
+Important points that effect our engine design decisions are:
 
 - We need the engine to scale to a game of any size, even up to AAA games, with no technological bottleneck.
     - The engine core should be written in Rust
         - In order to make sure that engine performance is not a bottleneck, it needs to be written in a language that has multi-threading and that can integrate with native libraries.
         - Rust allows full control while eliminating entire classes of bugs and preventing vulnerabilities and hard to debug issues.
 - We want the engine to be as easy to use and get started with as absolutely possible.
-    - Armory successfully hit a lot of good points on ease of use and Arsenal will take a lot of pointers from Armory in that respect. We want to take all of the best things about Armory's user experience and make sure that Arsenal is not at a disadvantage to Armory in that respect.
     - We want to support visual scripting to allow non-programmers to make their own games.
     - The engine should provide a full Blender integration where you build your game scenes in Blender and export them instantly to a game. ( Textual scripting initially will only be supported in an any external editor such as VSCode, however visual scripting we hope will be done directly within Blender )
 - We want the engine to be efficient.
@@ -16,7 +17,7 @@ These need to be refined into a more succinct vision statement, but here are the
     - The games in the engine should run on lower-end hardware as well as high-end hardware
         - Even though Arsenal should be able to support super large games that require a lot of system resources, it should not be limited in its ability to create small lightweight games that run on less modern and/or lower resource hardware.
 - We want the engine to be mod-able.
-    - Modding is a very big deal to us, partially because modding was one of the major things that inspired us to want to make games in the first place. Allowing people to make games that can dynamically load user content is high on our priorities.
+    - Modding is a very big deal to us, partially because modding was one of the major things that inspired us to make games in the first place. Allowing people to make games that can dynamically load user content is high on our priorities.
 - We want the engine to be cross-platform
     - The engine should be able to run on all of the major platforms including game consoles and the web:
         - Windows
