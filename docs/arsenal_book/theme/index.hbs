@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="{{ language }}" class="sidebar-visible no-js">
+<html lang="{{ language }}" class="sidebar-visible no-js {{ default_theme }}">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -39,7 +39,7 @@
         <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         {{/if}}
 
-        <!-- Matomo -->
+        <!-- CHANGED: Matomo -->
         <script type="text/javascript">
         var _paq = window._paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
@@ -56,11 +56,11 @@
         <noscript><p><img src="//matomo.katharostech.com/matomo.php?idsite=4&amp;rec=1" style="border:0;" alt="" /></p></noscript>
         <!-- End Matomo Code -->
     </head>
-    <body class="{{ default_theme }}">
+    <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "{{ path_to_root }}";
-            var default_theme = "{{ default_theme }}";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "{{ preferred_dark_theme }}" : "{{ default_theme }}";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -84,8 +84,11 @@
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme + ' js';
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('{{ default_theme }}')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -111,44 +114,44 @@
 
             <div class="page">
                 {{> header}}
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">{{ theme_option "Light" }}</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">{{ theme_option "Rust" }}</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">{{ theme_option "Coal" }}</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">{{ theme_option "Navy" }}</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">{{ theme_option "Ayu" }}</button></li>
-                            </ul>
-                            {{#if search_enabled}}
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            {{/if}}
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">{{ theme_option "Light" }}</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">{{ theme_option "Rust" }}</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">{{ theme_option "Coal" }}</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">{{ theme_option "Navy" }}</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">{{ theme_option "Ayu" }}</button></li>
+                        </ul>
+                        {{#if search_enabled}}
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        {{/if}}
+                    </div>
 
-                        <h1 class="menu-title">{{ book_title }}</h1>
+                    <h1 class="menu-title">{{ book_title }}</h1>
 
-                        <div class="right-buttons">
-                            <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                            {{#if git_repository_url}}
-                            <a href="{{git_repository_url}}" title="Project Source Code" aria-label="Project Source Code">
-                                <i id="git-repository-button" class="fa {{git_repository_icon}}"></i>
-                            </a>
-                            <a href="{{git_repository_url}}/edit/master/docs/arsenal_book/src/{{path}}" title="Edit page on GitHub" aria-label="Edit page on GitHub">
-                                <i id="git-repository-button" class="fa fa-pencil"></i>
-                            </a>
-                            {{/if}}
-                        </div>
+                    <div class="right-buttons">
+                        <a href="{{ path_to_root }}print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        {{#if git_repository_url}}
+                        <a href="{{git_repository_url}}" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa {{git_repository_icon}}"></i>
+                        </a>
+                        <!-- CHANGED: Edit link -->
+                        <a href="{{git_repository_url}}/edit/master/docs/arsenal_book/src/{{path}}" title="Edit page on GitHub" aria-label="Edit page on GitHub">
+                            <i id="git-repository-button" class="fa fa-pencil"></i>
+                        </a>
+                        {{/if}}
                     </div>
                 </div>
 
@@ -200,13 +203,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 {{#previous}}
-                    <a href="{{ path_to_root }}{{link}}" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="{{ path_to_root }}{{link}}" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 {{/previous}}
 
                 {{#next}}
-                    <a href="{{ path_to_root }}{{link}}" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="{{ path_to_root }}{{link}}" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 {{/next}}
@@ -221,7 +224,7 @@
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();
-                    location.reload(true); // force reload from server (not from cache)
+                    location.reload();
                 }
             };
 
@@ -247,6 +250,18 @@
                 ga('create', '{{google_analytics}}', 'auto');
                 ga('send', 'pageview');
             }
+        </script>
+        {{/if}}
+
+        {{#if playpen_line_numbers}}
+        <script type="text/javascript">
+            window.playpen_line_numbers = true;
+        </script>
+        {{/if}}
+        
+        {{#if playpen_copyable}}
+        <script type="text/javascript">
+            window.playpen_copyable = true;
         </script>
         {{/if}}
 

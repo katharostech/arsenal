@@ -4,7 +4,7 @@ name: book
   
 steps:
   - name: test
-    image: hrektts/mdbook
+    image: hrektts/mdbook:0.3.7
     commands:
       - cd docs/arsenal_book
       - mdbook test
