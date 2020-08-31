@@ -1,50 +1,47 @@
-# Overview
+# Arsenal
 
-Arsenal is a Blender integrated game engine written in Rust. The project is in *very* early stages of development, but we are doing the planning, investigation, experimentation, and documentation that is necessary to get the project going. The source code for the project is on [GitHub][gh].
+![arsenal_banner](./assets/logo-3d-banner-with-bg.png)
 
 [gh]: https://github.com/katharostech/arsenal
 
-## Getting Started
+## The Vision
 
-If you want to try out Arsenal, you can download the latest release [here][releases]. The [change log][changelog] will have the list of the updates made with each release. The [getting started](./getting-started.md) page will show you how to install Arsenal and run your first game.
+Arsenal is a Blender game engine written in Rust and developed by [Katharos Technology][Katharostech.com]. With Arsenal we want to create an Open Source game engine that will bring the ability to make games of any scale, to users of any experience level. Arsenal will combine the powerful user interface of [Blender] with a high performance game engine core written in [Rust].
 
-[releases]: https://github.com/katharostech/arsenal/releases
-[changelog]: https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md
+Friendly user-experience and beginner accessibility will be important on the list of features for Arsenal, but all of that ease of use must not come at the disadvantage of performance: Arsenal should be able to produce games of any size or complexity.
 
-## Motivation
+To program your games, Arsenal will incorporate scripting languages such as Python, in addition to being able to use logic nodes inside of Blender for a graphical programming experience. And if you want, you will always be able to write Rust to get the maximum performance.
 
-We at [Katharos Technology][kt] have been planning to use [Armory3D][arm] for our games until recent [concerns] about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.
+Arsenal is our dream for the ultimate game engine, but there is a lot of work that needs to be done. By [sponsoring us][sponsor] on GitHub you help bring that dream to reality. You can learn more about the [vision of Arsenal][vision] or check out the [FAQ]. We also posting any updates on Arsenal development in the [Arsenal category][category] of our website.
 
-Arsenal will be built on top of the [Amethyst][amethyst] game engine and will provide a full Blender integration that will allow you to build games in Blender. Arsenal will also come with a Logic Node system that will allow non-programmers to build out game logic.
+[Blender]: https://blender.org
+[Rust]: https://rust-lang.org
+[sponsor]: https://github.com/sponsors/katharostech
+[FAQ]: ./FAQ.md
+[docs]: https://katharostech.github.io/arsenal/index.html
+[vision]: ./vision.md
+[category]: https://katharostech.com/tag/arsenal
 
-More details of what we are trying to accomplish with Arsenal can be found in our [Vision](./vision.md).
+## Proof of Concept
 
-[kt]: https://katharostech.com
-[arm]: https://armory3d.org/
-[concerns]: http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag
-[amethyst]: https://amethyst.rs
-
-## Roadmap
-
-You can view our [roadmap] by looking at the Sprints on Taiga. Each sprint represents an upcoming release and the stories that we plan on working on for that release. You can also see what work is in progress on the [Kanban board][kanban]. See the Taiga [wiki] for more information on our issue workflow.
-
-[roadmap]: https://tree.taiga.io/project/zicklag-arsenal/backlog
-[workboard]: https://github.com/katharostech/arsenal/projects/1
-[kanban]: https://tree.taiga.io/project/zicklag-arsenal/kanban
-[wiki]: https://tree.taiga.io/project/zicklag-arsenal/wiki
-
-## News
-
-We will be posting updates on the development progress of Arsenal on the [Arsenal feed][arsenal_feed] at [Katharostech.com]. Releases of Arsenal will be tracked in the [changelog]. Notable milestones or events will be put on the [News] page.
+We have [downloads] of our first Arsenal proof-of-concept for 64bit Windows, Mac, and Linux, and a [Getting Started][started] guide that will walk you through testing it out. This is just the proof-of concept, though, and you cannot yet make real games with it.
 
 [arsenal_feed]: https://katharostech.com/tag/arsenal
 [Katharostech.com]: https://katharostech.com
-[changelog]: https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md
-[News]: ./news.md
+[downloads]: https://github.com/katharostech/arsenal/releases
+[started]: ./getting-started.md
 
-## Feedback
+### Design & Architecture
 
-If you have any thoughts or feedback you can open an [issue] or contact us on our [website][contact].
+The current design plan is to build Arsenal as a Blender plugin that uses the [Bevy] game engine at its core. The [architecture] documentation explains the components in more detail.
 
-[issue]: https://tree.taiga.io/project/zicklag-arsenal/issues
-[contact]: https://katharostech.com/contact
+[Bevy]: https://bevyengine.org/
+[architecture]: ./development-guide/architecture.md
+
+## Bugs, Feature Requests, and Questions
+
+We use [Taiga] for issue tracking. If you have any feature requests, bug reports, or questions you can submit an issue on our [Arsenal Taiga project][project].
+
+[Taiga]: https://taiga.io/
+[project]: https://tree.taiga.io/project/zicklag-arsenal/issues
+[wiki]: https://tree.taiga.io/project/zicklag-arsenal/wiki/home

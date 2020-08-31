@@ -28,16 +28,17 @@ When you run an Arsenal game, your Blender file and all of the Logic Nodes and o
 
 The [Arsenal Runtime][arsenal_runtime] is what is responsible for actually running the game data that is exported from Blender. This runs completely **outside** of Blender. This is important for licensing reasons, because you can not commercially market a game that has any Blender code in it. Arsenal games, despite being *developed* in Blender, will have no Blender code in the game.
 
-The Arsenal Runtime is written in Rust and combines great tools from the Rust gamedev community. The bulk of the Arsenal runtime is built on top of the [Amethyst](https://amethyst.rs) game engine.
+The Arsenal Runtime is written in Rust and combines great tools from the Rust gamedev community. The core of the Arsenal runtime is built on top of the [Bevy] game engine.
 
+[Bevy]: https://bevyengine.org
 [arsenal_runtime]: https://github.com/katharostech/arsenal/tree/master/arsenal_runtime
 
-### Amethyst
+### Bevy
 
-Amethyst pulls most of the weight in the Arsenal runtime and provides windowing, audio, an ECS, a Renderer, an input system, and other components foundational to a running game. Amethyst takes care of a lot of the difficult aspects of designing a game engine for us and allows us to focus on our Blender user experience and integration.
+[Bevy] will pull al lot of the weight in the Arsenal runtime and provides windowing, audio, an ECS, a Renderer, an input system, and other components foundational to a running game. Bevy takes care of a lot of the difficult aspects of designing a game engine for us and allows us to focus on our Blender user experience and integration.
 
-Amethyst is also very modular in design which allows us to add or replace components as we need without locking us into a particular design.
+Bevy is also very modular in design which allows us to add or replace components as we need without locking us into a particular design.
 
 ### Arsenal Components
 
-In addition to Amethyst, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Amethyst components. These will also be bundled into the Arsenal Runtime.
+In addition to Bevy, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Bevy components. These will also be bundled into the Arsenal Runtime.

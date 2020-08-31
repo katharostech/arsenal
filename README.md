@@ -40,9 +40,8 @@ The documentation can be found at [katharostech.github.io/arsenal][docs]. We hav
 
 ### Design & Architecture
 
-The current design plan is to build Arsenal as a Blender plugin that uses the [Bevy] game engine at its core. The [architecture] page in the docs shows the basic design idea, but we have recently decided to replace [Amethyst] with Bevy.
+The current design plan is to build Arsenal as a Blender plugin that uses the [Bevy] game engine at its core. The [architecture] documentation explains the components in more detail.
 
-[Amethyst]: https://amethyst.rs
 [Bevy]: https://bevyengine.org/
 [architecture]: https://katharostech.github.io/arsenal/development-guide/architecture.html
 
