@@ -174,21 +174,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
-<p>Arsenal is a Blender integrated game engine written in Rust. The project is in <em>very</em> early stages of development, but we are doing the planning, investigation, experimentation, and documentation that is necessary to get the project going. The source code for the project is on <a href="https://github.com/katharostech/arsenal">GitHub</a>.</p>
-<h2><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h2>
-<p>If you want to try out Arsenal, you can download the latest release <a href="https://github.com/katharostech/arsenal/releases">here</a>. The <a href="https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md">change log</a> will have the list of the updates made with each release. The <a href="./getting-started.html">getting started</a> page will show you how to install Arsenal and run your first game.</p>
-<h2><a class="header" href="#motivation" id="motivation">Motivation</a></h2>
-<p>We at <a href="https://katharostech.com">Katharos Technology</a> have been planning to use <a href="https://armory3d.org/">Armory3D</a> for our games until recent <a href="http://forums.armory3d.org/t/armor3d-capability-questions/3118/8?u=zicklag">concerns</a> about Armory3D's Haxe runtimes were brought up and we decided that Armory runs the risk of not being able to handle large games due to the Haxe core. We believe that Rust is the best language for building a game engine and as such have been doing some investigation on how we would build a Rust game engine that offers the same advantages as Armory3D.</p>
-<p>Arsenal will be built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine and will provide a full Blender integration that will allow you to build games in Blender. Arsenal will also come with a Logic Node system that will allow non-programmers to build out game logic.</p>
-<p>More details of what we are trying to accomplish with Arsenal can be found in our <a href="./vision.html">Vision</a>.</p>
-<h2><a class="header" href="#roadmap" id="roadmap">Roadmap</a></h2>
-<p>You can view our <a href="https://tree.taiga.io/project/zicklag-arsenal/backlog">roadmap</a> by looking at the Sprints on Taiga. Each sprint represents an upcoming release and the stories that we plan on working on for that release. You can also see what work is in progress on the <a href="https://tree.taiga.io/project/zicklag-arsenal/kanban">Kanban board</a>. See the Taiga <a href="https://tree.taiga.io/project/zicklag-arsenal/wiki">wiki</a> for more information on our issue workflow.</p>
-<h2><a class="header" href="#news" id="news">News</a></h2>
-<p>We will be posting updates on the development progress of Arsenal on the <a href="https://katharostech.com/tag/arsenal">Arsenal feed</a> at <a href="https://katharostech.com">Katharostech.com</a>. Releases of Arsenal will be tracked in the <a href="https://github.com/katharostech/arsenal/blob/master/CHANGELOG.md">changelog</a>. Notable milestones or events will be put on the <a href="./news.html">News</a> page.</p>
-<h2><a class="header" href="#feedback" id="feedback">Feedback</a></h2>
-<p>If you have any thoughts or feedback you can open an <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">issue</a> or contact us on our <a href="https://katharostech.com/contact">website</a>.</p>
-<h1><a class="header" href="#getting-started-1" id="getting-started-1">Getting Started</a></h1>
+                        <h1><a class="header" href="#arsenal" id="arsenal">Arsenal</a></h1>
+<p><img src="./assets/logo-3d-banner-with-bg.png" alt="arsenal_banner" /></p>
+<h2><a class="header" href="#the-vision" id="the-vision">The Vision</a></h2>
+<p>Arsenal is a Blender game engine written in Rust and developed by <a href="https://katharostech.com">Katharos Technology</a>. With Arsenal we want to create an Open Source game engine that will bring the ability to make games of any scale, to users of any experience level. Arsenal will combine the powerful user interface of <a href="https://blender.org">Blender</a> with a high performance game engine core written in <a href="https://rust-lang.org">Rust</a>.</p>
+<p>Friendly user-experience and beginner accessibility will be important on the list of features for Arsenal, but all of that ease of use must not come at the disadvantage of performance: Arsenal should be able to produce games of any size or complexity.</p>
+<p>To program your games, Arsenal will incorporate scripting languages such as Python, in addition to being able to use logic nodes inside of Blender for a graphical programming experience. And if you want, you will always be able to write Rust to get the maximum performance.</p>
+<p>Arsenal is our dream for the ultimate game engine, but there is a lot of work that needs to be done. By <a href="https://github.com/sponsors/katharostech">sponsoring us</a> on GitHub you help bring that dream to reality. You can learn more about the <a href="./vision.html">vision of Arsenal</a> or check out the <a href="./FAQ.html">FAQ</a>. We also posting any updates on Arsenal development in the <a href="https://katharostech.com/tag/arsenal">Arsenal category</a> of our website.</p>
+<h2><a class="header" href="#proof-of-concept" id="proof-of-concept">Proof of Concept</a></h2>
+<p>We have <a href="https://github.com/katharostech/arsenal/releases">downloads</a> of our first Arsenal proof-of-concept for 64bit Windows, Mac, and Linux, and a <a href="./getting-started.html">Getting Started</a> guide that will walk you through testing it out. This is just the proof-of concept, though, and you cannot yet make real games with it.</p>
+<h3><a class="header" href="#design--architecture" id="design--architecture">Design &amp; Architecture</a></h3>
+<p>The current design plan is to build Arsenal as a Blender plugin that uses the <a href="https://bevyengine.org/">Bevy</a> game engine at its core. The <a href="./development-guide/architecture.html">architecture</a> documentation explains the components in more detail.</p>
+<h2><a class="header" href="#bugs-feature-requests-and-questions" id="bugs-feature-requests-and-questions">Bugs, Feature Requests, and Questions</a></h2>
+<p>We use <a href="https://taiga.io/">Taiga</a> for issue tracking. If you have any feature requests, bug reports, or questions you can submit an issue on our <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">Arsenal Taiga project</a>.</p>
+<h1><a class="header" href="#getting-started" id="getting-started">Getting Started</a></h1>
 <p>Welcome to Arsenal's Getting Started page! This guide will tell you how to install Arsenal and run your first &quot;game&quot;.</p>
 <blockquote>
 <p><strong>Disclaimer:</strong> Arsenal cannot make real games yet. Currently Arsenal can export your Blender scene to a game with colorless models, static lights, and an orbit camera. That's it. Still, this represents a big step in the direction of allowing you to make games inside of Blender, so if you are still interested, lets get started!</p>
@@ -222,7 +221,7 @@
 <h2><a class="header" href="#summary" id="summary">Summary</a></h2>
 <p>That concludes our tutorial and shows you everything that Arsenal can do so far. The next thing that we will be working on is getting scripting support so that you can start to make the game do stuff.</p>
 <p>If you had any trouble getting through the tutorial or if you have any questions, you can open up a <a href="https://tree.taiga.io/project/zicklag-arsenal/issues">Taiga issue</a> and we'll try to get it fixed. If you like what we are doing and you think that Arsenal is cool, give us a star on <a href="https://github.com/katharostech/arsenal">GitHub</a>!</p>
-<h1><a class="header" href="#the-vision" id="the-vision">The Vision</a></h1>
+<h1><a class="header" href="#the-vision-1" id="the-vision-1">The Vision</a></h1>
 <p>The vision of Arsenal is to build an Open Source game engine that is suitable for games of any scale and that is easily approachable by a wide audience of both complete beginners and seasoned experts.</p>
 <p>Important points that effect our engine design decisions are:</p>
 <ul>
@@ -338,12 +337,12 @@
 <p>When you run an Arsenal game, your Blender file and all of the Logic Nodes and other code get exported to a <code>build_[projectname]</code> directory adjacent to the Blend. The Arsenal Blender Core is responsible for doing the export. The exported data is then loaded and run inside the Arsenal Runtime.</p>
 <h2><a class="header" href="#arsenal-runtime" id="arsenal-runtime">Arsenal Runtime</a></h2>
 <p>The <a href="https://github.com/katharostech/arsenal/tree/master/arsenal_runtime">Arsenal Runtime</a> is what is responsible for actually running the game data that is exported from Blender. This runs completely <strong>outside</strong> of Blender. This is important for licensing reasons, because you can not commercially market a game that has any Blender code in it. Arsenal games, despite being <em>developed</em> in Blender, will have no Blender code in the game.</p>
-<p>The Arsenal Runtime is written in Rust and combines great tools from the Rust gamedev community. The bulk of the Arsenal runtime is built on top of the <a href="https://amethyst.rs">Amethyst</a> game engine.</p>
-<h3><a class="header" href="#amethyst" id="amethyst">Amethyst</a></h3>
-<p>Amethyst pulls most of the weight in the Arsenal runtime and provides windowing, audio, an ECS, a Renderer, an input system, and other components foundational to a running game. Amethyst takes care of a lot of the difficult aspects of designing a game engine for us and allows us to focus on our Blender user experience and integration.</p>
-<p>Amethyst is also very modular in design which allows us to add or replace components as we need without locking us into a particular design.</p>
+<p>The Arsenal Runtime is written in Rust and combines great tools from the Rust gamedev community. The core of the Arsenal runtime is built on top of the <a href="https://bevyengine.org">Bevy</a> game engine.</p>
+<h3><a class="header" href="#bevy" id="bevy">Bevy</a></h3>
+<p><a href="https://bevyengine.org">Bevy</a> will pull al lot of the weight in the Arsenal runtime and provides windowing, audio, an ECS, a Renderer, an input system, and other components foundational to a running game. Bevy takes care of a lot of the difficult aspects of designing a game engine for us and allows us to focus on our Blender user experience and integration.</p>
+<p>Bevy is also very modular in design which allows us to add or replace components as we need without locking us into a particular design.</p>
 <h3><a class="header" href="#arsenal-components" id="arsenal-components">Arsenal Components</a></h3>
-<p>In addition to Amethyst, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Amethyst components. These will also be bundled into the Arsenal Runtime.</p>
+<p>In addition to Bevy, we will also be developing components that are specific to Arsenal. This will include things like live Blender sync and other features, many of which will still be built on top of other Bevy components. These will also be bundled into the Arsenal Runtime.</p>
 <h1><a class="header" href="#building-arsenal" id="building-arsenal">Building Arsenal</a></h1>
 <blockquote>
 <p><strong>Note:</strong> Currently, building Arsenal involves manually compiling the separate components and copying them to the correct spot in the Blender plugin. This process will soon be automated using a makefile so that you don't have to manually structure the project during development.</p>
@@ -583,7 +582,7 @@ Current branch master is up to date.
 <li><strong>Storage:</strong> The blender format contains a lot of metadata that we don't need for a game, such as the Blender UI layout.</li>
 <li><strong>Efficiency:</strong> If you use the Blender file format, the game would have to decode the .blend file while the game is running. This would involve going through more information than is actually needed in the game and would require more CPU to get the required data. glTF is a very dense format that compactly stores the information we need while also facilitating efficient extraction into a running game.</li>
 </ol>
-<h1><a class="header" href="#news-1" id="news-1">News</a></h1>
+<h1><a class="header" href="#news" id="news">News</a></h1>
 <p>Here is a record of significant events or updates made to the engine. We will make an effort to keep this up-to-date as things progress.</p>
 <h2><a class="header" href="#july-2019" id="july-2019">July 2019</a></h2>
 <ul>
