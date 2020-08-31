@@ -2,11 +2,16 @@
 
 ![arsenal_banner]
 
-[![Build Status][build_status_img]][build_status_lnk]
+<!--
+  Comment out build status for now because the builds are failing and we don't use them for anything but docs at the momen:
+  [![Build Status][build_status_img]][build_status_lnk]
+-->
 
 [arsenal_banner]: ./docs/logo/logo-3d-banner-with-bg.png
 [build_status_img]: https://cloud.drone.io/api/badges/katharostech/arsenal/status.svg 
 [build_status_lnk]: https://cloud.drone.io/katharostech/arsenal
+
+## The Vision
 
 Arsenal is a Blender game engine written in Rust and developed by [Katharos Technology][Katharostech.com]. With Arsenal we want to create an Open Source game engine that will bring the ability to make games of any scale, to users of any experience level. Arsenal will combine the powerful user interface of [Blender] with a high performance game engine core written in [Rust].
 
