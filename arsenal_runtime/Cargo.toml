@@ -1,16 +1,8 @@
 [package]
 name = "arsenal_runtime"
 version = "0.1.0"
+license = "MIT"
 authors = []
 edition = "2018"
 
 [dependencies]
-serde = "1.0"
-amethyst = "0.10"
-amethyst_gltf = "0.5"
-
-# Use the later version of coreaudio-sys that has support for cross-compiling
-# for Mac from Linux.
-[replace.'coreaudio-sys:0.2.2']
-git = "https://github.com/RustAudio/coreaudio-sys.git"
-rev = "13a32d7"

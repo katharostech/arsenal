@@ -2,6 +2,7 @@
 name = "arsenal_blender_core"
 description = "Core library use by the arsenal-blender plugin to perform most tasks"
 version = "0.1.0"
+license = "MIT"
 authors = ["Zicklag <zicklag@katharostech.com>"]
 edition = "2018"
 
