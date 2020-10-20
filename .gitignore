@@ -3,4 +3,9 @@
 # Makes it easy to ignore any files you want in your tree but not in git
 *gitignore*
 !.gitignore
+
 .DS_Store
+
+# Added by cargo
+
+/target
