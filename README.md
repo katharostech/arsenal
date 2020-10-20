@@ -8,12 +8,24 @@
 -->
 
 [arsenal_banner]: ./docs/logo/logo-3d-banner-with-bg.png
-[build_status_img]: https://cloud.drone.io/api/badges/katharostech/arsenal/status.svg 
+[build_status_img]: https://cloud.drone.io/api/badges/katharostech/arsenal/status.svg
 [build_status_lnk]: https://cloud.drone.io/katharostech/arsenal
+
+## Project Status
+
+We're getting back into Arsenal development! For the last year our company has been focused on other initiatives, but we've finally decided it's time to start investing in Arsenal.
+
+We currently have one person working full time on Arsenal, primarily at our own expense, with the goal of releasing Arsenal 0.2. We want to finally produce a full prototype that can actually be used to make basic games and prove that the plan we have is feasible.
+
+We are sprinting towards this goal as fast as we can, for we can't keep this up forever. We will need your help to keep up development! Getting [sponsored on GitHub][sponsor] is the only way that we will be able to continue full time development of Arsenal. Our hope is to make Arsenal 0.2 a release that will spark the interest of the community and show that Arsenal will do what we say it will.
+
+We are posting weekly updates on our progress on the [Arsenal channel][arsenal_channel] on our website, so stay tuned!
+
+[arsenal_channel]: https://katharostech.com/tag/arsenal
 
 ## The Vision
 
-Arsenal is a Blender game engine written in Rust and developed by [Katharos Technology][Katharostech.com]. With Arsenal we want to create an Open Source game engine that will bring the ability to make games of any scale, to users of any experience level. Arsenal will combine the powerful user interface of [Blender] with a high performance game engine core written in [Rust].
+Arsenal is a Blender game engine written in Rust and developed by [Katharos Technology][katharostech.com]. With Arsenal we want to create an Open Source game engine that will bring the ability to make games of any scale, to users of any experience level. Arsenal will combine the powerful user interface of [Blender] with a high performance game engine core written in [Rust].
 
 Friendly user-experience and beginner accessibility will be important on the list of features for Arsenal, but all of that ease of use must not come at the disadvantage of performance: Arsenal should be able to produce games of any size or complexity.
 
@@ -21,20 +33,20 @@ To program your games, Arsenal will incorporate scripting languages such as Pyth
 
 Arsenal is our dream for the ultimate game engine, but there is a lot of work that needs to be done. By [sponsoring us][sponsor] on GitHub you help bring that dream to reality. You can learn more about the [vision of Arsenal][vision] or check out the [FAQ] in the [Arsenal Documentation][docs]. We also posting any updates on Arsenal development in the [Arsenal category][category] of our website.
 
-[Blender]: https://blender.org
-[Rust]: https://rust-lang.org
+[blender]: https://blender.org
+[rust]: https://rust-lang.org
 [sponsor]: https://github.com/sponsors/katharostech
-[FAQ]: https://katharostech.github.io/arsenal/FAQ.html
+[faq]: https://katharostech.github.io/arsenal/FAQ.html
 [docs]: https://katharostech.github.io/arsenal/index.html
 [vision]: https://katharostech.github.io/arsenal/vision.html
 [category]: https://katharostech.com/tag/arsenal
 
 ## Documentation & Proof of Concept
 
-The documentation can be found at [katharostech.github.io/arsenal][docs]. We have [downloads] of our first Arsenal proof-of-concept for 64bit Windows, Mac, and Linux, and a [Getting Started][started] guide that will walk you through testing it out. This is just the proof-of concept, though, and you cannot yet make real games with it.
+The documentation can be found at [katharostech.github.io/arsenal][docs]. We have [downloads] of our first Arsenal proof-of-concept for 64bit Windows, Mac, and Linux, and a [Getting Started][started] guide that will walk you through testing it out. This is only a proof of concept and cannot actually produce games yet. In the next release of Arsenal you will be able to make simple games with scripting.
 
 [arsenal_feed]: https://katharostech.com/tag/arsenal
-[Katharostech.com]: https://katharostech.com
+[katharostech.com]: https://katharostech.com
 [downloads]: https://github.com/katharostech/arsenal/releases
 [started]: https://katharostech.github.io/arsenal/getting-started.html
 
@@ -42,17 +54,9 @@ The documentation can be found at [katharostech.github.io/arsenal][docs]. We hav
 
 The current design plan is to build Arsenal as a Blender plugin that uses the [Bevy] game engine at its core. The [architecture] documentation explains the components in more detail.
 
-[Bevy]: https://bevyengine.org/
+[bevy]: https://bevyengine.org/
 [architecture]: https://katharostech.github.io/arsenal/development-guide/architecture.html
 
 ## Bugs, Feature Requests, and Questions
 
-We use [Taiga] for issue tracking. If you have any feature requests, bug reports, or questions you can submit an issue on our [Arsenal Taiga project][project].
-
-[Taiga]: https://taiga.io/
-[project]: https://tree.taiga.io/project/zicklag-arsenal/issues
-[wiki]: https://tree.taiga.io/project/zicklag-arsenal/wiki/home
-
-## GitHub Stars Over Time
-
-![starcharts stargazers over time](https://starchart.cc/katharostech/arsenal.svg)
+If you have any questions or ideas, don't hesitate to ask! Open a GitHub issue and let us know what you're thinking.
