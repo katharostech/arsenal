@@ -1,5 +1,6 @@
 [workspace]
 members = [
     "arsenal_blender_core",
-    "arsenal_runtime"
+    "arsenal_runtime",
+    "xtask",
 ]
