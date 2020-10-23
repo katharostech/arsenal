@@ -7,7 +7,8 @@ use safer_ffi::prelude::*;
 
 use std::any::TypeId;
 
-use crate::types::*;
+use crate::ffi::*;
+use crate::metadata::*;
 
 /// Add the transform types to the given vector
 pub fn add_types(types: &mut HashMap<ComponentId, ScriptTypeInfo>) {

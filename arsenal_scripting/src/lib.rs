@@ -7,16 +7,16 @@
 use std::{fs::OpenOptions, path::PathBuf};
 
 use bevy::prelude::Plugin;
-use serde::{Deserialize, Serialize};
 
 #[macro_use]
 extern crate dlopen_derive;
 use dlopen::wrapper::{Container, WrapperApi};
 
-pub mod bindings;
+mod bindings;
+mod metadata;
+mod ffi;
 
-mod types;
-pub use types::*;
+use crate::metadata::AdapterInfo;
 
 /// The extension for dynamic library   
 #[cfg(target_os = "linux")]
@@ -40,19 +40,13 @@ impl ScriptingPlugin {
         }
     }
 }
-
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(deny_unknown_fields)]
-struct AdapterInfo {
-    module_path: String,
-}
-
 #[derive(WrapperApi)]
 struct LanguageAdapterCApi {
     init_plugin: fn(),
 }
 
 impl Plugin for ScriptingPlugin {
+    /// Initialize game scripts and create necessary systems
     fn build(&self, _app: &mut bevy::prelude::AppBuilder) {
         // Get the path to the script dir
         let script_dir = PathBuf::from(&self.script_path);

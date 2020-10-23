@@ -1,49 +1,12 @@
 // Necessary for some macros because they won't generate docs
 #![allow(missing_docs)]
 
-use bevy::ecs::ComponentId;
 use safer_ffi::prelude::*;
 
 use ::std::{
     any::{Any, TypeId},
-    borrow::Cow,
     sync::Arc,
 };
-
-/// All of the information about a component type necessary to be used for scripting
-pub struct ScriptTypeInfo {
-    /// The way this component is represented to scripts from a data layout perspective
-    pub kind: TypeKind,
-    /// The definitions of the methods associated to to the [`method_pointers`] with the same index.
-    pub method_definitions: Vec<ScriptMethodDefinition>,
-    /// The methods associated to this component
-    pub method_pointers:
-        Vec<extern "C" fn(FFIObj /*this*/, c_slice::Ref<FFIObj> /*args*/) -> FFIObj>,
-}
-
-/// The kind of component from a data layout perspective
-pub enum TypeKind {
-    /// An opaque pointer to the component data
-    ///
-    /// Components of this kind can only be modified through associated methods
-    Pointer,
-}
-
-/// the definition for a script type's method
-pub struct ScriptMethodDefinition {
-    pub name: Cow<'static, str>,
-    pub arguments: Vec<ScriptMethodArg>,
-    pub return_type: ComponentId,
-}
-
-/// An argument to a script type's method
-pub struct ScriptMethodArg {
-    pub name: Cow<'static, str>,
-    pub type_id: ComponentId,
-}
-
-/// Represents a borrow of a scripted type
-pub struct TypeBorrow {}
 
 mod ty {
     use safer_ffi::derive_ReprC;
