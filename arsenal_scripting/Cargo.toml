@@ -1,0 +1,14 @@
+[package]
+name = "arsenal_scripting"
+version = "0.1.0"
+authors = ["Zicklag <zicklag@katharostech.com>"]
+edition = "2018"
+
+[dependencies]
+bevy = { path = "../lib/bevy" }
+pyo3 = "0.12.3"
+safer-ffi = { version = "0.0.5", features = ["proc_macros"] }
+dlopen = "0.1.8"
+dlopen_derive = "0.1.4"
+serde = "1.0.117"
+serde_yaml = "0.8.13"

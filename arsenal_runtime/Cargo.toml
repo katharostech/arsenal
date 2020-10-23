@@ -6,3 +6,4 @@ authors = []
 edition = "2018"
 
 [dependencies]
+bevy = { path = "../lib/bevy" }

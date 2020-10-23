@@ -1,0 +1,4 @@
+[submodule "lib/bevy"]
+	path = lib/bevy
+	url = https://github.com/katharostech/bevy.git
+	branch = arsenal

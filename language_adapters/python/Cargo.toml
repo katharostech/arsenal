@@ -1,0 +1,12 @@
+[package]
+name = "python_adapter"
+version = "0.1.0"
+authors = ["Zicklag <zicklag@katharostech.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# pyo3 = "0.12.3"
+safer-ffi = { version = "0.0.5", features = ["proc_macros"] }
