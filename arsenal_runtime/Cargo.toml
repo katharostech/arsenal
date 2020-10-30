@@ -7,3 +7,4 @@ edition = "2018"
 
 [dependencies]
 bevy = { path = "../lib/bevy" }
+arsenal_scripting = { path = "../arsenal_scripting" }
