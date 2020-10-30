@@ -6,7 +6,7 @@ members = [
     "arsenal_scripting",
 
     # Language adapters
-    "language_adapters/python",
+    "arsenal_scripting/language_adapters/python",
 
     # Cargo utilities
     "xtask",
