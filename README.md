@@ -2,14 +2,13 @@
 
 ![arsenal_banner]
 
-<!--
-  Comment out build status for now because the builds are failing and we don't use them for anything but docs at the momen:
-  [![Build Status][build_status_img]][build_status_lnk]
--->
+[![Build Status][build_status_img]][build_status_lnk] [![Zulip Chat][zulip_chat_img]][zulip_chat_lnk]
 
 [arsenal_banner]: ./docs/logo/logo-3d-banner-with-bg.png
 [build_status_img]: https://cloud.drone.io/api/badges/katharostech/arsenal/status.svg
 [build_status_lnk]: https://cloud.drone.io/katharostech/arsenal
+[zulip_chat_img]: https://img.shields.io/badge/Zulip-Chat-blueviolet
+[zulip_chat_lnk]: https://arsenal.zulipchat.com/join/2jh4ftz4wvfqfmkt57b2cfkl/
 
 ## Project Status
 
