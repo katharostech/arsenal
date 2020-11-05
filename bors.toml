@@ -1,0 +1,7 @@
+status = [
+  "continuous-integration/drone/push",
+]
+
+pr_status = [
+    "license/cla"
+]
