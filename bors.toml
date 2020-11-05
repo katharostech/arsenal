@@ -1,0 +1,4 @@
+status = [
+  "continuous-integration/drone/push",
+  "license/cla"
+]
