@@ -40,6 +40,7 @@ Arsenal is our dream for the ultimate game engine, but there is a lot of work th
 [docs]: https://katharostech.github.io/arsenal/index.html
 [vision]: https://katharostech.github.io/arsenal/vision.html
 [category]: https://katharostech.com/tag/arsenal
+[katharostech.com]: https://katharostech.com
 
 ## Proof of Concept
 
