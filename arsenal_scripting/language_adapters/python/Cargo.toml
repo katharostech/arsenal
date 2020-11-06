@@ -11,3 +11,4 @@ crate-type = ["cdylib"]
 arsenal_scripting_types = { path = "../../types" }
 pyo3 = "0.12.3"
 safer-ffi = { version = "0.0.5", features = ["proc_macros"] }
+serde_cbor = "0.11.1"

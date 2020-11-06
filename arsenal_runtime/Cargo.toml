@@ -8,3 +8,4 @@ edition = "2018"
 [dependencies]
 bevy = { path = "../lib/bevy" }
 arsenal_scripting = { path = "../arsenal_scripting" }
+serde_cbor = "0.11.1"

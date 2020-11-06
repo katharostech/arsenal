@@ -1,3 +1,0 @@
-module_path: ../../../target/debug/libpython_adapter
-components_path: ./components
-systems_path: ./systems

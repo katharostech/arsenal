@@ -4,100 +4,35 @@
 
 #![warn(missing_docs)]
 
-use std::{fs::OpenOptions, path::PathBuf};
-
-use arsenal_scripting_types::*;
-use bevy::prelude::Plugin;
-
 #[macro_use]
 extern crate dlopen_derive;
-use dlopen::wrapper::{Container, WrapperApi};
+use arsenal_scripting_types::LanguageAdapterInitArgsC;
+use dlopen::wrapper::WrapperApi;
 
+mod bevy_plugin;
 mod bindings;
 mod ffi;
 mod metadata;
 mod type_registry;
+mod tools;
+mod utils;
 
-/// The extension for dynamic library   
+pub use bevy_plugin::*;
+pub use tools::*;
+
+/// The extension for dynamic libraries on the target platform
 #[cfg(target_os = "linux")]
-const SHARED_LIB_EXT: &str = "so";
+pub(crate) const SHARED_LIB_EXT: &str = "so";
+/// The extension for dynamic libraries on the target platform
 #[cfg(target_os = "windows")]
-const SHARED_LIB_EXT: &str = "dll";
+pub(crate) const SHARED_LIB_EXT: &str = "dll";
+/// The extension for dynamic libraries on the target platform
 #[cfg(target_os = "macos")]
-const SHARED_LIB_EXT: &str = "dylib";
+pub(crate) const SHARED_LIB_EXT: &str = "dylib";
 
-/// The Arsenal scripting plugin for Bevy
-pub struct ScriptingPlugin {
-    /// The path to the script dir containing all of the game's scripts
-    script_path: String,
-}
-
-impl ScriptingPlugin {
-    /// Initialize the scripting plugin by providing a path to the script dir
-    pub fn new(script_path: &str) -> Self {
-        ScriptingPlugin {
-            script_path: script_path.into(),
-        }
-    }
-}
+/// The C API implemented by language adapters
 #[derive(WrapperApi)]
-struct LanguageAdapterCApi {
+pub(crate) struct LanguageAdapterCApi {
     init_adapter: fn(args: &LanguageAdapterInitArgsC),
-}
-
-impl Plugin for ScriptingPlugin {
-    /// Initialize game scripts and create necessary systems
-    fn build(&self, _app: &mut bevy::prelude::AppBuilder) {
-        // Get the path to the script dir
-        let script_dir = PathBuf::from(&self.script_path);
-
-        // Ensure the path points to a directory
-        if !script_dir.is_dir() {
-            panic!("Specified script path is not a directory");
-        }
-
-        // List the files in the dir
-        for item in script_dir.read_dir().expect("Could not read_dir") {
-            let item = item.expect("Could not read path in script dir");
-
-            // If the path is a yaml file
-            let filename = item.file_name();
-            let filename = filename.to_string_lossy();
-            if item.path().is_file() && (filename.ends_with("yml") || filename.ends_with("yaml")) {
-                // Assume the file is an adapter definition and parse it
-                let adapter_file = OpenOptions::new()
-                    .read(true)
-                    .open(item.path())
-                    .expect("Could not open adapter module definition file");
-                let adapter_info: AdapterInfo = serde_yaml::from_reader(adapter_file)
-                    .expect("Could not parse adapter module definition file");
-
-                // Get the path to the adapter module
-                let module_path = item
-                    .path()
-                    .parent()
-                    .expect("Path without parent!")
-                    .join(format!("{}.{}", adapter_info.module_path, SHARED_LIB_EXT));
-
-                if !module_path.exists() {
-                    panic!("Module path does not exist: {:?}", module_path);
-                }
-
-                // Load the adapter module
-                let module: Container<LanguageAdapterCApi> =
-                    unsafe { Container::load(module_path) }
-                        .expect("Could not load adapter module file");
-
-                // Initialize the module
-                module.init_adapter(&LanguageAdapterInitArgsC {
-                    adapter_info: adapter_info.into(),
-                    callback_test,
-                });
-            }
-        }
-    }
-}
-
-extern "C" fn callback_test() {
-    println!("This is a callback!");
+    get_components: fn() -> safer_ffi::Vec<u8>,
 }
