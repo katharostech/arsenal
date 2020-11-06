@@ -6,6 +6,7 @@
 
 use std::{fs::OpenOptions, path::PathBuf};
 
+use arsenal_scripting_types::*;
 use bevy::prelude::Plugin;
 
 #[macro_use]
@@ -13,10 +14,9 @@ extern crate dlopen_derive;
 use dlopen::wrapper::{Container, WrapperApi};
 
 mod bindings;
-mod metadata;
 mod ffi;
-
-use crate::metadata::AdapterInfo;
+mod metadata;
+mod type_registry;
 
 /// The extension for dynamic library   
 #[cfg(target_os = "linux")]
@@ -42,7 +42,7 @@ impl ScriptingPlugin {
 }
 #[derive(WrapperApi)]
 struct LanguageAdapterCApi {
-    init_plugin: fn(),
+    init_adapter: fn(args: &LanguageAdapterInitArgsC),
 }
 
 impl Plugin for ScriptingPlugin {
@@ -89,8 +89,15 @@ impl Plugin for ScriptingPlugin {
                         .expect("Could not load adapter module file");
 
                 // Initialize the module
-                module.init_plugin();
+                module.init_adapter(&LanguageAdapterInitArgsC {
+                    adapter_info: adapter_info.into(),
+                    callback_test,
+                });
             }
         }
     }
+}
+
+extern "C" fn callback_test() {
+    println!("This is a callback!");
 }

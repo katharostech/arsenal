@@ -4,6 +4,7 @@ members = [
     "arsenal_blender_core",
     "arsenal_runtime",
     "arsenal_scripting",
+    "arsenal_scripting/types",
 
     # Language adapters
     "arsenal_scripting/language_adapters/python",

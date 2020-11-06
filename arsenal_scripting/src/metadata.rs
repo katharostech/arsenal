@@ -6,14 +6,6 @@ use crate::ffi::FFIObj;
 
 use std::borrow::Cow;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(deny_unknown_fields)]
-pub struct AdapterInfo {
-    pub module_path: String,
-    pub components_path: String,
-    pub systems_path: String,
-}
-
 /// All of the information about a component type necessary to be used for scripting
 pub struct ScriptTypeInfo {
     /// The way this component is represented to scripts from a data layout perspective

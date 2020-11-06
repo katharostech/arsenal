@@ -8,5 +8,6 @@ edition = "2018"
 crate-type = ["cdylib"]
 
 [dependencies]
-# pyo3 = "0.12.3"
+arsenal_scripting_types = { path = "../../types" }
+pyo3 = "0.12.3"
 safer-ffi = { version = "0.0.5", features = ["proc_macros"] }
