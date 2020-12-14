@@ -2,4 +2,5 @@ collective: arsenal
 tiers:
   - tiers: "*"
     labels: ["backer"]
-    message: "Hey <author> , thanks for supporting us on Open Collective :heart::heart::heart: We'll make sure that this issue is reviewed by a team member!"
+    message: "Hey <author> , thanks for supporting us on Open Collective! We'll make sure that this issue is reviewed by a team member!"
+invitation: false
