@@ -17,7 +17,7 @@ We're getting back into Arsenal development! For the last year our company has b
 
 We currently have one person working full time on Arsenal, primarily at our own expense, with the goal of releasing Arsenal 0.2. We want to finally produce a full prototype that can actually be used to make basic games and prove that the plan we have is feasible.
 
-We are sprinting towards this goal as fast as we can, for we can't keep this up forever. We will need your help to keep up development! Getting [sponsored on GitHub][sponsor] is the only way that we will be able to continue full time development of Arsenal. Our hope is to make Arsenal 0.2 a release that will spark the interest of the community and show that Arsenal will do what we say it will.
+We are sprinting towards this goal as fast as we can, for we can't keep this up forever. We will need your help to keep up development! Getting [sponsored on Open Collective][sponsor] is the only way that we will be able to continue full time development of Arsenal. Our hope is to make Arsenal 0.2 a release that will spark the interest of the community and show that Arsenal will do what we say it will.
 
 We are posting weekly updates on our progress on the [Arsenal channel][arsenal_channel] on our website, so stay tuned!
 
@@ -31,11 +31,11 @@ Friendly user-experience and beginner accessibility will be important on the lis
 
 To program your games, Arsenal will incorporate scripting languages such as Python, in addition to being able to use logic nodes inside of Blender for a graphical programming experience. And if you want, you will always be able to write Rust to get the maximum performance.
 
-Arsenal is our dream for the ultimate game engine, but there is a lot of work that needs to be done. By [sponsoring us][sponsor] on GitHub you help bring that dream to reality. You can learn more about the [vision of Arsenal][vision] or check out the [FAQ] in the [Arsenal Documentation][docs]. We also posting any updates on Arsenal development in the [Arsenal category][category] of our website.
+Arsenal is our dream for the ultimate game engine, but there is a lot of work that needs to be done. By sponsoring us on [Open Collective][sponsor] you help bring that dream to reality. You can learn more about the [vision of Arsenal][vision] or check out the [FAQ] in the [Arsenal Documentation][docs]. We are also posting any updates on Arsenal development in the [Arsenal category][category] of our website.
 
 [blender]: https://blender.org
 [rust]: https://rust-lang.org
-[sponsor]: https://github.com/sponsors/katharostech
+[sponsor]: https://opencollective.com/arsenal
 [faq]: https://katharostech.github.io/arsenal/FAQ.html
 [docs]: https://katharostech.github.io/arsenal/index.html
 [vision]: https://katharostech.github.io/arsenal/vision.html
