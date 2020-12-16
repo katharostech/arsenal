@@ -58,3 +58,9 @@ The current design plan is to build Arsenal as a Blender plugin that uses the [B
 ## Bugs, Feature Requests, and Questions
 
 If you have any questions or ideas, don't hesitate to ask! Open a GitHub issue and let us know what you're thinking.
+
+## License
+
+Arsenal is licensed under the [Katharos License][k_license] which places certain restrictions on what you are allowed to use Arsenal for. Please read and understand the terms before using Arsenal for your project.
+
+[k_license]: https://github.com/katharostech/katharos-license
