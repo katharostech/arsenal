@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ❓ Question
+    url: https://github.com/katharostech/arsenal/discussions/new?category=questions
+    about: Ask a question
+  - name: 💬 Other Discussion
+    url: https://github.com/katharostech/arsenal/discussions/new?category=general
+    about: Start any other kind of discussion
