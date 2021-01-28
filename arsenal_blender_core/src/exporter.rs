@@ -112,7 +112,10 @@ impl BlendExporter {
         // Dump the static assets. These will eventually be dynamically
         // generated based on the Blend configuration.
         self.write_resource("scene.ron", include_bytes!("exporter/scene.ron"))?;
-        self.write_resource("display_config.ron", include_bytes!("exporter/display_config.ron"))?;
+        self.write_resource(
+            "display_config.ron",
+            include_bytes!("exporter/display_config.ron"),
+        )?;
 
         Ok(())
     }
@@ -230,8 +233,8 @@ impl BlendExporter {
         if object.getattr(py, "rotation_mode")?.extract::<String>(py)? == "QUATERNION" {
             blender_quat = object.getattr(py, "rotation_quaternion")?;
         } else {
-            blender_quat = object.
-                getattr(py, "rotation_euler")?
+            blender_quat = object
+                .getattr(py, "rotation_euler")?
                 .call_method0(py, "to_quaternion")?;
         }
         // Collect coordinates from blender quat

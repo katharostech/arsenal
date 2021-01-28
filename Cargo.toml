@@ -1,6 +1,17 @@
 [workspace]
 members = [
+    # Arsenal crates
     "arsenal_blender_core",
     "arsenal_runtime",
+    "arsenal_scripting",
+    "arsenal_scripting/types",
+
+    # Language adapters
+    "arsenal_scripting/language_adapters/python",
+
+    # Cargo utilities
     "xtask",
+]
+exclude = [
+    "lib"
 ]

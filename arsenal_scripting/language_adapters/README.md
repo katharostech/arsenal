@@ -1,0 +1,3 @@
+# Language Adapters
+
+These are the built-in language adapters supported by the Arsenal project. The Arsenal Scripting plugin allows for scripting languages to be implemented as standardized language adapters that can be dynamically loaded as native shared modules ( i.e. `.so`, `.dll`, or `.dylib` files, depending on the platform ). This allows scripting langauge adapters to be developed by 3rd party's and trivially added to Arsenal by downloading the relevant adapter for the target platform.
