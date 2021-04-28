@@ -1,0 +1,7 @@
+version: 2
+updates:
+- package-ecosystem: cargo
+  directory: "/arsenal_blender_core"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
