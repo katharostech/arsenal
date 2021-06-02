@@ -13,12 +13,12 @@
 
 ## Project Status
 
-We're getting back into Arsenal development! For the last year our company has been focused on other initiatives, but we've finally decided it's time to start investing in Arsenal.
+Arsenal development is currently on hold while we at Katharos Technology focus on producing our first game prototype, [Bounty Bros.][bounty_bros], which is a 2D, retro-style game built on the [Bevy] game engine and our own [Bevy Retro][bevy_retro] plugin.
 
-We currently have one person working full time on Arsenal, primarily at our own expense, with the goal of releasing Arsenal 0.2. We want to finally produce a full prototype that can actually be used to make basic games and prove that the plan we have is feasible.
+Because Arsenal will also be built on top of the Bevy game engine, much of what we are learning while creating Bevy Retro and Bounty Bros. will go directly to helping us prepare for making Arsenal. Arsenal is absolutely still something we plan on building and using in the future, but are a small team and have shifted our focus for the time being in order to narrow our scope and help ensure that we will be able to actually get started making commercial games.
 
-We are sprinting towards this goal as fast as we can, for we can't keep this up forever. We will need your help to keep up development! Getting [sponsored on Open Collective][sponsor] is the only way that we will be able to continue full time development of Arsenal. Our hope is to make Arsenal 0.2 a release that will spark the interest of the community and show that Arsenal will do what we say it will.
-
+[bounty_bros]: https://katharostech.com/post/bounty-bros-on-web
+[bevy_retro]: https://github.com/katharostech/bevy_retro
 [arsenal_channel]: https://katharostech.com/tag/arsenal
 
 ## The Vision
