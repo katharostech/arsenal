@@ -1,0 +1,9 @@
+[package]
+name = "arsenal_scripting_types"
+version = "0.1.0"
+authors = ["Zicklag <zicklag@katharostech.com>"]
+edition = "2018"
+
+[dependencies]
+safer-ffi = "0.0.5"
+serde = { version = "1.0.117", features = ["derive"] }

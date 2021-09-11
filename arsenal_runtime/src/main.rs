@@ -1,3 +1,10 @@
+use bevy::prelude::*;
+
 fn main() {
-    todo!("Migrate for Bevy");
+    App::build()
+        .add_plugins(DefaultPlugins)
+        .add_plugin(arsenal_scripting::ScriptingPlugin::new(
+            &std::env::args().skip(1).next().unwrap_or(".".to_string()),
+        ))
+        .run();
 }

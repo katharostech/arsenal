@@ -1,9 +1,9 @@
 /// Python utilities
 pub mod python {
-    use std::path::PathBuf;
+    use pyo3::exceptions::{Exception, FileNotFoundError, IOError};
     use pyo3::prelude::*;
-    use pyo3::exceptions::{FileNotFoundError, IOError, Exception};
-    use pyo3::types::{PyDict, IntoPyDict};
+    use pyo3::types::{IntoPyDict, PyDict};
+    use std::path::PathBuf;
 
     /// Print a Python object as it would be printed by the Python interpreter.
     pub fn print_py_value(py: Python, value: PyObject) -> PyResult<()> {
@@ -26,14 +26,17 @@ pub mod python {
             .getattr(py, "modules")?
             .cast_as::<PyDict>(py)?
             .get_item("arsenal_blender")
-            .ok_or_else(
-                || Exception::py_err("Could not load arsenal_blender module, used to determine Blender plugin path."))?
+            .ok_or_else(|| {
+                Exception::py_err(
+                    "Could not load arsenal_blender module, used to determine Blender plugin path.",
+                )
+            })?
             .to_object(py)
             .getattr(py, "__spec__")?
             .getattr(py, "origin")?
             .extract(py)?;
         let module_path = PathBuf::from(module_path);
-        
+
         // Path to the arsenal-blend addon directory
         let arsenal_plugin_path = module_path
             .parent()
@@ -59,10 +62,10 @@ pub mod python {
 
 /// Blender utilities
 pub mod blender {
-    use std::path::PathBuf;
-    use std::fs::DirBuilder;
     use pyo3::exceptions::{FileNotFoundError, IOError};
     use pyo3::prelude::*;
+    use std::fs::DirBuilder;
+    use std::path::PathBuf;
 
     /// Get the blend filepath. This will be None if the blend has not been saved
     /// yet.
@@ -115,9 +118,7 @@ pub mod blender {
         let build_dir_path = parent_dir.to_path_buf().join(build_dir_name);
 
         // Create path if it doesn't exist
-        DirBuilder::new()
-            .recursive(true)
-            .create(&build_dir_path)?;
+        DirBuilder::new().recursive(true).create(&build_dir_path)?;
 
         // Return path string
         Ok(build_dir_path

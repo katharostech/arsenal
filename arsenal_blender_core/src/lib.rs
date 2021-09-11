@@ -15,7 +15,7 @@ pub mod operators;
 pub mod utils;
 
 /// Arsenal Blender Core
-/// 
+///
 /// This is the core library used to perform most work in the arsenal-blender
 /// plugin.
 #[pymodule]

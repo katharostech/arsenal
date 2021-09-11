@@ -1,0 +1,3 @@
+# Arsenal Blender Core
+
+Arsenal Blender Core is the Rust component of the Arsenal Blender plugin that is written in Python. Arsenal Blender Core gets compiled to a Python module that is loaded by the Python code in Arsenal Blender. Arsenal Blender Core is used to perform most of the intensive operations needed by the Arsenal Blender plugin such as scene export. Arsenal Blender Core may also later be responsible for handling details such as live game sync or rendering.

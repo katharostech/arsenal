@@ -1,0 +1,3 @@
+# Arsenal Blender
+
+Arsenal Blender is the Python portion of the Arsenal Blender plugin. Arsenal Blender is responsible for adding all of our extra Blender GUI components we need for Arsenal and for being the "glue" that ties Blender to the functionality in [Arsenal Blender Core](../arsenal_blender_core). Arsenal Blender Core is written in Rust and used for most of the intense core logic required for Arsenal such as scene exporting and other game packaging or management operations.
