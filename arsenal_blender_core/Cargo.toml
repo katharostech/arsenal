@@ -25,5 +25,5 @@ enable_profiling = ["flame", "flamer"]
     # Profiling
     # Temporarily use my fork of flame because it will show milliseconds instead of samples in the HTML dump
     flame = { git = "https://github.com/TyOverby/flame.git", rev = "689d318c3", optional = true }
-    flamer = { version = "0.3", optional = true }
+    flamer = { version = "0.4", optional = true }
 
