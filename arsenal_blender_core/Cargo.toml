@@ -20,7 +20,7 @@ enable_profiling = ["flame", "flamer"]
     gltf-json = { version = "0.12", features = ["names", "extras"] }
 
     # Python Interface
-    pyo3 = { version = "0.7", features = ["extension-module"] }
+    pyo3 = { version = "0.17", features = ["extension-module"] }
 
     # Profiling
     # Temporarily use my fork of flame because it will show milliseconds instead of samples in the HTML dump
